@@ -3,6 +3,7 @@ import React from 'react'
 import MapView, {Marker} from 'react-native-maps';
 
 export default function Map() {
+  const [currentLocation, setCurrentLocation] = useState();
   return (
     <View style={styles.container}>
       <MapView style={styles.map}
