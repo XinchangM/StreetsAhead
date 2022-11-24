@@ -1,7 +1,7 @@
 import { View, Text,StyleSheet,Button } from 'react-native'
 import React from 'react'
 import { Video, AVPlaybackStatus } from 'expo-av';
-import Moment from 'moment';
+ 
 
 export default function PostItem({post}) {
   const video = React.useRef(null);
