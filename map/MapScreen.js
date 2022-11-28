@@ -12,7 +12,7 @@ import { collection, onSnapshot } from "firebase/firestore";
 
 export default function MapScreen({route, navigation}) {
  
-  const [currentLocation, setCurrentLocation] = useState();
+  const [currentLocation, setCurrentLocation] = useState({longitude:49.26242,latitude:-123.222});
   const [permissionResponse, requestPermission] =Location.useForegroundPermissions();
   const [region, setRegion] = useState();
 
@@ -32,6 +32,7 @@ export default function MapScreen({route, navigation}) {
   };
 let currentPosition;
 //console.log("++++",currentLocation);
+
   const locateUserHandler = async () => {
     try {
       const hasPermission = await verifyPermission();
@@ -39,30 +40,32 @@ let currentPosition;
         return;
       }
       currentPosition = await Location.getCurrentPositionAsync({enableHighAccuracy:true});
+   
       setCurrentLocation({
         latitude: currentPosition.coords.latitude,
         longitude: currentPosition.coords.longitude,
       });
       //console.log("------",currentPosition);
-      mapRef.current.animateToRegion({
-        latitude:currentLocation.latitude,
-        longitude:currentLocation.longitude,
-        latitudeDelta: 0.020,
-        longitudeDelta: 0.020,
-      });
+ 
+
       console.log("++++",currentLocation);
     } catch (err) {
       console.log("locate user ", err);
     }
   };
- 
-
-
-
+  
+  useEffect(() => {
+  mapRef.current.animateToRegion({
+    latitude:currentLocation.latitude,
+    longitude:currentLocation.longitude,
+    latitudeDelta: 0.020,
+    longitudeDelta: 0.020,
+  });
+},[currentLocation]);
 
 
   
-  console.log("!!",region)
+  //console.log("!!",region)
   const [events, setEvents] = useState([]);
   useEffect(() => {
     const unsubscribe = onSnapshot(
