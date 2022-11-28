@@ -8,7 +8,7 @@ Member: Yuan Liu, Xinchang Meng
 Screenshots:
 
 1. Signup
-![1](./screenshots/1-1.png)
+<img src="./screenshots/1-1.png" width="128"/>
 
 2. Login
 ![2](./screenshots/1-2.png)
