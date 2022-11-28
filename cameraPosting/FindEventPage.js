@@ -27,8 +27,8 @@ export default function FindEventPage({route,navigation}) {
       if (!hasPermission) {
         return;
       }
-      const currentPosition = await Location.getCurrentPositionAsync();
-      console.log(currentPosition);
+      const currentPosition = await Location.getCurrentPositionAsync({enableHighAccuracy:true});
+
       setCurrentLocation({
         latitude: currentPosition.coords.latitude,
         longitude: currentPosition.coords.longitude,

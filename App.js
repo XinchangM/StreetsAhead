@@ -20,7 +20,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 
-import MapScreen from "./map/MapScreen";
+import Map from "./map/MapScreen";
 
 import EventDetailPage from "./components/EventDetailPage";
 
@@ -37,6 +37,7 @@ import ChoosePositionPage from "./userDashboard/ChoosePositionPage";
 import ManageEventPage from "./userDashboard/ManageEventPage";
 
 import TipIcon from './components/TipIcon';
+import MapScreen from './map/MapScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -105,7 +106,6 @@ export default function App() {
   const AuthStack = (
     <>
       <Stack.Screen name="Login" component={Login} />
-
       <Stack.Screen name="Signup" component={Signup} />
     </>
   );
