@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Pressable, Image,TouchableOpacity } from "react-native";
 import Button from '../components/Button';
 import EventList from '../components/EventList';
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker,Callout } from "react-native-maps";
 import React, { useEffect, useState, useRef} from "react";
 import * as Location from "expo-location";
 import { MAPS_API_KEY } from '@env';
@@ -53,7 +53,7 @@ let currentPosition;
       console.log("locate user ", err);
     }
   };
-  
+
   useEffect(() => {
   mapRef.current.animateToRegion({
     latitude:currentLocation.latitude,
@@ -93,8 +93,11 @@ let currentPosition;
     };
   }, []);
   
-  function buttonPressed() {
-    navigation.navigate("EventDetailPage");
+
+  function onPressMarker(key){
+    navigation.navigate("EventDetailPage", {
+      eventId: key
+    });
   }
   return (
     <View>
@@ -112,11 +115,20 @@ let currentPosition;
           longitudeDelta: 0.020,
         }}
         ref={mapRef}>
+           
        {events.map((event,i) => {
           return (
           <Marker key={event.key}
-                coordinate={event.coordinate}/>)})}
-      {currentLocation && <Marker coordinate={currentLocation} />}
+                identifier={event.key}
+                coordinate={event.coordinate}
+                onPress={e => onPressMarker(e.nativeEvent.id)}
+                />)})}
+         
+      {currentLocation && 
+      <Marker 
+      coordinate={currentLocation}
+      pinColor="black"
+      />}
       </MapView> 
 
       
