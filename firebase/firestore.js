@@ -2,7 +2,7 @@ import {
   collection,
   addDoc,
   doc,
-  getDoc,
+  getDocs,
   setDoc,
   deleteDoc,
   updateDoc,
@@ -37,6 +37,7 @@ export async function writeEventToDB({ startTime,endTime,coordinate,performer,ev
   }
 }
 
+
 export async function writePostToDB({mediaUri,postTime,linkedEventId,comment}) {
   try {
     const docRef = await addDoc(collection(firestore, "posts"), {
@@ -53,10 +54,9 @@ export async function writePostToDB({mediaUri,postTime,linkedEventId,comment}) {
 
 
 
-
 export async function deleteEventFromDB(key) {
   try {
-    await deleteDoc(doc(firestore, "events", key));
+   await deleteDoc(doc(firestore, "events", key));
   } catch (err) {
     console.log(err);
   }

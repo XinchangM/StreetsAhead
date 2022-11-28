@@ -54,7 +54,7 @@ export default function CreateEventPage({route,navigation}) {
   function submitPressed() {
  
     navigation.goBack();
-   writeEventToDB({      
+    writeEventToDB({      
       startTime:startTime,
       endTime:endTime,
       coordinate:route.params.coordinate,
