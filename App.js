@@ -120,7 +120,7 @@ export default function App() {
           <Stack.Screen
             name="CameraNextStepPage"
             component={CameraNextStepPage}
-            options={{title:'Add Expense'}}
+            options={{title:'Create a post'}}
           />
            <Stack.Screen
             name="ChoosePositionPage"
