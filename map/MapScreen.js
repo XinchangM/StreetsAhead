@@ -16,8 +16,6 @@ export default function MapScreen({route, navigation}) {
   const [permissionResponse, requestPermission] =Location.useForegroundPermissions();
   const [region, setRegion] = useState();
 
-
-
   const mapRef = useRef(null)
   const onCenter = () => {
     console.log("1111",mapRef)
@@ -30,9 +28,7 @@ export default function MapScreen({route, navigation}) {
     const requestPermissionResponse = await requestPermission();
     return requestPermissionResponse.granted;
   };
-let currentPosition;
-//console.log("++++",currentLocation);
-
+  let currentPosition;
   const locateUserHandler = async () => {
     try {
       const hasPermission = await verifyPermission();
@@ -45,9 +41,6 @@ let currentPosition;
         latitude: currentPosition.coords.latitude,
         longitude: currentPosition.coords.longitude,
       });
-      //console.log("------",currentPosition);
- 
-
       console.log("++++",currentLocation);
     } catch (err) {
       console.log("locate user ", err);
@@ -55,17 +48,14 @@ let currentPosition;
   };
 
   useEffect(() => {
-  mapRef.current.animateToRegion({
-    latitude:currentLocation.latitude,
-    longitude:currentLocation.longitude,
-    latitudeDelta: 0.020,
-    longitudeDelta: 0.020,
-  });
-},[currentLocation]);
+    mapRef.current.animateToRegion({
+      latitude:currentLocation.latitude,
+      longitude:currentLocation.longitude,
+      latitudeDelta: 0.020,
+      longitudeDelta: 0.020,
+    });
+  },[currentLocation]);
 
-
-  
-  //console.log("!!",region)
   const [events, setEvents] = useState([]);
   useEffect(() => {
     const unsubscribe = onSnapshot(

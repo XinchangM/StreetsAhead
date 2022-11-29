@@ -24,7 +24,7 @@ import Map from "./map/MapScreen";
 
 import EventDetailPage from "./components/EventDetailPage";
 
-import CameraScreen from "./cameraPosting/CameraScreen";
+import Camera from "./cameraPosting/Camera";
 import CameraNextStepPage from "./cameraPosting/CameraNextStepPage";
 import FindEventPage from "./cameraPosting/FindEventPage";
 
@@ -66,7 +66,7 @@ function MajorScreens() {
       />
       <Tab.Screen
         name="Camera"
-        component={CameraScreen}
+        component={Camera}
         options={{
           title: "Camera",
           tabBarIcon: ({ color, size }) => (
