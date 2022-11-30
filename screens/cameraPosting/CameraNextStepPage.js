@@ -1,12 +1,13 @@
 import { View, Text,Pressable,StyleSheet,TextInput, Alert } from 'react-native'
 import React,{useState,useEffect} from 'react'
-import Button from '../components/Button';
+import Button from '../../components/Button';
 import { useNavigation } from "@react-navigation/native";
-import { storage } from "../firebase/firebase-setup";
+import { storage } from "../../firebase/firebase-setup";
 import { getDownloadURL, ref } from "firebase/storage";
-import { firestore, auth } from "../firebase/firebase-setup";
-import { writePostToDB } from "../firebase/firestore";
-import Colors from '../components/Colors';
+import { firestore, auth } from "../../firebase/firebase-setup";
+import { writePostToDB } from "../../firebase/firestore";
+import Colors from '../../components/Colors';
+
 export default function CameraNextStepPage({route,navigation}) {
   const [comment, setComment] = useState("");
   let postTime=new Date();

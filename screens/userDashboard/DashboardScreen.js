@@ -1,7 +1,7 @@
 import { View, Text ,Pressable,StyleSheet} from 'react-native'
 import React from 'react'
-import { auth } from "../firebase/firebase-setup";
-import Button from '../components/Button';
+import { auth } from "../../firebase/firebase-setup";
+import Button from '../../components/Button';
 
 export default function DashboardScreen({route,navigation}) {
   function createEventPressed() {

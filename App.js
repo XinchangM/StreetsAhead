@@ -15,29 +15,26 @@ import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons'; 
 
+import Login from "./screens/auth/Login";
+import Signup from "./screens/auth/Signup";
 
-
-import Login from "./auth/Login";
-import Signup from "./auth/Signup";
-
-import Map from "./map/MapScreen";
 
 import EventDetailPage from "./components/EventDetailPage";
 
-import Camera from "./cameraPosting/Camera";
-import CameraNextStepPage from "./cameraPosting/CameraNextStepPage";
-import FindEventPage from "./cameraPosting/FindEventPage";
+import Camera from "./screens/cameraPosting/Camera";
+import CameraNextStepPage from "./screens/cameraPosting/CameraNextStepPage";
+import FindEventPage from "./screens/cameraPosting/FindEventPage";
 
-import DashboardScreen from "./userDashboard/DashboardScreen";
-import CreateEventPage from "./userDashboard/CreateEventPage";
-import PostHistoryPage from "./userDashboard/PostHistoryPage";
-import EventHistoryPage from "./userDashboard/EventHistoryPage";
-import ChooseTimePage from "./userDashboard/ChooseTimePage";
-import ChoosePositionPage from "./userDashboard/ChoosePositionPage";
-import ManageEventPage from "./userDashboard/ManageEventPage";
+import DashboardScreen from "./screens/userDashboard/DashboardScreen";
+import CreateEventPage from "./screens/userDashboard/CreateEventPage";
+import PostHistoryPage from "./screens/userDashboard/PostHistoryPage";
+import EventHistoryPage from "./screens/userDashboard/EventHistoryPage";
+import ChooseTimePage from "./screens/userDashboard/ChooseTimePage";
+import ChoosePositionPage from "./screens/userDashboard/ChoosePositionPage";
+import ManageEventPage from "./screens/userDashboard/ManageEventPage";
 
 import TipIcon from './components/TipIcon';
-import MapScreen from './map/MapScreen';
+import MapScreen from './screens/map/MapScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -75,7 +72,7 @@ function MajorScreens() {
         }}
       />
 
-<Tab.Screen
+    <Tab.Screen
         name="Dashboard"
         component={DashboardScreen}
         options={({ navigation }) => {
@@ -93,6 +90,7 @@ function MajorScreens() {
     </Tab.Navigator>
   );
 }
+
 export default function App() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -188,8 +186,5 @@ export default function App() {
     </NavigationContainer>
   );
 
-
-
 }
-
 

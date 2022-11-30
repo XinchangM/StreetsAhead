@@ -1,13 +1,13 @@
 import { View, Text, StyleSheet, Pressable, Image,TouchableOpacity } from "react-native";
-import Button from '../components/Button';
-import EventList from '../components/EventList';
+import Button from '../../components/Button';
+import EventList from '../../components/EventList';
 import MapView, { Marker,Callout } from "react-native-maps";
 import React, { useEffect, useState, useRef} from "react";
 import * as Location from "expo-location";
 import { MAPS_API_KEY } from '@env';
-import imagePath from "../constants/imagePath";
-import { getEvent } from "../firebase/firestore";
-import { firestore, auth } from "../firebase/firebase-setup";
+import imagePath from "../../constants/imagePath";
+import { getEvent } from "../../firebase/firestore";
+import { firestore, auth } from "../../firebase/firebase-setup";
 import { collection, onSnapshot } from "firebase/firestore";
 
 export default function MapScreen({route, navigation}) {
