@@ -21,7 +21,7 @@ import Signup from "./screens/auth/Signup";
 
 import EventDetailPage from "./components/EventDetailPage";
 
-import Camera from "./screens/cameraPosting/Camera";
+import CameraScreen from "./screens/cameraPosting/CameraScreen";
 import CameraNextStepPage from "./screens/cameraPosting/CameraNextStepPage";
 import FindEventPage from "./screens/cameraPosting/FindEventPage";
 
@@ -63,9 +63,10 @@ function MajorScreens() {
       />
       <Tab.Screen
         name="Camera"
-        component={Camera}
+        component={CameraScreen}
         options={{
           title: "Camera",
+          headerShown:false,
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="camerao" size={size} color={color} />
           ),
