@@ -1,11 +1,11 @@
 import { View, Text ,Pressable,StyleSheet,TextInput, Alert} from 'react-native'
 import React from 'react'
-import Button from '../components/Button';
-import Colors from '../components/Colors';
+import Button from '../../components/Button';
+import Colors from '../../components/Colors';
 import { useState } from "react";
-import { writeEventToDB } from "../firebase/firestore";
+import { writeEventToDB } from "../../firebase/firestore";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { firestore,auth } from "../firebase/firebase-setup";
+import { firestore,auth } from "../../firebase/firebase-setup";
 
 export default function CreateEventPage({route,navigation}) {
   const [performer, setPerformer] = useState("");
