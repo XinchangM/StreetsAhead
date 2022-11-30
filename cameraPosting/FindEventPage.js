@@ -7,12 +7,12 @@ import EventItem from "../components/EventItem"
 import * as Location from "expo-location";
 
 export default function FindEventPage({route,navigation}) {
-
-
-
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [events, setEvents] = useState([]);
   const [currentLocation, setCurrentLocation] = useState();
   const [permissionResponse, requestPermission] =Location.useForegroundPermissions();
 
+  const onChangeSearch = query => setSearchQuery(query);
   
   const verifyPermission = async () => {
     if (permissionResponse.granted) {
@@ -39,13 +39,10 @@ export default function FindEventPage({route,navigation}) {
   };
 
 
-  const [events, setEvents] = useState([]);
+
   useEffect(() => {
     const unsubscribe = onSnapshot(
-  
-        collection(firestore, "events")
-        
-      ,
+        collection(firestore, "events"),
       (querySnapshot) => {
         if (querySnapshot.empty) {
           setEvents([]);
@@ -72,14 +69,11 @@ let isShow=false;
     isShow=true;
   }
 
-
-
-
-
   return (
     <View>
       <Text>FindEventPage</Text>
       <Button onPress={locateUserHandler} title={"Find events near me"}/>
+
       <View style={styles.list}>
       {isShow&&
       <View>
