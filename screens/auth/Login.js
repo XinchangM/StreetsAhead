@@ -15,7 +15,17 @@ export default function Login({ navigation }) {
     }
   };
   return (
+   
+
     <View style={styles.authContent}>
+      <View style={styles.greetings}>
+    <Text>
+        Welcome to StreesAhead!
+      </Text>
+      <Text>
+        Log in to engage in street art!
+      </Text>
+      </View>
       <Text style={styles.label}>Email Address</Text>
       <TextInput
         placeholder="Email"
@@ -42,6 +52,7 @@ export default function Login({ navigation }) {
         />
       </View>
     </View>
+
   );
 }
 
@@ -69,4 +80,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 5,
   },
+  greetings:{
+    alignItems:"center"
+  }
 });

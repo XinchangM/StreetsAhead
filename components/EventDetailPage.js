@@ -1,11 +1,22 @@
 import { View, Text,FlatList,StyleSheet } from 'react-native'
 import React,{useState,useEffect} from 'react'
 import { firestore, auth } from "../firebase/firebase-setup";
+import {deleteEventFromDB} from "../firebase/firestore";
 import { doc,collection, onSnapshot, query, where,documentId} from "firebase/firestore";
 import PostItem from './PostItem';
+import Button from "./Button";
 export default function EventDetailPage({route,navigation}) {
   const [event, setEvent] = useState();
   const [posts, setPosts]=useState([]);
+  function OnEditEvent(){
+    navigation.navigate("ManageEventPage", {
+      eventId: route.params.eventId
+    });
+  }
+  function OnDeleteEvent(){
+    deleteEventFromDB(route.params.eventId);
+    navigation.goBack();
+  }
   useEffect(() => {
     const unsubscribe = onSnapshot(
       doc(firestore, "events", route.params.eventId), 
@@ -24,6 +35,7 @@ export default function EventDetailPage({route,navigation}) {
   }, []);
 
   useEffect(() => {
+    console.log(route.params.isManagable);
     const uns = onSnapshot(
       query(
         collection(firestore, "posts"),
@@ -52,21 +64,32 @@ export default function EventDetailPage({route,navigation}) {
     };
   }, []);
 
-  let isDoc=false;
+  let isEventExist=false;
+
   if(event!=undefined){
-    isDoc=true;
+    isEventExist=true;
   }
 
-  let isPost=false;
+
+  let isPostExist=false;
+
   if(posts!=[]){
-    isPost=true;
+    isPostExist=true;
   }
 
   return (
     <View>
-      <Text>EventDetailPage</Text>
-    
-{isDoc&&
+    {route.params.isManagable&&
+    <View style={styles.buttonsContainer}>
+    <Button title={"Edit Event"}
+    onPress={OnEditEvent}
+    />
+    <Button title={"Delete Event"}
+    onPress={OnDeleteEvent}
+    />
+    </View>
+    }
+{isEventExist&&
 <View style={styles.v1}>
       <Text>eventId: {route.params.eventId}</Text>
       <Text>StartTime: {event.startTime.seconds}</Text>
@@ -78,7 +101,7 @@ export default function EventDetailPage({route,navigation}) {
       <Text>Event Name: {event.eventName}</Text>
       </View>}
 
-      {isPost&&
+      {isPostExist&&
       <View style={styles.v2}>
         <Text>PostList</Text>
       <FlatList
@@ -103,12 +126,16 @@ export default function EventDetailPage({route,navigation}) {
 }
 
 const styles = StyleSheet.create({
+  buttonsContainer:{
+    
+    flexDirection:'row'
+  },
   v1: {
-    height:'20%',
+  
     backgroundColor:"lavender"
   },
   v2: {
-    height:'80%',
+   
     backgroundColor:"mistyrose"
   },
 });

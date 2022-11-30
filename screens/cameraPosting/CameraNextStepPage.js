@@ -8,7 +8,7 @@ import { firestore, auth } from "../../firebase/firebase-setup";
 import { writePostToDB } from "../../firebase/firestore";
 import Colors from '../../components/Colors';
 
-export default function CameraNextStepPage({route,navigation}) {
+export default function CameraStepPage({route,navigation}) {
   const [comment, setComment] = useState("");
   let postTime=new Date();
   let linkedEventId=route.params.eventId;
@@ -27,7 +27,7 @@ function onUpload()  {
 
   return (
     <View>
-      <Text>CameraNextStepPage</Text>
+      <Text>CameraStepPage</Text>
       
     <Button
       onPress={linkEventPressed}

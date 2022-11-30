@@ -16,7 +16,7 @@ export default SendButton = ({ onPress, bg, disabled }) => {
         onPress={onPress}
         style={tw`justify-center items-center h-full w-full`}
       >
-       <FeatherIcon name="Next" size={20} color="black" />
+       {/* <FeatherIcon name="Next" size={20} color="black" /> */}
       </TouchableOpacity>
     </View>
   );
