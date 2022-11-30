@@ -8,7 +8,8 @@ import Icon from "react-native-vector-icons/EvilIcons";
 import TypeIcon from "react-native-vector-icons/Entypo";
 import NextButton from "../../components/NextButton";
 
-export default function CameraScreen() {
+
+export default function CameraScreen({navigation}) {
   const video = React.useRef(null);
 const [status, setStatus] = React.useState({});
   const [hasPermission, setHasPermission] = useState(null);
@@ -16,12 +17,9 @@ const [status, setStatus] = React.useState({});
   const [preview, setPreview] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const camRef = useRef();
-  const navigation = useNavigation();
-  const [uri, setUri] = useState("");
-  const imageHandler = (uri) => {
-    console.log("imageHandler called", uri);
-    setUri(uri);
-  };
+
+
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTransparent: true,
@@ -69,7 +67,19 @@ const [status, setStatus] = React.useState({});
   }
 
   function buttonPressed() {
-    navigation.navigate("CameraNextStepPage",{uri});
+    let uri;
+    let mediaType;
+    if(preview){
+      uri=preview.uri;
+      mediaType="photo";
+    }
+    if(record){
+      uri=record;
+      mediaType="video"
+    }
+    console.log(record);
+
+    navigation.navigate("CameraNextStepPage",{mediaUri:uri,mediaType:mediaType});
   }
 
   return (

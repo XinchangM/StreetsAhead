@@ -1,9 +1,10 @@
-import { View, Text,StyleSheet,Button } from 'react-native'
+import { View, Text,StyleSheet,Button,Image } from 'react-native'
 import React from 'react'
 import { Video, AVPlaybackStatus } from 'expo-av';
 import {deletePostFromDB} from "../firebase/firestore";
 
 export default function PostItem({post}) {
+
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
   function onDelete(){
@@ -12,13 +13,18 @@ export default function PostItem({post}) {
   return (
     <View style={styles.item}>
       <Text>Video/Image: </Text>
+     {post.mediaType=="photo"&&
+      <Image source={{uri: post.mediaUri}}  
+       style={{width: 320, height: 400}}
+      />   }
+   {post.mediaType=="video"&&
       <View style={styles.container}>
-      <Video
+        
+    
+       <Video
         ref={video}
         style={styles.video}
-        source={{
-          uri: 'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
-        }}
+        source={{uri:post.mediaUri}}
         useNativeControls
         resizeMode="contain"
         isLooping
@@ -31,8 +37,9 @@ export default function PostItem({post}) {
             status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
           }
         />
-      </View>
-    </View>
+      </View> 
+    </View>}
+  
       <Text>PostTime: {post.postTime.toString()}</Text>
       <Text>Post User Id: {post.userId}</Text>
       <Text>Associated Event Id: {post.linkedEventId}</Text>
@@ -62,4 +69,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+ 
 });

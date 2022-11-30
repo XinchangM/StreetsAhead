@@ -3,23 +3,69 @@ import React,{useState,useEffect} from 'react'
 import Button from '../../components/Button';
 import { useNavigation } from "@react-navigation/native";
 import { storage } from "../../firebase/firebase-setup";
-import { getDownloadURL, ref } from "firebase/storage";
 import { firestore, auth } from "../../firebase/firebase-setup";
 import { writePostToDB } from "../../firebase/firestore";
 import Colors from '../../components/Colors';
+import * as MediaLibrary from 'expo-media-library'; 
+import { ref, uploadBytesResumable,getDownloadURL } from "firebase/storage";
 
 export default function CameraStepPage({route,navigation}) {
+
+  const [mediaUri, setMediaUri] = useState("");
+  const [linkedEventId, setLinkedEventId] = useState("");
   const [comment, setComment] = useState("");
-  let postTime=new Date();
-  let linkedEventId=route.params.eventId;
-  const mediaUri="hhhh";
+  const [mediaType, setMediaType]= useState("");
+  useEffect(() => {
+    if(route.params.eventId){
+      setLinkedEventId(route.params.eventId);
+    }
+  }, [route.params.eventId]);
+
+  useEffect(() => {
+    if(route.params.mediaType){
+      setMediaType(route.params.mediaType);
+    }
+  }, [route.params.mediaType]);
+  
+  useEffect(() => {
+    if(route.params.mediaUri){
+      setMediaUri(route.params.mediaUri);
+    }
+  }, [route.params.mediaUri]);
 
 
-function onUpload()  {
-   writePostToDB({mediaUri,postTime,linkedEventId,comment});
-   Alert.alert("Success","You have successfully posted")
+
+  const onUpload = async () => {
+      try{  
+        const response = await fetch(mediaUri);
+        const blob = await response.blob();
+        const name= blob._data.name;
+        const imageRef = await ref(storage,`images/${name}` );
+
+        const uploadTask = await uploadBytesResumable(imageRef, blob);
+        blob.close();
+        const u=await getDownloadURL(imageRef);
+        await writePostToDB({
+          mediaUri:u,
+          postTime:new Date(),
+          linkedEventId:linkedEventId,
+          comment:comment,
+        mediaType:mediaType});
+        Alert.alert("Success","You have successfully posted")}
+   catch (err) {
+    alert(err)
+  }
   };
-  function onDownload(){}
+
+  const onDownload = async () => {
+
+    try {
+      await MediaLibrary.saveToLibraryAsync(mediaUri);
+      alert("success")
+    } catch (err) {
+      alert(err);
+    }
+  };
 
   function linkEventPressed() {
     navigation.navigate("FindEventPage");
