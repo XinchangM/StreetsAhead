@@ -34,6 +34,14 @@ export default function Signup({ navigation }) {
 
   return (
     <View style={styles.authContent}>
+            <View style={styles.greetings}>
+    <Text>
+        Welcome to StreesAhead!
+      </Text>
+      <Text>
+        Sign up to join the community!
+      </Text>
+      </View>
       <Text style={styles.label}>Name</Text>
       <TextInput
         placeholder="Name"
@@ -71,6 +79,7 @@ export default function Signup({ navigation }) {
         onPress={() => navigation.replace("Login")}
       />
     </View>
+
   );
 }
 
@@ -95,4 +104,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 2,
   },
+  greetings:{
+    alignItems:"center"
+  }
 });

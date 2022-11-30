@@ -62,10 +62,10 @@ export async function deleteEventFromDB(key) {
   }
 }
 
-export async function updateEvent(key,startTime,endTime,coordinate,performer,eventName) {
+export async function updateEvent({key,startTime,endTime,coordinate,performer,eventName}) {
   try {
-    const ref = doc(firestore, "events", key);
-    await updateDoc(ref, {
+    const ref = doc(firestore,"events",key);
+    await setDoc(ref,{
       startTime:startTime,
       endTime:endTime,
       coordinate:coordinate,

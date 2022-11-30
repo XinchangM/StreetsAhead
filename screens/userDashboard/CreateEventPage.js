@@ -47,7 +47,7 @@ export default function CreateEventPage({route,navigation}) {
 
 
   function choosePositionPressed() {
-    navigation.navigate("ChoosePositionPage");
+    navigation.navigate("ChoosePositionPage",{isCreateNew:true});
     
   }
 

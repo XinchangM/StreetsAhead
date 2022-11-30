@@ -40,7 +40,7 @@ export default function EventList({isAll}) {
         <FlatList
           data={events}
           renderItem={({ item }) => {
-            return <EventItem event={item} isLinkable={false}/>;
+            return <EventItem event={item} option={3}/>;
           }}
           //for android
           overScrollMode={"always"}
@@ -51,7 +51,7 @@ export default function EventList({isAll}) {
             return event.userId == auth.currentUser.uid;
           })}
           renderItem={({ item }) => {
-            return <EventItem event={item} isLinkable={false} />;
+            return <EventItem event={item} option={2} />;
           }}
           //for android
           overScrollMode={"always"}

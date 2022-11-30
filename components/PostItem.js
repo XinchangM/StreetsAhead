@@ -1,11 +1,14 @@
 import { View, Text,StyleSheet,Button } from 'react-native'
 import React from 'react'
 import { Video, AVPlaybackStatus } from 'expo-av';
- 
+import {deletePostFromDB} from "../firebase/firestore";
 
 export default function PostItem({post}) {
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
+  function onDelete(){
+    deletePostFromDB(post.key);
+  }
   return (
     <View style={styles.item}>
       <Text>Video/Image: </Text>
@@ -34,6 +37,7 @@ export default function PostItem({post}) {
       <Text>Post User Id: {post.userId}</Text>
       <Text>Associated Event Id: {post.linkedEventId}</Text>
       <Text>Comment: {post.comment}</Text>
+      <Button title={"Delete this post"} onPress={onDelete}/>
     </View>
   )
 }

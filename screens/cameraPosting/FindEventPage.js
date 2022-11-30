@@ -1,4 +1,4 @@
-import { View, Text,FlatList,StyleSheet} from 'react-native'
+import { View, Text,FlatList,StyleSheet,TextInput} from 'react-native'
 import React,{useState,useEffect} from 'react'
 import { firestore, auth } from "../../firebase/firebase-setup";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
@@ -7,10 +7,9 @@ import EventItem from "../../components/EventItem"
 import * as Location from "expo-location";
 
 export default function FindEventPage({route,navigation}) {
-
-
-
-  const [currentLocation, setCurrentLocation] = useState();
+  const [events, setEvents] = useState([]);
+  const [query, setQuery]=useState('');
+  //const [currentLocation, setCurrentLocation] = useState();
   const [permissionResponse, requestPermission] =Location.useForegroundPermissions();
 
   
@@ -21,14 +20,13 @@ export default function FindEventPage({route,navigation}) {
     const requestPermissionResponse = await requestPermission();
     return requestPermissionResponse.granted;
   };
-  const locateUserHandler = async () => {
+/*   const locateUserHandler = async () => {
     try {
       const hasPermission = await verifyPermission();
       if (!hasPermission) {
         return;
       }
       const currentPosition = await Location.getCurrentPositionAsync({enableHighAccuracy:true});
-
       setCurrentLocation({
         latitude: currentPosition.coords.latitude,
         longitude: currentPosition.coords.longitude,
@@ -36,10 +34,9 @@ export default function FindEventPage({route,navigation}) {
     } catch (err) {
       console.log("locate user ", err);
     }
-  };
+  }; */
 
 
-  const [events, setEvents] = useState([]);
   useEffect(() => {
     const unsubscribe = onSnapshot(
   
@@ -57,6 +54,7 @@ export default function FindEventPage({route,navigation}) {
             data = { ...data, key: snapDoc.id };
             return data;
           })
+       
         );
       },
       (err) => {
@@ -67,34 +65,68 @@ export default function FindEventPage({route,navigation}) {
       unsubscribe();
     };
   }, []);
-let isShow=false;
+
+
+/*   let isSearchByName=false;
+  let isShowNearby=false;
   if(currentLocation!=undefined){
-    isShow=true;
+    isShowNearby=true;
   }
+  useEffect(() => {
+    if(query==""){
+        isSearchByName=false;
 
-
+    }else{
+        isSearchByName=true;
+        console.log("query:",query)
+        isShowNearby=false;
+        console.log(events.filter((event) => {
+            return event.eventName.includes(query) }))
+    }
+}, [query]); */
 
 
 
   return (
     <View>
-      <Text>FindEventPage</Text>
-      <Button onPress={locateUserHandler} title={"Find events near me"}/>
+      <View style={styles.container}>
+      <TextInput
+      style={styles.searchInput}
+      placeholder='Search here'
+      onChangeText={(newQuery) => {
+        setQuery(newQuery);
+      }}
+      value={query}
+      />
+      </View>
+      {/* <Button onPress={locateUserHandler} title={"Find events near me"}/> */}
       <View style={styles.list}>
-      {isShow&&
-      <View>
-      <Text>Hi</Text>
+        <View style={styles.c1}>
+    
+      <FlatList
+          data={events.filter((event) => {
+            return event.eventName.toLowerCase().includes(query) })}
+          renderItem={({ item }) => {
+            return <EventItem event={item} option={1}/>;
+          }}
+          //for android
+          overScrollMode={"always"}
+        /></View>
+{/*         <View>
+      {isShowNearby&&
+      <View style={styles.c2}>
+      <Text>Nearby Events: </Text>
       <FlatList
           data={events.filter((event) => {
             return (Math.abs(event.coordinate.latitude-currentLocation.latitude)<20 && Math.abs(event.coordinate.longitude-currentLocation.longitude)<20) ;
           })}
           renderItem={({ item }) => {
-            return <EventItem event={item} isLinkable={true}/>;
+            return <EventItem event={item} option={1}/>;
           }}
           //for android
           overScrollMode={"always"}
         /></View>}
-
+</View> */}
       </View>
     </View>
   )
@@ -103,4 +135,22 @@ const styles = StyleSheet.create({
   list: {
     height:  "100%",
   },
+  container:{
+    width: "100%",
+    height: 50,
+    backgroundColor: "white",
+    borderRadius: 5
+},
+searchInput:{
+    width: "100%",
+    height:"100%",
+    paddingLeft:8,
+    fontSize:16
+},
+c1:{
+    backgroundColor:"lightcyan"
+},
+c2:{
+    backgroundColor:"cornsilk"
+},
 });
