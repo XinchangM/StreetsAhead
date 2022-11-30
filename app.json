@@ -31,10 +31,12 @@
     },
     "plugins": [
       [
-      "expo-image-picker",
-      {
-      "cameraPermission": "The app needs access to your camera."
-      }
+      "expo-media-library",
+        {
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
+          "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos.",
+          "isAccessMediaLocationEnabled": true
+        }
       ]
       ]
   }

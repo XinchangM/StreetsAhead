@@ -38,14 +38,15 @@ export async function writeEventToDB({ startTime,endTime,coordinate,performer,ev
 }
 
 
-export async function writePostToDB({mediaUri,postTime,linkedEventId,comment}) {
+export async function writePostToDB({mediaUri,postTime,linkedEventId,comment,mediaType}) {
   try {
     const docRef = await addDoc(collection(firestore, "posts"), {
       mediaUri:mediaUri,
       postTime:postTime,
       userId:auth.currentUser.uid,
       linkedEventId :linkedEventId,
-      comment:comment
+      comment:comment,
+      mediaType:mediaType
     });
   } catch (err) {
     console.log(err);
