@@ -1,7 +1,7 @@
 import { View, Text,FlatList,StyleSheet} from 'react-native'
 import React,{useState,useEffect} from 'react'
 import { firestore, auth } from "../../firebase/firebase-setup";
-import { collection, onSnapshot, query, where } from "../../firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import Button from '../../components/Button';
 import EventItem from "../../components/EventItem"
 import * as Location from "expo-location";
