@@ -3,7 +3,9 @@ import { Text, View, TouchableOpacity, ImageBackground } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import { Camera } from "expo-camera";
 import { useNavigation } from "@react-navigation/native";
-
+import Icon from "react-native-vector-icons/EvilIcons";
+import TypeIcon from "react-native-vector-icons/Entypo";
+import NextButton from "../../components/NextButton";
 
 export default function CameraScreen() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -11,15 +13,17 @@ export default function CameraScreen() {
   const [type, setType] = useState(Camera.Constants.Type.back);
   const camRef = useRef();
   const navigation = useNavigation();
-
-  //#region layout options nav
+  const [uri, setUri] = useState("");
+  const imageHandler = (uri) => {
+    console.log("imageHandler called", uri);
+    setUri(uri);
+  };
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTransparent: true,
     });
   }, []);
-  //#endregion
-  //#region camera permission
+
   useEffect(() => {
     const askPermission = async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
@@ -32,10 +36,9 @@ export default function CameraScreen() {
     return <View />;
   }
   if (hasPermission === false) {
-    return <Text>Accès refusé à la camera</Text>;
+    return <Text>No Permission</Text>;
   }
-  //#endregion
-  //#region  take photo function
+
   const takePhoto = async () => {
     if (!camRef) return;
     try {
@@ -45,7 +48,10 @@ export default function CameraScreen() {
       alert(err);
     }
   };
-  //#endregion
+
+  function buttonPressed() {
+    navigation.navigate("CameraNextStepPage",{uri});
+  }
 
   return (
     <View style={tw`items-center justify-center w-full h-full`}>
@@ -67,6 +73,7 @@ export default function CameraScreen() {
                 );
               }}
             >
+            <Icon name="refresh" size={30} color="black" />
             </TouchableOpacity>
           </View>
 
@@ -101,21 +108,25 @@ export default function CameraScreen() {
               onPress={() => setPreview(null)}
               style={tw`justify-center items-center h-full w-full`}
             >
+            <TypeIcon name="cross" size={40} color="black" />
             </TouchableOpacity>
+            
           </View>
-          {/* <SendButton
+          <NextButton
             disabled={false}
             bg={"bg-white"}
-            onPress={() => navigation.navigate("SendScreen", { ...preview })}
-          /> */}
+            onPress={buttonPressed}
+          />
           <ImageBackground
             source={{ uri: preview?.uri }}
             width={100}
             height={100}
             style={tw`flex-1`}
           />
+          
         </View>
       )}
+
     </View>
   );
 }

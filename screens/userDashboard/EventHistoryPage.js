@@ -1,7 +1,7 @@
 import { View, Text,Pressable,StyleSheet } from 'react-native'
 import React from 'react'
-import Button from '../components/Button';
-import EventList from '../components/EventList';
+import Button from '../../components/Button';
+import EventList from '../../components/EventList';
 
 export default function EventHistoryPage({route,navigation}) {
   function eventPressed() {

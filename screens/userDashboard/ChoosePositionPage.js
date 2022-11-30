@@ -1,6 +1,6 @@
 import { View, Text,StyleSheet } from 'react-native'
 
-import Button from '../components/Button';
+import Button from '../../components/Button';
 import MapView, { Marker } from "react-native-maps";
 import React, { useEffect, useState } from "react";
 import * as Location from "expo-location";
