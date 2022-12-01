@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Button,Linking } from 'react-native';
+import { StyleSheet, SafeAreaView, Button,Linking } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer,Link } from "@react-navigation/native";
@@ -54,13 +54,13 @@ Notifications.setNotificationHandler({
 function MajorScreens() {
   return (
     <Tab.Navigator
+      
       screenOptions={({navigation})=>({
         headerStyle: { backgroundColor: Colors.purple },
         headerTintColor: "white",
         tabBarStyle: { backgroundColor: Colors.purple },
         tabBarActiveTintColor: Colors.yellow,
 
-       
       })}
     >
       <Tab.Screen
@@ -216,17 +216,17 @@ export default function App() {
 
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: { backgroundColor: Colors.purple },
-          headerTintColor: "white",
-          headerTitleAlign: "center",
-        }}
-      >
-        {isUserAuthenticated ? AppStack : AuthStack}
-      </Stack.Navigator>
-    </NavigationContainer>
+
+      <NavigationContainer>
+   
+        <Stack.Navigator>   
+
+          {isUserAuthenticated ? AppStack : AuthStack}
+
+        </Stack.Navigator>
+  
+      </NavigationContainer>
+
   );
 
 }

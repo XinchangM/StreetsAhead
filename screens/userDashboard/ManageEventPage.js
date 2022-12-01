@@ -23,11 +23,11 @@ export default function ManageEventPage({route,navigation}) {
   }
 }, []);
 
-useEffect(() => {
-  if(route.params.coordinate){
-    setCoordinate(route.params.coordinate);
-  }
-}, []);
+  useEffect(() => {
+    if(route.params.coordinate){
+      setCoordinate(route.params.coordinate);
+    }
+  }, []);
 
 
   const showStartTimePicker = () => {
