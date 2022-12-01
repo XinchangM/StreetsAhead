@@ -7,8 +7,13 @@ export default function PostItem({post}) {
 
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
-  function onDelete(){
+  const onDelete= async () => {
+    try{
     deletePostFromDB(post.key);
+    alert("Successfully deleted!")
+    }catch(err){
+      console.log(err)
+    }
   }
   return (
     <View style={styles.item}>

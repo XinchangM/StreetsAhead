@@ -3,6 +3,7 @@ import React from 'react'
 import { auth } from "../../firebase/firebase-setup";
 import Button from '../../components/Button';
 
+
 export default function DashboardScreen({route,navigation}) {
   function createEventPressed() {
     navigation.navigate("CreateEventPage");

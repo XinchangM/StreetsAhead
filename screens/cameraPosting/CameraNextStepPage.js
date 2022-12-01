@@ -36,6 +36,14 @@ export default function CameraStepPage({route,navigation}) {
 
 
   const onUpload = async () => {
+    if(linkedEventId==""){
+      alert("You must link your post to an event");
+      return;
+    }
+    if(comment==""){
+      alert("Please give a comment");
+      return;
+    }
       try{  
         const response = await fetch(mediaUri);
         const blob = await response.blob();

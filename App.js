@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Button } from 'react-native';
+import { StyleSheet, Text, View,Button,Linking } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer,Link } from "@react-navigation/native";
 
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "./firebase/firebase-setup";
@@ -36,8 +36,20 @@ import ManageEventPage from "./screens/userDashboard/ManageEventPage";
 import TipIcon from './components/TipIcon';
 import MapScreen from './screens/map/MapScreen';
 
+import * as Notifications from "expo-notifications";
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => {
+    return {
+      shouldShowAlert: true,
+      shouldPlaySound: false,
+      shouldSetBadge: true,
+    };
+  },
+});
 
 function MajorScreens() {
   return (
@@ -102,6 +114,36 @@ export default function App() {
       }
     });
   });
+
+  useEffect(() => {
+    const subscription = Notifications.addNotificationReceivedListener(
+      (notificaftion) => {
+        console.log("notification received ", notificaftion);
+      }
+    );
+    const subscription2 = Notifications.addNotificationResponseReceivedListener(
+      async (notificationResponse) => {
+        console.log(
+          "notification interacted ",
+          notificationResponse.notification.request.content.data
+        );
+        if (notificationResponse.notification.request.content.data.url) {
+          try {
+            await Linking.openURL(
+              notificationResponse.notification.request.content.data.url
+            );
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      }
+    );
+    return () => {
+      subscription.remove();
+      subscription2.remove();
+    };
+  });
+  
   const AuthStack = (
     <>
       <Stack.Screen name="Login" component={Login} />
