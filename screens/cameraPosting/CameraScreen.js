@@ -82,7 +82,7 @@ export default function CameraScreen({navigation}) {
   return (
     <View style={styles.viewContainer}>
       {(!preview&&!record)&&
-        <Camera style={tw`h-full w-full`} type={type} ref={camRef}>
+        <Camera style={styles.camera} type={type} ref={camRef}>
           <View
             style={tw.style(`z-30 w-10 absolute h-80`, {
               top: "20%",
@@ -109,7 +109,6 @@ export default function CameraScreen({navigation}) {
               transform: [{ translateX:-50}],
             })}
           >
-
           <View
               style={tw.style(
                 `w-20 h-20  bg-white rounded-full justify-center items-center`
@@ -215,8 +214,8 @@ const styles = StyleSheet.create({
   camera:{
     alignSelf: 'center',
     resizeMode: 'cover',
-    width: null,
-    height: null,
+    width: "100%",
+    height: "100%",
   },
   video: {
     alignSelf: 'center',
