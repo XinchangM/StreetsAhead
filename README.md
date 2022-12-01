@@ -3,14 +3,17 @@
 <br>
 In this iteration, we worked on improving the functionalities about the usage of interactive map, camera, uploading/downloading media, search, notification and styling.
 <br>
+
 Contributions:
 <br>
 Xinchang Meng: Implemented the functionalities to display events on the interactive map and zooming into current location for the interactive map; functionalities for taking photos and videos on the camera page; the preview page after taking the photo or video; the UI for the map screen and camera screen; making sure the file structue is neat.
 <br>
+
 Yuan Liu: Implemented the search bar and associating functionalities in find event page; the functionalities about uploading/downloading media; local notification to remind user of the start time of an event; updating/deleteing events and delete posts; validation of the input for creating post and event; interactive map marker clicking redirection.
 
 <br>
 Screenshots:
+<br>
 1. Showing the event on the interactove map, users can go to the detail page by clicking on the marker
 <img src="./screenshots/2-1.png" width="160"/>
 
