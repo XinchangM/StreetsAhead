@@ -8,14 +8,19 @@ import Button from "./Button";
 export default function EventDetailPage({route,navigation}) {
   const [event, setEvent] = useState();
   const [posts, setPosts]=useState([]);
-  function OnEditEvent(){
+  function onEditEvent(){
     navigation.navigate("ManageEventPage", {
       eventId: route.params.eventId
     });
   }
-  function OnDeleteEvent(){
-    deleteEventFromDB(route.params.eventId);
+  const onDeleteEvent= async () => {
+    try{
+    await deleteEventFromDB(route.params.eventId);
     navigation.goBack();
+    alert("Successfully deleted!")
+    }catch(err){
+      console.log(err);
+    }
   }
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -82,10 +87,10 @@ export default function EventDetailPage({route,navigation}) {
     {route.params.isManagable&&
     <View style={styles.buttonsContainer}>
     <Button title={"Edit Event"}
-    onPress={OnEditEvent}
+    onPress={onEditEvent}
     />
     <Button title={"Delete Event"}
-    onPress={OnDeleteEvent}
+    onPress={onDeleteEvent}
     />
     </View>
     }

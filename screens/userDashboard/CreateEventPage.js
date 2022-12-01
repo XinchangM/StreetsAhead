@@ -6,6 +6,8 @@ import { useState } from "react";
 import { writeEventToDB } from "../../firebase/firestore";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { firestore,auth } from "../../firebase/firebase-setup";
+import NotificationManager from "../../components/NotificationManager";
+import { requestPermissionsAsync } from 'expo-media-library';
 
 export default function CreateEventPage({route,navigation}) {
   const [performer, setPerformer] = useState("");
@@ -51,17 +53,51 @@ export default function CreateEventPage({route,navigation}) {
     
   }
 
-  function submitPressed() {
- 
-    navigation.goBack();
-    writeEventToDB({      
+  const submitPressed = async () => {
+    if(performer==""){
+      alert("You must specify the names of performers!");
+      return;
+    }
+    if(eventName==""){
+      alert("You must specify the name of the event!");
+      return;
+    }
+    if(startTime==undefined){
+      alert("You must specify a start time!");
+      return;
+    }
+    if(endTime==undefined){
+      alert("You must specify an end time!");
+      return;
+    }
+
+    if ((Date.parse(endTime) <= Date.parse(startTime))) {
+      alert("End date should be greater than Start date");
+      return;
+    }
+    if(route.params.coordinate==undefined){
+      alert("You must specify a location!");
+      return;
+    }
+
+try{
+    await writeEventToDB({      
       startTime:startTime,
       endTime:endTime,
       coordinate:route.params.coordinate,
       performer:performer,
       userId:auth.currentUser.uid,
-      eventName:eventName}) 
+      eventName:eventName}) ;
+      navigation.goBack();
+      alert("You have succesfully created the event");
+
+  }catch(err){
+    console.log(err)
   }
+  };
+
+
+
 
   return (
     <View>
@@ -113,14 +149,18 @@ export default function CreateEventPage({route,navigation}) {
       onPress={choosePositionPressed}
       title={"Choose position"}
    />
+
+<NotificationManager startTime={startTime} eventName={eventName}/>
    
          <Button
       onPress={submitPressed}
-      title={"submit"}
+      title={"Submit to schedule the event"}
+
+     
    />
       
 
-
+    
 
 
 

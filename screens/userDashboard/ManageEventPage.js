@@ -65,17 +65,20 @@ useEffect(() => {
     });
     
   }
-
-  function submitPressed() {
-    updateEvent( {   
+  const submitPressed= async () => {
+    try{
+    await updateEvent( {   
       key:id,
       startTime:startTime,
       endTime:endTime,
       coordinate:route.params.coordinate,
       performer:performer,
       eventName:eventName}) 
-
       navigation.goBack();
+
+    }catch(err){
+      console.log(err);
+    }
   }
 
 
