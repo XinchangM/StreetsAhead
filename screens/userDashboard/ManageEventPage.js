@@ -66,6 +66,31 @@ export default function ManageEventPage({route,navigation}) {
     
   }
   const submitPressed= async () => {
+    if(performer==""){
+      alert("You must specify the names of performers!");
+      return;
+    }
+    if(eventName==""){
+      alert("You must specify the name of the event!");
+      return;
+    }
+    if(startTime==undefined){
+      alert("You must specify a start time!");
+      return;
+    }
+    if(endTime==undefined){
+      alert("You must specify an end time!");
+      return;
+    }
+
+    if ((Date.parse(endTime) <= Date.parse(startTime))) {
+      alert("End date should be greater than Start date");
+      return;
+    }
+    if(route.params.coordinate==undefined){
+      alert("You must specify a location!");
+      return;
+    }
     try{
     await updateEvent( {   
       key:id,
