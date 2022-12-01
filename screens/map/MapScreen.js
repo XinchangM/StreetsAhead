@@ -1,14 +1,10 @@
-import { View, Text, StyleSheet, Pressable, Image,TouchableOpacity } from "react-native";
-import Button from '../../components/Button';
-import EventList from '../../components/EventList';
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import MapView, { Marker,Callout } from "react-native-maps";
 import React, { useEffect, useState, useRef} from "react";
 import * as Location from "expo-location";
-import { MAPS_API_KEY } from '@env';
-import imagePath from "../../constants/imagePath";
-import { getEvent } from "../../firebase/firestore";
-import { firestore, auth } from "../../firebase/firebase-setup";
+import { firestore } from "../../firebase/firebase-setup";
 import { collection, onSnapshot } from "firebase/firestore";
+import Circulerbtn from "../../components/CirculerBtn";
 
 export default function MapScreen({route, navigation}) {
  
@@ -91,7 +87,6 @@ export default function MapScreen({route, navigation}) {
   }
   return (
     <View>
-      <Button title="Locate Me!" onPress={locateUserHandler} />
       <MapView
         style={styles.map}
         initialRegion={{
@@ -120,7 +115,17 @@ export default function MapScreen({route, navigation}) {
       pinColor="black"
       />}
       </MapView> 
+      <View style={styles.bottomView}>
+              {/* <View style={{ flexDirection: 'row', alignItems: "center", justifyContent: 'space-between' }}> */}
+                   
+                    <TouchableOpacity onPress={onCenter} style={styles.navigationView}>
+                        {/* <Image /> */}
+                        
+                    </TouchableOpacity>
+                    <Circulerbtn onPress={locateUserHandler} />
 
+                {/* </View> */}
+            </View>
       
     </View>
   )
@@ -140,6 +145,7 @@ const styles = StyleSheet.create({
     bottom: 24,
     left: 24,
     right: 24,
+    alignItems: 'center',
   },
   navigationView: {
     width: 1,

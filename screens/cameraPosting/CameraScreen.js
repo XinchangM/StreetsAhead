@@ -4,20 +4,19 @@ import tw from "tailwind-react-native-classnames";
 import { Camera } from "expo-camera";
 import { Video } from 'expo-av';
 import { useNavigation } from "@react-navigation/native";
-import Icon from "react-native-vector-icons/EvilIcons";
+import Icon from "react-native-vector-icons/Entypo";
 import TypeIcon from "react-native-vector-icons/Entypo";
 import NextButton from "../../components/NextButton";
 
 
 export default function CameraScreen({navigation}) {
   const video = React.useRef(null);
-const [status, setStatus] = React.useState({});
+  const [status, setStatus] = React.useState({});
   const [hasPermission, setHasPermission] = useState(null);
   const [record, setRecord] = useState(null);
   const [preview, setPreview] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const camRef = useRef();
-
 
 
   useLayoutEffect(() => {
@@ -52,7 +51,6 @@ const [status, setStatus] = React.useState({});
   };
 
   const takeVideo = async () => {
-
     if (!camRef) return;
     try {
       const data = await camRef.current?.recordAsync();
@@ -78,12 +76,11 @@ const [status, setStatus] = React.useState({});
       mediaType="video"
     }
     console.log(record);
-
     navigation.navigate("CameraNextStepPage",{mediaUri:uri,mediaType:mediaType});
   }
 
   return (
-    <View style={tw`items-center justify-center w-full h-full`}>
+    <View style={styles.viewContainer}>
       {(!preview&&!record)&&
         <Camera style={tw`h-full w-full`} type={type} ref={camRef}>
           <View
@@ -102,10 +99,9 @@ const [status, setStatus] = React.useState({});
                 );
               }}
             >
-            <Icon name="refresh" size={30} color="black" />
+            <Icon name="cycle" size={20} color="black" />
             </TouchableOpacity>
           </View>
-
           <View
             style={tw.style(`absolute w-full`, {
               bottom: "10%",
@@ -114,30 +110,7 @@ const [status, setStatus] = React.useState({});
             })}
           >
 
-
-                        <View
-              style={tw.style(
-                `w-20 h-20  bg-white rounded-full justify-center items-center`
-              )}
-            >
-              <TouchableOpacity
-                style={tw`bg-white w-16 h-16 rounded-full`}
-                onPress={() => takeVideo()}
-              ><Text >Video</Text></TouchableOpacity>
-
-            </View>
-            <View
-              style={tw.style(
-                `w-20 h-20  bg-white rounded-full justify-center items-center`
-              )}
-            >
-            <TouchableOpacity
-                style={tw`bg-white w-16 h-16 rounded-full`}
-                onPress={() => stopVideo()}
-              ><Text>StopVid</Text></TouchableOpacity>
-            </View>
-            
-            <View
+          <View
               style={tw.style(
                 `w-20 h-20  bg-white rounded-full justify-center items-center`
               )}
@@ -145,9 +118,11 @@ const [status, setStatus] = React.useState({});
               <TouchableOpacity
                 style={tw`bg-white w-16 h-16 rounded-full`}
                 onPress={() => takePhoto()}
-              ><Text>Picture</Text></TouchableOpacity>
-
-
+                onLongPress={() => takeVideo()}
+                onPressOut={() => stopVideo()}
+              >
+                <Icon name="circle" size={63}/>
+                </TouchableOpacity>
             </View>
           </View>
         </Camera>
@@ -182,9 +157,8 @@ const [status, setStatus] = React.useState({});
           
         </View>
 }
-
         {record&&
-                <View style={tw`w-full h-full bg-transparent`}>
+          <View style={tw`w-full h-full bg-transparent`}>
                 <View
                   style={tw.style(`w-12 h-12 bg-white z-30 absolute rounded-full`, {
                     top: "20%",
@@ -198,41 +172,52 @@ const [status, setStatus] = React.useState({});
                   <TypeIcon name="cross" size={40} color="black" />
                   </TouchableOpacity>
                   
-                </View>
+          </View>
                 <NextButton
                   disabled={false}
                   bg={"bg-white"}
                   onPress={buttonPressed}
                 />
-                <Video
-   ref={video}
-   style={styles.video}
-   source={{
-     uri: record,
-   }}
-   useNativeControls
-   resizeMode="contain"
-   isLooping
-   onPlaybackStatusUpdate={status => setStatus(() => status)}
-/>
-<View style={styles.buttons}>
-  <Button
-    title={status.isPlaying ? 'Pause' : 'Play'}
-    onPress={() =>
-       status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
-    }
-   />
-</View>
- </View>
-}
-
+      <Video
+        ref={video}
+        style={styles.video}
+        source={{
+          uri: record,
+        }}
+        useNativeControls
+        resizeMode="contain"
+        isLooping
+        onPlaybackStatusUpdate={status => setStatus(() => status)}
+      />
+   <View style={styles.buttons}>
+    <Button
+      title={status.isPlaying ? 'Pause' : 'Play'}
+      onPress={() =>
+        status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
+      }
+    />
+    </View>
+  </View>
+  }
 
     </View>
 );
 }
 
 const styles = StyleSheet.create({
-
+  viewContainer: {
+    alignItems:"center",
+    justifyContent: "center",
+    resizeMode: 'cover',
+    width: null,
+    height: null,
+  },
+  camera:{
+    alignSelf: 'center',
+    resizeMode: 'cover',
+    width: null,
+    height: null,
+  },
   video: {
     alignSelf: 'center',
     width: 320,
