@@ -2,9 +2,11 @@
 
 <br>
 In this iteration, we worked on improving the functionalities about the usage of interactive map, camera, uploading/downloading media, search, notification and styling.
+
 <br>
 
 Contributions:
+
 <br>
 Xinchang Meng: Implemented the functionalities to display events on the interactive map and zooming into current location for the interactive map; functionalities for taking photos and videos on the camera page; the preview page after taking the photo or video; the UI for the map screen and camera screen; making sure the file structue is neat.
 <br>
