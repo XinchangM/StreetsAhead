@@ -116,7 +116,7 @@ export default function EventDetailPage({route,navigation}) {
         return (
           <PostItem
             post={item}
-           
+           option={1}
           />
         );
       }}

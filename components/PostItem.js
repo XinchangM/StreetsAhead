@@ -2,9 +2,18 @@ import { View, Text,StyleSheet,Button,Image } from 'react-native'
 import React from 'react'
 import { Video, AVPlaybackStatus } from 'expo-av';
 import {deletePostFromDB} from "../firebase/firestore";
+//postItem option=1:on event detail page, can not delete; 2:on postHistory, can delete
+export default function PostItem({post,option}) {
+  const timestamp=post.postTime.seconds*1000+post.postTime.nanoseconds/1000000;
+  const date=new Date(timestamp);
 
-export default function PostItem({post}) {
-
+  const dateString=date.toString();
+  const year=date.getFullYear();
+  const month=date.getMonth();
+  const day=date.getDay();
+  const hour=date.getHours();
+  const minute=date.getMinutes();
+  const second=date.getSeconds();
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
   const onDelete= async () => {
@@ -43,11 +52,12 @@ export default function PostItem({post}) {
       </View> 
     </View>}
   
-      <Text>PostTime: {post.postTime.toString()}</Text>
+      <Text>PostTime: {dateString}</Text>
+      <Text>TimeDetail: Year:{year} Month:{month} Day:{day} Hour:{hour} minute:{minute} second:{second}</Text>
       <Text>Post User Id: {post.userId}</Text>
       <Text>Associated Event Id: {post.linkedEventId}</Text>
       <Text>Comment: {post.comment}</Text>
-      <Button title={"Delete this post"} onPress={onDelete}/>
+      {option==2&&<Button title={"Delete this post"} onPress={onDelete}/>}
     </View>
   )
 }

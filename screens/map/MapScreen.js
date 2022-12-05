@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
 import MapView, { Marker,Callout } from "react-native-maps";
 import React, { useEffect, useState, useRef} from "react";
 import * as Location from "expo-location";
@@ -13,6 +13,7 @@ export default function MapScreen({route, navigation}) {
   const [permissionResponse, requestPermission] =Location.useForegroundPermissions();
   const [region, setRegion] = useState();
   const [weather,setWeather] = useState(null);
+  
 
   async function getWeather(lat, lng) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${weather_api_key}`;
@@ -56,7 +57,7 @@ export default function MapScreen({route, navigation}) {
       console.log("locate user ", err);
     }
   };
-
+ 
   useEffect(() => {
     mapRef.current.animateToRegion({
       latitude:currentLocation.latitude,
@@ -103,6 +104,8 @@ export default function MapScreen({route, navigation}) {
       eventId: key
     });
   }
+
+
   return (
     <View style={styles.mapContainer}>
       <MapView
@@ -121,13 +124,50 @@ export default function MapScreen({route, navigation}) {
        
            
        {events.map((event,i) => {
+        const endTimestamp=event.endTime.seconds*1000+event.endTime.nanoseconds/1000000;
+        const startTimestamp=event.startTime.seconds*1000+event.startTime.nanoseconds/1000000;
+        if(endTimestamp>=Date.now()&&startTimestamp<=Date.now()){
+          //only show ongoing ones on the map
           return (
-          <Marker key={event.key}
-                identifier={event.key}
-                coordinate={event.coordinate}
-                image={require('../../assets/images/loc.png')}
-                onPress={e => onPressMarker(e.nativeEvent.id)}
-                />)})}
+            <Marker key={event.key}
+                  identifier={event.key}
+                  coordinate={event.coordinate}
+                  image={require('../../assets/images/loc.png')}
+                  onPress={e => onPressMarker(e.nativeEvent.id)}
+                  />)
+        }
+/*         if(endTimestamp<Date.now()){
+             //past: green marker
+            return (
+              <Marker key={event.key}
+                    identifier={event.key}
+                    coordinate={event.coordinate}
+                    pinColor="green"
+                    onPress={e => onPressMarker(e.nativeEvent.id)}
+                    />)
+          }else if(endTimestamp>=Date.now()&&startTimestamp<=Date.now()){
+            //ongoing: red marker
+            return (
+              <Marker key={event.key}
+                    identifier={event.key}
+                    coordinate={event.coordinate}
+                    image={require('../../assets/images/loc.png')}
+                    onPress={e => onPressMarker(e.nativeEvent.id)}
+                    />)
+          }
+               
+          else{
+            //future: blue marker
+            return (
+              <Marker key={event.key}
+                    identifier={event.key}
+                    coordinate={event.coordinate}
+                    pinColor="blue"
+                    onPress={e => onPressMarker(e.nativeEvent.id)}
+                    />)
+          } */
+                 
+                })}
      
       {currentLocation && 
       <Marker 
@@ -136,9 +176,10 @@ export default function MapScreen({route, navigation}) {
       />}
       </MapView> 
       <View style={styles.bottomView}>
+    
         <TouchableOpacity onPress={onCenter} style={styles.navigationView}/>
         <Circulerbtn onPress={locateUserHandler} />
-        <Text>{weather}</Text>
+       { weather&& <Text>Current temperature: {weather} °C</Text>}
       </View>
 
     </View>

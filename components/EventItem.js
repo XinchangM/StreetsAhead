@@ -2,7 +2,17 @@ import { View, Text,Pressable,StyleSheet } from 'react-native'
 import React from 'react'
 import { useNavigation } from "@react-navigation/native";
 import Colors from './Colors';
+//event option = 1:linkable; 2:managable; 3:view only
 export default function EventItem({event,option}) {
+  const startTimestamp=event.startTime.seconds*1000+event.startTime.nanoseconds/1000000;
+  const startTimeObject=new Date(startTimestamp);
+  const startTimeString=startTimeObject.toString();
+  // To get year,month, day, hour.... use startTimeObject.getXXX()
+
+  const endTimestamp=event.endTime.seconds*1000+event.endTime.nanoseconds/1000000;
+  const endTimeObject=new Date(endTimestamp);
+  const endTimeString=endTimeObject.toString();
+
   const navigation = useNavigation();
   console.log(option)
   
@@ -54,8 +64,8 @@ export default function EventItem({event,option}) {
     >
        <View style={styles.eventItem}>
       <Text>eventId: {event.key}</Text>
-      <Text>StartTime: {event.startTime.seconds}</Text>
-      <Text>EndTime: {event.endTime.seconds}</Text>
+      <Text>StartTime: {startTimeString}</Text>
+      <Text>EndTime: {endTimeString}</Text>
       <Text>Longitude: {event.coordinate.longitude}</Text>
       <Text>Latitude: {event.coordinate.latitude}</Text>
       <Text>Performer: {event.performer}</Text>
