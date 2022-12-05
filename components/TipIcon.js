@@ -1,5 +1,3 @@
-
-
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { View, Text, Pressable, StyleSheet } from "react-native";
@@ -15,8 +13,8 @@ export default function TipIcon({ size, color, onPress }) {
       }}
     >
       <View style={styles.container}>
-      {/* <MaterialIcons name="attach-money" size={size} color={color} /> */}
-    <Text style={styles.text}>Tip</Text>
+      <MaterialIcons name="attach-money" size={size} color={color} />
+       <Text style={styles.text}>Tip</Text>
       </View>
     </Pressable>
   );
@@ -24,7 +22,7 @@ export default function TipIcon({ size, color, onPress }) {
 
 const styles = StyleSheet.create({
   text:{
-    color:'white'
+    color:'black'
   },
   container: {
     padding: 5,

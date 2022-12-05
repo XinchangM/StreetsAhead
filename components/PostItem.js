@@ -22,10 +22,8 @@ export default function PostItem({post}) {
       <Image source={{uri: post.mediaUri}}  
        style={{width: 320, height: 400}}
       />   }
-   {post.mediaType=="video"&&
+     {post.mediaType=="video"&&
       <View style={styles.container}>
-        
-    
        <Video
         ref={video}
         style={styles.video}
