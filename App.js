@@ -54,13 +54,11 @@ Notifications.setNotificationHandler({
 function MajorScreens() {
   return (
     <Tab.Navigator
-      
-      screenOptions={({navigation})=>({
-        headerStyle: { backgroundColor: Colors.purple },
+        screenOptions={({navigation})=>({
         headerTintColor: "white",
-        tabBarStyle: { backgroundColor: Colors.purple },
+        tabBarStyle: { backgroundColor: Colors.black,
+       },
         tabBarActiveTintColor: Colors.yellow,
-
       })}
     >
       <Tab.Screen
@@ -68,6 +66,7 @@ function MajorScreens() {
         component={MapScreen}
         options={{
           title: "Map",
+          headerShown:false,
           tabBarIcon: ({ color, size }) => (
             <Feather name="map-pin" size={size} color={color} />
           ),
@@ -102,6 +101,13 @@ function MajorScreens() {
       />
     </Tab.Navigator>
   );
+  const styles = StyleSheet.create({
+    tabBar: {
+      backgroundColor: Colors.white,
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+    },
+  });
 }
 
 export default function App() {
@@ -229,5 +235,6 @@ export default function App() {
 
   );
 
+  
 }
 
