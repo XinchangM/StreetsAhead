@@ -42,6 +42,7 @@ export default function PostList() {
             return (
               <PostItem
                 post={item}
+                option={2}
                
               />
             );
