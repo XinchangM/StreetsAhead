@@ -10,7 +10,6 @@ import React, { useState, useEffect } from "react";
 
 import Colors from "./components/Colors";
 import { Ionicons } from "@expo/vector-icons";
-
 import { Feather } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons'; 
@@ -152,8 +151,8 @@ export default function App() {
   
   const AuthStack = (
     <>
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Signup" component={Signup} />
+      <Stack.Screen name="Login" options={{headerShown:false}} component={Login} />
+      <Stack.Screen name="Signup" options={{headerShown:false}} component={Signup} />
     </>
   );
 
