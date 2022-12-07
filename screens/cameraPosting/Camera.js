@@ -74,7 +74,9 @@ export default function Camera({navigation}) {
         }
         console.log(record);
         navigation.navigate("CameraNextStepPage",{mediaUri:uri,mediaType:mediaType});
-    }
+        setPreview(null);
+        setRecord(null);
+      }
 
 
   return (

@@ -6,7 +6,12 @@ import { firestore } from "../../firebase/firebase-setup";
 import { collection, onSnapshot } from "firebase/firestore";
 import Circulerbtn from "../../components/CirculerBtn";
 import { getWeather } from "../../util/Weather";
+import { Feather } from '@expo/vector-icons'; 
+import { Entypo } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons'; 
+import { FontAwesome } from '@expo/vector-icons'; 
 import { weather_api_key } from '@env';
+import { deviceHeight, deviceWidth } from "../../styles/responsive";
 
 
 export default function MapScreen({ route, navigation }) {
@@ -15,6 +20,7 @@ export default function MapScreen({ route, navigation }) {
 
   const [region, setRegion] = useState();
   const [weather, setWeather] = useState(null);
+  const [mainWeather, setMainWeather]=useState();
 
 
   async function getWeather(lat, lng) {
@@ -26,12 +32,13 @@ export default function MapScreen({ route, navigation }) {
       const temperature = data.main.temp;
       const celsius = parseFloat(temperature)-273.15;
       const temp = celsius.toFixed(1);
+      const mainWeather=data.weather[0].main
       setWeather(temp);
+      setMainWeather(mainWeather);
     }
     catch(err){
 console.log(err)
     }
-
 
   }
 
@@ -191,11 +198,22 @@ console.log(err)
       />}
       </MapView> 
 
+          {weather && 
+        <View style={styles.weatherContainer}>
+
+        { mainWeather=="Clear"&&<View style={styles.icon}><Feather name="sun" size={24} color="black" /></View>}
+        { mainWeather=="Rain"&&<View style={styles.icon}><Ionicons name="rainy" size={24} color="black" /></View>}
+        { mainWeather=="Snow"&&<View style={styles.icon}><FontAwesome name="snowflake-o" size={24} color="black" /></View>}
+        { mainWeather=="Clouds"&&<View style={styles.icon}><Entypo name="icloud" size={24} color="black" /></View>}
+        <View style={styles.weatherText}><Text>{weather} °C</Text></View>
+        </View>
+        }
+
       <View style={styles.bottomView}>
 
         <TouchableOpacity onPress={onCenter} style={styles.navigationView} />
         <Circulerbtn onPress={locateUserHandler} />
-        {weather && <Text>Current temperature: {weather} °C</Text>}
+
       </View>
 
     </View>
@@ -203,6 +221,26 @@ console.log(err)
 }
 
 const styles = StyleSheet.create({
+  icon:{
+    paddingVertical:5,
+    alignItems:"center",
+    justifyContent:"center"
+  },
+  weatherText:{
+    paddingVertical:5,
+    justifyContent:"center",
+    alignItems:"center",
+  },
+  weatherContainer:{
+  
+    flexDirection:"column",
+    position: 'absolute',
+      top:50,
+      left:(deviceWidth/2)-10,
+      justifyContent:"center",
+      alignItems:"center"
+      
+  },
   mapContainer: {
     borderBottomLeftRadius: 50,
     borderBottomRightRadius: 50,
@@ -218,7 +256,7 @@ const styles = StyleSheet.create({
   },
   bottomView: {
     position: 'absolute',
-    bottom: 24,
+    bottom: 60,
     left: 24,
     right: 24,
     alignItems: 'center',

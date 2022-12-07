@@ -89,6 +89,8 @@ export default function CameraScreen({ navigation }) {
     }
     console.log(record);
     navigation.navigate("CameraNextStepPage", { mediaUri: uri, mediaType: mediaType });
+    setPreview(null);
+    setRecord(null);
   }
 
   return (
@@ -156,7 +158,7 @@ export default function CameraScreen({ navigation }) {
       {record &&
         <View style={styles.previewContainer}>
           <View style={styles.closeContainer}>
-            <TouchableOpacity onPress={() => setPreview(null)} style={styles.closeBtn}>
+            <TouchableOpacity onPress={() => setRecord(null)} style={styles.closeBtn}>
               <Close name="close" size={moderateScale(30)} color="white" />
             </TouchableOpacity>
           </View>
@@ -174,12 +176,6 @@ export default function CameraScreen({ navigation }) {
             onPlaybackStatusUpdate={status => setStatus(() => status)}
           />
           <View style={styles.buttons}>
-            <Button
-              title={status.isPlaying ? 'Pause' : 'Play'}
-              onPress={() =>
-                status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
-              }
-            />
           </View>
         </View>
       }
