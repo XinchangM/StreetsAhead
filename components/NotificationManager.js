@@ -2,6 +2,7 @@ import { View } from "react-native";
 import React from "react";
 import * as Notifications from "expo-notifications";
 import Button from "./Button";
+import Colors from "./Colors";
 
 export default function NotificationManager({startTime, eventName}) {
   const name = "Hello user";
@@ -46,7 +47,7 @@ export default function NotificationManager({startTime, eventName}) {
       <Button
         title="Remind me at the start time of the event"
         onPress={scheduleNotificationHandler}
-        buttonColor={"orange"}
+        buttonColor={Colors.gold}
       />
     </View>
   );

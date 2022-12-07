@@ -3,6 +3,7 @@ import React,{useState,useEffect} from 'react'
 import { firestore,auth } from "../../firebase/firebase-setup";
 import Button from '../../components/Button';
 import { doc,collection, onSnapshot, query, where,documentId} from "firebase/firestore";
+import Colors from '../../components/Colors';
 
 export default function DashboardScreen({route,navigation}) {
 const[user,setUser]=useState();
@@ -70,6 +71,7 @@ useEffect(() => {
 
 const styles = StyleSheet.create({
   greetings:{
+    color:Colors.gold,
 fontSize:40,
 textAlign:'center'
   },

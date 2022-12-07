@@ -12,6 +12,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons'; 
 import { weather_api_key } from '@env';
 import { deviceHeight, deviceWidth } from "../../styles/responsive";
+import Colors  from "../../components/Colors";
 
 
 export default function MapScreen({ route, navigation }) {
@@ -201,10 +202,10 @@ console.log(err)
           {weather && 
         <View style={styles.weatherContainer}>
 
-        { mainWeather=="Clear"&&<View style={styles.icon}><Feather name="sun" size={24} color="black" /></View>}
-        { mainWeather=="Rain"&&<View style={styles.icon}><Ionicons name="rainy" size={24} color="black" /></View>}
-        { mainWeather=="Snow"&&<View style={styles.icon}><FontAwesome name="snowflake-o" size={24} color="black" /></View>}
-        { mainWeather=="Clouds"&&<View style={styles.icon}><Entypo name="icloud" size={24} color="black" /></View>}
+        { mainWeather=="Clear"&&<View style={styles.icon}><Feather name="sun" size={24} color={Colors.black}/></View>}
+        { mainWeather=="Rain"&&<View style={styles.icon}><Ionicons name="rainy" size={24} color={Colors.black} /></View>}
+        { mainWeather=="Snow"&&<View style={styles.icon}><FontAwesome name="snowflake-o" size={24} color={Colors.black} /></View>}
+        { mainWeather=="Clouds"&&<View style={styles.icon}><Entypo name="icloud" size={24} color={Colors.black} /></View>}
         <View style={styles.weatherText}><Text>{weather} °C</Text></View>
         </View>
         }
@@ -232,11 +233,13 @@ const styles = StyleSheet.create({
     alignItems:"center",
   },
   weatherContainer:{
-  
+      backgroundColor:"white",
+      padding:5,
+      borderRadius:8,
     flexDirection:"column",
     position: 'absolute',
       top:50,
-      left:(deviceWidth/2)-10,
+      left:(deviceWidth/2)-20,
       justifyContent:"center",
       alignItems:"center"
       

@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet, Pressable, Alert, ImageBackground } from 'react-native'
+import { View, Text, FlatList, StyleSheet, Pressable, Alert, ImageBackground,ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { firestore, auth } from "../firebase/firebase-setup";
 import { deleteEventFromDB } from "../firebase/firestore";
@@ -129,7 +129,7 @@ export default function EventDetailPage({ route, navigation }) {
   }, [event]);
 
   return (
-    <View>
+    <ScrollView>
 
       {isEventExist &&
       <ImageBackground source={require("../assets/images/ticket.png")} style={{height: deviceHeight/1.5}}>
@@ -172,7 +172,7 @@ export default function EventDetailPage({ route, navigation }) {
       }
 
 
-    </View>
+    </ScrollView>
   )
 }
 

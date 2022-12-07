@@ -4,6 +4,7 @@ import Button from '../../components/Button';
 import MapView, { Marker } from "react-native-maps";
 import React, { useEffect, useState,useRef } from "react";
 import * as Location from "expo-location";
+import Colors from '../../components/Colors';
 
 export default function ChoosePositionPage({route,navigation}) {
   const [chosenLocation, setChosenLocation] = useState();
@@ -82,9 +83,9 @@ export default function ChoosePositionPage({route,navigation}) {
         {      currentLocation && 
       <Marker 
       coordinate={currentLocation}
-      pinColor={'#FFC400'}
+      pinColor={Colors.gold}
       />}
-        {chosenLocation && <Marker coordinate={chosenLocation} />}
+        {chosenLocation && <Marker coordinate={chosenLocation} pinColor={Colors.pink}/>}
       </MapView>
       <Button title="Locate Me!" onPress={locateUserHandler} />
       <Button onPress={onConfirm} title={"Confirm"}/>
