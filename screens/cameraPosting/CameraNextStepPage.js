@@ -59,7 +59,9 @@ export default function CameraStepPage({route,navigation}) {
           linkedEventId:linkedEventId,
           comment:comment,
         mediaType:mediaType});
-        Alert.alert("Success","You have successfully posted")}
+        Alert.alert("Success","You have successfully posted");
+        navigation.navigate("Camera");
+      }
    catch (err) {
     alert(err)
   }
