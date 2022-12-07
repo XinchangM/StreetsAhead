@@ -15,7 +15,7 @@ export default function PostHistoryPage() {
 
 const styles = StyleSheet.create({
   list: {
-    // flex: 1,
+   
     height: "100%",
   }
 

@@ -176,7 +176,8 @@ console.log(err)
       {currentLocation && 
       <Marker 
         coordinate={currentLocation}
-        pinColor="black"
+        pinColor={'#FFC400'}
+        key="mylocation"
       />}
       </MapView> 
       <View style={styles.bottomView}>

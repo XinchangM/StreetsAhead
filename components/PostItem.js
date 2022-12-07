@@ -147,7 +147,7 @@ delete:{
     justifyContent: 'flex-end',
   
     flexDirection:'column',
-    flex:"0.2",
+    
     bottom:0
   },
   behind: {
