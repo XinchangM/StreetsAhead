@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet, Button, Image, Pressable,Alert } from 'react-native'
+import { View, Text, StyleSheet, Button, Image, Pressable, Alert } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Video, AVPlaybackStatus } from 'expo-av';
 import { deletePostFromDB } from "../firebase/firestore";
 import { firestore, auth } from "../firebase/firebase-setup";
-import { AntDesign } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons';
 import { doc, collection, onSnapshot, query, where, documentId } from "firebase/firestore";
 //postItem option=1:on event detail page, can not delete; 2:on postHistory, can delete
 export default function PostItem({ post, option }) {
@@ -53,11 +53,11 @@ export default function PostItem({ post, option }) {
       [
         {
           text: "No",
-          onPress: () => {},
+          onPress: () => { },
         },
         {
           text: "Yes",
-          onPress: async() => {
+          onPress: async () => {
             try {
               deletePostFromDB(post.key);
               alert("Successfully deleted!")
@@ -71,88 +71,88 @@ export default function PostItem({ post, option }) {
 
   }
   return (
-        <View style={styles.item}>
-            <View style={styles.center}>
-              <View style={styles.behind}>
-                    <View >
-                      {post.mediaType == "photo" &&
-                        <Image source={{ uri: post.mediaUri }}
-                          style={{ width: 320, height: 400 }}
-                        />
-                      }
-                      {post.mediaType == "video" &&
-                        <View style={styles.container}>
-                          <Video
-                            ref={video}
-                            style={styles.video}
-                            source={{ uri: post.mediaUri }}
-                            useNativeControls
-                            resizeMode="cover"
-                            isLooping
-                            onPlaybackStatusUpdate={status => setStatus(() => status)}
-                          /></View>
-                      }
-                    </View>
-              </View>
-              {<View style={styles.bottomSection}> 
-                <View style={styles.info}>
-                
-                {user && <Text style={styles.text}>{user.userName}</Text>}
-                <Text style={styles.text}>{post.comment}</Text>
-                <Text style={styles.text}>{timeString}</Text>
-                </View>
-                <View style={styles.delete}> 
-                  {option == 2 && 
-                  <Pressable onPress={onDelete}>
-                    <AntDesign name="delete" size={24} color="white" />
-                  </Pressable>}
-                  </View>
-                       
-              </View>}
+    <View style={styles.item}>
+      <View style={styles.center}>
+        <View style={styles.behind}>
+          <View >
+            {post.mediaType == "photo" &&
+              <Image source={{ uri: post.mediaUri }}
+                style={{ width: 320, height: 400 }}
+              />
+            }
+            {post.mediaType == "video" &&
+              <View style={styles.container}>
+                <Video
+                  ref={video}
+                  style={styles.video}
+                  source={{ uri: post.mediaUri }}
+                  useNativeControls
+                  resizeMode="cover"
+                  isLooping
+                  onPlaybackStatusUpdate={status => setStatus(() => status)}
+                /></View>
+            }
+          </View>
+        </View>
+        {<View style={styles.bottomSection}>
+          <View style={styles.info}>
 
-            </View>
-   
-          </View>  
+            {user && <Text style={styles.text}>{user.userName}</Text>}
+            <Text style={styles.text}>{post.comment}</Text>
+            <Text style={styles.text}>{timeString}</Text>
+          </View>
+          <View style={styles.delete}>
+            {option == 2 &&
+              <Pressable onPress={onDelete}>
+                <AntDesign name="delete" size={24} color="white" />
+              </Pressable>}
+          </View>
+
+        </View>}
+
+      </View>
+
+    </View>
 
 
   )
 }
 
 const styles = StyleSheet.create({
-bottomSection:{
-flexDirection:"row",
-justifyContent:"space-between",
-padding:10
-},
-info:{
-  //flexDirection:"column",
-  //justifyContent:"flex-start"
-},
-delete:{
-  //flexDirection:"column",
-  justifyContent:"center"
-},
+  bottomSection: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 10
+  },
+  info: {
+    //flexDirection:"column",
+    //justifyContent:"flex-start"
+  },
+  delete: {
+    //flexDirection:"column",
+    justifyContent: "center"
+  },
   con: {
-  
+
     flex: 1,
     alignItems: 'center',
     height: '100%',
     justifyContent: 'center',
   },
   center: {
-   
+
     width: '100%',
     height: '100%',
-    height:400,
+    height: 400,
     //alignItems: 'center',
     justifyContent: 'flex-end',
-  
-    flexDirection:'column',
-    
-    bottom:0
+
+    flexDirection: 'column',
+
+    bottom: 0
   },
   behind: {
-    
+
     alignItems: 'center',
     //justifyContent: 'center',
     position: 'absolute',
@@ -164,21 +164,21 @@ delete:{
   },
 
   item: {
-    
+
     margin: 15,
     flex: 1,
     alignItems: 'center',
     height: '100%',
-    width:320,
+    width: 320,
     justifyContent: 'center',
   },
   container: {
     flex: 1,
     justifyContent: 'center',
-   
+
   },
   video: {
-    
+
     alignSelf: 'center',
     width: 320,
     height: 400,
@@ -188,8 +188,8 @@ delete:{
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text:{
-    color:"white"
+  text: {
+    color: "white"
   }
 
 });

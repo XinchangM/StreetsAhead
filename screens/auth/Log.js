@@ -20,7 +20,7 @@ export default function Login({ navigation }) {
     <ScrollView style={styles.screen}>
       <ImageBackground 
           source={require("../../assets/images/bg.jpg")}
-          style={{height:Dimensions.get("window").height/2.5}}
+          style={{height:deviceHeight/2.5}}
           >
         <View style={styles.brandView}>
           <FontAwesome name="signing" style={{color:'#fff', fontSize:100}}/>
