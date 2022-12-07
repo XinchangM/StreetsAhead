@@ -136,14 +136,14 @@ export default function CameraScreen({ navigation }) {
             <TouchableOpacity onPress={() => setPreview(null)}
               style={styles.closeBtn}
             >
-              <Close name="close" size={moderateScale(30)} color="white" />
+              <Close name="close" size={moderateScale(40)} color="white" />
             </TouchableOpacity>
           </View>
           <View style={styles.nextContainer}>
             <TouchableOpacity onPress={buttonPressed}
               style={styles.nextBtn}
             >
-              <Next name="send" size={moderateScale(30)} color="white" />
+              <Next name="send" size={moderateScale()} color="white" />
             </TouchableOpacity>
           </View>
           <ImageBackground
@@ -156,7 +156,7 @@ export default function CameraScreen({ navigation }) {
       {record &&
         <View style={styles.previewContainer}>
           <View style={styles.closeContainer}>
-            <TouchableOpacity onPress={() => setPreview(null)} style={styles.closeBtn}>
+            <TouchableOpacity onPress={() => setRecord(null)} style={styles.closeBtn}>
               <Close name="close" size={moderateScale(30)} color="white" />
             </TouchableOpacity>
           </View>
@@ -203,8 +203,8 @@ const styles = StyleSheet.create({
   },
   video: {
     alignSelf: 'center',
-    width: 320,
-    height: 200,
+    width: deviceWidth,
+    height: deviceHeight,
   },
   flipContainer: {
     alignSelf: "center",
@@ -232,8 +232,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: moderateScale(55),
     width: moderateScale(55),
-    right: deviceWidth / 3,
-    top: deviceHeight / 13,
+    right: deviceWidth / 2.5,
+    top: (deviceHeight/8)*7,
     zIndex: 1,
   },
   closeBtn: {
@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(55),
     width: moderateScale(55),
     left: deviceWidth / 2.2,
-    top: deviceHeight / 13,
+    top: (deviceHeight/8)*7,
     zIndex: 1,
   },
   nextBtn: {
