@@ -9,7 +9,7 @@ import { getWeather } from "../../util/Weather";
 import { weather_api_key } from '@env';
 
 export default function MapScreen({route, navigation}) {
-  const [currentLocation, setCurrentLocation] = useState({longitude:49.26242,latitude:-123.222});
+  const [currentLocation, setCurrentLocation] = useState({latitude:49.26242,longitude:-123.222});
   const [permissionResponse, requestPermission] =Location.useForegroundPermissions();
   const [region, setRegion] = useState();
   const [weather,setWeather] = useState(null);
@@ -17,17 +17,21 @@ export default function MapScreen({route, navigation}) {
 
   async function getWeather(lat, lng) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${weather_api_key}`;
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error('Failed to fetch weather!');
-      }
+    try{
+      const response = await fetch(url);
       const data = await response.json();
-      //Kelvin -.-
       const temperature = data.main.temp;
       const celsius = parseFloat(temperature)-273.15;
       const temp = celsius.toFixed(1);
       setWeather(temp);
+    }
+    catch(err){
+console.log(err)
+    }
+
   }
+
+  
   const mapRef = useRef(null);
   const onCenter = () => {
     console.log("1111",mapRef)
@@ -52,7 +56,7 @@ export default function MapScreen({route, navigation}) {
         latitude: currentPosition.coords.latitude,
         longitude: currentPosition.coords.longitude,
       });
-      console.log("++++",currentLocation);
+      //console.log("++++",currentLocation);
     } catch (err) {
       console.log("locate user ", err);
     }
@@ -68,7 +72,7 @@ export default function MapScreen({route, navigation}) {
   },[currentLocation]);
 
   useEffect(() => {
-    if(currentLocation){
+    if(currentLocation!=undefined){
       getWeather(currentLocation.latitude,currentLocation.longitude)}
   },[currentLocation]);
 
@@ -126,8 +130,8 @@ export default function MapScreen({route, navigation}) {
        {events.map((event,i) => {
         const endTimestamp=event.endTime.seconds*1000+event.endTime.nanoseconds/1000000;
         const startTimestamp=event.startTime.seconds*1000+event.startTime.nanoseconds/1000000;
-        if(endTimestamp>=Date.now()&&startTimestamp<=Date.now()){
-          //only show ongoing ones on the map
+        if(endTimestamp>=Date.now()&&startTimestamp-3600000*2<=Date.now()){
+          //only show ongoing ones & starting in 2 hours on the map
           return (
             <Marker key={event.key}
                   identifier={event.key}

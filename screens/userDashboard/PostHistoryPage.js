@@ -5,7 +5,7 @@ import PostList from '../../components/PostList';
 export default function PostHistoryPage() {
   return (
     <View>
-      <Text>PostHistoryPage</Text>
+
       <View style={styles.list}>
         <PostList/>
       </View>

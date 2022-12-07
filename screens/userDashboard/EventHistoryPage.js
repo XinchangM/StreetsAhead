@@ -11,7 +11,7 @@ export default function EventHistoryPage({route,navigation}) {
   }
   return (
     <View>
-      <Text>EventHistoryPage</Text>
+      
       <View style={styles.list}>
       <EventList isAll={false}/>
       </View>

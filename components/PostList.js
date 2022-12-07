@@ -34,7 +34,7 @@ export default function PostList() {
   }, []);
   return (
     <View style={styles.postList}>
-      <Text>PostList</Text>
+ 
       <FlatList
           data={posts}
           renderItem={({ item }) => {
@@ -56,5 +56,6 @@ const styles = StyleSheet.create({
   postList: {
     flex: 1,
     padding: 20,
+ 
   },
 });

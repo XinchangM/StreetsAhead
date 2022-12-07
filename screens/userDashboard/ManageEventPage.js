@@ -118,7 +118,7 @@ export default function ManageEventPage({route,navigation}) {
             }}
             value={performer}
             multiline={true}
-            placeholder="Enter names for 1 or more performer"
+            placeholder=" Enter names for 1 or more performer"
           />
             <TextInput
             style={styles.input}
@@ -127,7 +127,7 @@ export default function ManageEventPage({route,navigation}) {
             }}
             value={eventName}
             multiline={true}
-            placeholder="Enter event name"
+            placeholder=" Enter event name"
           />
            
       <Button
@@ -158,7 +158,7 @@ export default function ManageEventPage({route,navigation}) {
       onPress={choosePositionPressed}
       title={"Choose position"}
    />
-<Button onPress={submitPressed} title={"Submit"}/>
+<Button onPress={submitPressed} title={"Submit"} buttonColor={"blue"}/>
 
 
     </View>

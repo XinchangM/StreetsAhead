@@ -31,7 +31,7 @@ export default function ChoosePositionPage({route,navigation}) {
         latitude: currentPosition.coords.latitude,
         longitude: currentPosition.coords.longitude,
       });
-      console.log("++++",currentLocation);
+     // console.log("+",currentLocation);
     } catch (err) {
       console.log("locate user ", err);
     }

@@ -92,7 +92,7 @@ export default function FindEventPage({route,navigation}) {
       <View style={styles.container}>
       <TextInput
       style={styles.searchInput}
-      placeholder='Search here'
+      placeholder=' Search here'
       onChangeText={(newQuery) => {
         setQuery(newQuery);
       }}

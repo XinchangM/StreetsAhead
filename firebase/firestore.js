@@ -2,7 +2,10 @@ import {
   collection,
   addDoc,
   doc,
-  getDocs,
+  query,
+  get,
+  where,
+  getDoc,
   setDoc,
   deleteDoc,
   updateDoc,
@@ -20,6 +23,9 @@ export async function saveUserInfo(userName) {
     console.log(err);
   }
 }
+
+
+
 
 
 export async function writeEventToDB({ startTime,endTime,coordinate,performer,eventName }) {
