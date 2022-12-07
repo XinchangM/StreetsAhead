@@ -35,7 +35,7 @@ export default function EventList({isAll}) {
   }, []);
   return (
     <View style={styles.eventList}>
-      <Text>EventList</Text>
+
       {isAll ? (
         <FlatList
           data={events}

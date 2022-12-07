@@ -31,7 +31,7 @@ export default function ChoosePositionPage({route,navigation}) {
         latitude: currentPosition.coords.latitude,
         longitude: currentPosition.coords.longitude,
       });
-      console.log("++++",currentLocation);
+     // console.log("+",currentLocation);
     } catch (err) {
       console.log("locate user ", err);
     }
@@ -63,7 +63,7 @@ export default function ChoosePositionPage({route,navigation}) {
   }
   return (
     <View>
-      <Text>ChoosePositionPage</Text>
+    
       <MapView
         onPress={mapPressed}
         style={styles.map}
@@ -82,7 +82,7 @@ export default function ChoosePositionPage({route,navigation}) {
         {      currentLocation && 
       <Marker 
       coordinate={currentLocation}
-      pinColor="black"
+      pinColor={'#FFC400'}
       />}
         {chosenLocation && <Marker coordinate={chosenLocation} />}
       </MapView>

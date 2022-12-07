@@ -81,7 +81,6 @@ export default function CameraStepPage({route,navigation}) {
 
   return (
     <View>
-      <Text>CameraStepPage</Text>
       
     <Button
       onPress={linkEventPressed}
@@ -94,16 +93,18 @@ export default function CameraStepPage({route,navigation}) {
             }}
             value={comment}
             multiline={true}
-            placeholder="Enter some comment"
+            placeholder=" Enter some comment"
           />
 
 <Button
       onPress={onUpload}
       title={"Upload"}
+      buttonColor={"blue"}
       />
 <Button
       onPress={onDownload}
       title={"Download"}
+      buttonColor={"blue"}
       />
 </View>
 
@@ -116,6 +117,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.lightPurple,
     height: 30,
     borderRadius: 5,
-    margin:10
+    marginVertical:10,
+    marginHorizontal:20
   },
 });

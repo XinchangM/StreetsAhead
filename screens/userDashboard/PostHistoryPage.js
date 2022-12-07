@@ -5,7 +5,7 @@ import PostList from '../../components/PostList';
 export default function PostHistoryPage() {
   return (
     <View>
-      <Text>PostHistoryPage</Text>
+
       <View style={styles.list}>
         <PostList/>
       </View>
@@ -15,7 +15,7 @@ export default function PostHistoryPage() {
 
 const styles = StyleSheet.create({
   list: {
-    // flex: 1,
+   
     height: "100%",
   }
 

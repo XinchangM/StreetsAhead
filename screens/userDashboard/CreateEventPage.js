@@ -101,7 +101,7 @@ try{
 
   return (
     <View>
-      <Text>CreateEventPage</Text>
+
       <TextInput
             style={styles.input}
             onChangeText={(newPerformer) => {
@@ -109,7 +109,7 @@ try{
             }}
             value={performer}
             multiline={true}
-            placeholder="Enter names for 1 or more performer"
+            placeholder=" Enter names for 1 or more performer"
           />
             <TextInput
             style={styles.input}
@@ -118,7 +118,7 @@ try{
             }}
             value={eventName}
             multiline={true}
-            placeholder="Enter event name"
+            placeholder=" Enter event name"
           />
            
       <Button
@@ -155,14 +155,9 @@ try{
          <Button
       onPress={submitPressed}
       title={"Submit to schedule the event"}
-
-     
+      buttonColor={"blue"}
    />
       
-
-    
-
-
 
     </View>
   )
@@ -173,7 +168,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.lightPurple,
     height: 30,
     borderRadius: 5,
-    margin:10
+    marginHorizontal:20,
+    marginVertical:10
   },
   pressed: {
     opacity: 0.75,

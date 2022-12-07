@@ -194,9 +194,8 @@ export default function App() {
             name="EventDetailPage"
             component={EventDetailPage}
             options={{title:'Event Detail',
-            headerRight:()=>(<TipIcon size={24} color={"white"} onPress={()=>{
-              
-            }}/>),
+           /*  headerRight:()=>(<TipIcon size={24} color={"white"} onPress={()=>{}}
+            />), */
           }}
           />
            <Stack.Screen

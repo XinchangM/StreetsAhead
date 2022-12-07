@@ -29,8 +29,12 @@ export default function CameraScreen({ navigation }) {
 
   useEffect(() => {
     const askPermission = async () => {
+      try{
       const { status } = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === "granted");
+      }catch(err){
+        console.log(err)
+      }
     };
     askPermission();
   }, []);
@@ -49,7 +53,7 @@ export default function CameraScreen({ navigation }) {
       const snap = await camRef.current?.takePictureAsync();
       setPreview(snap);
     } catch (err) {
-      alert(err);
+      console.log(err)
     }
   };
 
@@ -59,12 +63,17 @@ export default function CameraScreen({ navigation }) {
       const data = await camRef.current?.recordAsync();
       setRecord(data.uri);
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   }
 
   const stopVideo = async () => {
-    await camRef.current?.stopRecording();
+    try{
+      await camRef.current?.stopRecording();
+    }catch(err){
+      console.log(err);
+    }
+
   }
 
   function buttonPressed() {
