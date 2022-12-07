@@ -63,7 +63,7 @@ export default function ChoosePositionPage({route,navigation}) {
   }
   return (
     <View>
-      <Text>ChoosePositionPage</Text>
+    
       <MapView
         onPress={mapPressed}
         style={styles.map}

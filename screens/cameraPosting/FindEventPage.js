@@ -94,7 +94,7 @@ export default function FindEventPage({route,navigation}) {
       style={styles.searchInput}
       placeholder=' Search here'
       onChangeText={(newQuery) => {
-        setQuery(newQuery);
+        setQuery(newQuery.toLowerCase());
       }}
       value={query}
       />
@@ -148,7 +148,7 @@ searchInput:{
     fontSize:16
 },
 c1:{
-    backgroundColor:"lightcyan"
+    
 },
 c2:{
     backgroundColor:"cornsilk"
