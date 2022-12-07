@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
-import MapView, { Marker,Callout } from "react-native-maps";
-import React, { useEffect, useState, useRef} from "react";
+import MapView, { Marker, Callout } from "react-native-maps";
+import React, { useEffect, useState, useRef } from "react";
 import * as Location from "expo-location";
 import { firestore } from "../../firebase/firebase-setup";
 import { collection, onSnapshot } from "firebase/firestore";
@@ -8,15 +8,18 @@ import Circulerbtn from "../../components/CirculerBtn";
 import { getWeather } from "../../util/Weather";
 import { weather_api_key } from '@env';
 
-export default function MapScreen({route, navigation}) {
-  const [currentLocation, setCurrentLocation] = useState({latitude:49.26242,longitude:-123.222});
-  const [permissionResponse, requestPermission] =Location.useForegroundPermissions();
+
+export default function MapScreen({ route, navigation }) {
+  const [currentLocation, setCurrentLocation] = useState({ latitude: 49.26242, longitude: -123.222 });
+  const [permissionResponse, requestPermission] = Location.useForegroundPermissions();
+
   const [region, setRegion] = useState();
-  const [weather,setWeather] = useState(null);
-  
+  const [weather, setWeather] = useState(null);
+
 
   async function getWeather(lat, lng) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${weather_api_key}`;
+
     try{
       const response = await fetch(url);
       const data = await response.json();
@@ -29,14 +32,15 @@ export default function MapScreen({route, navigation}) {
 console.log(err)
     }
 
+
   }
 
   
   const mapRef = useRef(null);
   const onCenter = () => {
-    console.log("1111",mapRef)
-   
-}
+    console.log("1111", mapRef)
+
+  }
   const verifyPermission = async () => {
     if (permissionResponse.granted) {
       return true;
@@ -51,35 +55,38 @@ console.log(err)
       if (!hasPermission) {
         return;
       }
-      currentPosition = await Location.getCurrentPositionAsync({enableHighAccuracy:true});
+      currentPosition = await Location.getCurrentPositionAsync({ enableHighAccuracy: true });
       setCurrentLocation({
         latitude: currentPosition.coords.latitude,
         longitude: currentPosition.coords.longitude,
       });
-      //console.log("++++",currentLocation);
+
     } catch (err) {
       console.log("locate user ", err);
     }
   };
- 
+
   useEffect(() => {
     mapRef.current.animateToRegion({
-      latitude:currentLocation.latitude,
-      longitude:currentLocation.longitude,
+      latitude: currentLocation.latitude,
+      longitude: currentLocation.longitude,
       latitudeDelta: 0.020,
       longitudeDelta: 0.020,
     });
-  },[currentLocation]);
+  }, [currentLocation]);
 
   useEffect(() => {
-    if(currentLocation!=undefined){
-      getWeather(currentLocation.latitude,currentLocation.longitude)}
-  },[currentLocation]);
+
+    if (currentLocation) {
+      getWeather(currentLocation.latitude, currentLocation.longitude)
+    }
+  }, [currentLocation]);
+
 
   const [events, setEvents] = useState([]);
   useEffect(() => {
     const unsubscribe = onSnapshot(
-        collection(firestore, "events")
+      collection(firestore, "events")
       ,
       (querySnapshot) => {
         if (querySnapshot.empty) {
@@ -103,7 +110,7 @@ console.log(err)
     };
   }, []);
 
-  function onPressMarker(key){
+  function onPressMarker(key) {
     navigation.navigate("EventDetailPage", {
       eventId: key
     });
@@ -125,6 +132,7 @@ console.log(err)
           longitudeDelta: 0.020,
         }}
         ref={mapRef}>
+
        
            
        {events.map((event,i) => {
@@ -151,14 +159,16 @@ console.log(err)
                     />)
           }else if(endTimestamp>=Date.now()&&startTimestamp<=Date.now()){
             //ongoing: red marker
+
             return (
               <Marker key={event.key}
-                    identifier={event.key}
-                    coordinate={event.coordinate}
-                    image={require('../../assets/images/loc.png')}
-                    onPress={e => onPressMarker(e.nativeEvent.id)}
-                    />)
+                identifier={event.key}
+                coordinate={event.coordinate}
+                image={require('../../assets/images/loc.png')}
+                onPress={e => onPressMarker(e.nativeEvent.id)}
+              />)
           }
+
                
           else{
             //future: blue marker
@@ -180,11 +190,12 @@ console.log(err)
         key="mylocation"
       />}
       </MapView> 
+
       <View style={styles.bottomView}>
-    
-        <TouchableOpacity onPress={onCenter} style={styles.navigationView}/>
+
+        <TouchableOpacity onPress={onCenter} style={styles.navigationView} />
         <Circulerbtn onPress={locateUserHandler} />
-       { weather&& <Text>Current temperature: {weather} °C</Text>}
+        {weather && <Text>Current temperature: {weather} °C</Text>}
       </View>
 
     </View>
@@ -193,8 +204,8 @@ console.log(err)
 
 const styles = StyleSheet.create({
   mapContainer: {
-    borderBottomLeftRadius:50,
-    borderBottomRightRadius:50,
+    borderBottomLeftRadius: 50,
+    borderBottomRightRadius: 50,
   },
   map: {
     // flex: 1,
@@ -218,5 +229,5 @@ const styles = StyleSheet.create({
     borderRadius: 1,
     alignItems: 'center',
     justifyContent: 'center'
-}
+  }
 });
