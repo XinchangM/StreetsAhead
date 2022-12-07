@@ -49,7 +49,7 @@ export default function PostItem({ post, option }) {
   const onDelete = async () => {
     Alert.alert(
       "Important",
-      "Are you sure you want to delete this event?",
+      "Are you sure you want to delete this post?",
       [
         {
           text: "No",
@@ -121,7 +121,8 @@ export default function PostItem({ post, option }) {
 const styles = StyleSheet.create({
 bottomSection:{
 flexDirection:"row",
-justifyContent:"space-between"
+justifyContent:"space-between",
+padding:10
 },
 info:{
   //flexDirection:"column",
