@@ -26,23 +26,24 @@ export default function MapScreen({ route, navigation }) {
   async function getWeather(lat, lng) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${weather_api_key}`;
 
-    try{
+    try {
       const response = await fetch(url);
       const data = await response.json();
       const temperature = data.main.temp;
-      const celsius = parseFloat(temperature)-273.15;
+      const celsius = parseFloat(temperature) - 273.15;
       const temp = celsius.toFixed(1);
       const mainWeather=data.weather[0].main
       setWeather(temp);
       setMainWeather(mainWeather);
     }
     catch(err){
-console.log(err)
+      console.log(err)
     }
+
 
   }
 
-  
+
   const mapRef = useRef(null);
   const onCenter = () => {
     console.log("1111", mapRef)
@@ -140,33 +141,11 @@ console.log(err)
         }}
         ref={mapRef}>
 
-       
-           
-       {events.map((event,i) => {
-        const endTimestamp=event.endTime.seconds*1000+event.endTime.nanoseconds/1000000;
-        const startTimestamp=event.startTime.seconds*1000+event.startTime.nanoseconds/1000000;
-        if(endTimestamp>=Date.now()&&startTimestamp-3600000*2<=Date.now()){
-          //only show ongoing ones & starting in 2 hours on the map
-          return (
-            <Marker key={event.key}
-                  identifier={event.key}
-                  coordinate={event.coordinate}
-                  image={require('../../assets/images/loc.png')}
-                  onPress={e => onPressMarker(e.nativeEvent.id)}
-                  />)
-        }
-/*         if(endTimestamp<Date.now()){
-             //past: green marker
-            return (
-              <Marker key={event.key}
-                    identifier={event.key}
-                    coordinate={event.coordinate}
-                    pinColor="green"
-                    onPress={e => onPressMarker(e.nativeEvent.id)}
-                    />)
-          }else if(endTimestamp>=Date.now()&&startTimestamp<=Date.now()){
-            //ongoing: red marker
-
+        {events.map((event, i) => {
+          const endTimestamp = event.endTime.seconds * 1000 + event.endTime.nanoseconds / 1000000;
+          const startTimestamp = event.startTime.seconds * 1000 + event.startTime.nanoseconds / 1000000;
+          if (endTimestamp >= Date.now() && startTimestamp - 3600000 * 2 <= Date.now()) {
+            //only show ongoing ones & starting in 2 hours on the map
             return (
               <Marker key={event.key}
                 identifier={event.key}
@@ -175,28 +154,15 @@ console.log(err)
                 onPress={e => onPressMarker(e.nativeEvent.id)}
               />)
           }
+        })}
 
-               
-          else{
-            //future: blue marker
-            return (
-              <Marker key={event.key}
-                    identifier={event.key}
-                    coordinate={event.coordinate}
-                    pinColor="blue"
-                    onPress={e => onPressMarker(e.nativeEvent.id)}
-                    />)
-          } */
-                 
-                })}
-     
-      {currentLocation && 
-      <Marker 
-        coordinate={currentLocation}
-        pinColor={'#FFC400'}
-        key="mylocation"
-      />}
-      </MapView> 
+        {currentLocation &&
+          <Marker
+            coordinate={currentLocation}
+            pinColor={'#FFC400'}
+            key="mylocation"
+          />}
+      </MapView>
 
           {weather && 
         <View style={styles.weatherContainer}>

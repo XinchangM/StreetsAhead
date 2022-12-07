@@ -1,14 +1,13 @@
-import { View, Text, FlatList, StyleSheet, Pressable, Alert, ImageBackground } from 'react-native'
+import { View, Text, FlatList, StyleSheet, Pressable,Alert } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { firestore, auth } from "../firebase/firebase-setup";
 import { deleteEventFromDB } from "../firebase/firestore";
 import { doc, collection, onSnapshot, query, where, documentId } from "firebase/firestore";
+import { deviceHeight } from '../styles/responsive';
 import PostItem from './PostItem';
 import Button from "./Button";
-import { FontAwesome } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { deviceHeight, deviceWidth } from "../styles/responsive";
-
+import { FontAwesome } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons'; 
 export default function EventDetailPage({ route, navigation }) {
 
   const [event, setEvent] = useState();
@@ -32,11 +31,11 @@ export default function EventDetailPage({ route, navigation }) {
       [
         {
           text: "No",
-          onPress: () => { },
+          onPress: () => {},
         },
         {
           text: "Yes",
-          onPress: async () => {
+          onPress: async() => {
             try {
               await deleteEventFromDB(route.params.eventId);
               navigation.goBack();
@@ -122,43 +121,41 @@ export default function EventDetailPage({ route, navigation }) {
       setStartTime(startTimeObject.getHours()+ " : " + startTimeObject.getMinutes());
       setEndTime(endTimeObject.getHours()+" : " + endTimeObject.getMinutes());
       setTimeString(startTimeObject.getFullYear() + "/" + (startTimeObject.getMonth() + 1).toString() + "/" + startTimeObject.getDate() + " " +
-        startTimeObject.getHours() + ":" + startTimeObject.getMinutes() + " - " +
-        endTimeObject.getFullYear() + "/" + (endTimeObject.getMonth() + 1).toString() +
+      startTimeObject.getHours() + ":" + startTimeObject.getMinutes() + " - " +
+       endTimeObject.getFullYear() + "/" + (endTimeObject.getMonth() + 1).toString() +
         "/" + endTimeObject.getDate() + " " + endTimeObject.getHours() + ":" + endTimeObject.getMinutes());
     }
   }, [event]);
 
   return (
     <View>
-
+ 
       {isEventExist &&
-      <ImageBackground source={require("../assets/images/ticket.png")} style={{height: deviceHeight/1.5}}>
         <View style={styles.infos}>
           <Text style={styles.title}>{event.eventName}</Text>
-          <Text style={styles.text}>Performers: {event.performer}</Text>
-          <View style={styles.timeBar}>
-            <View style={styles.timeWrap}>
-              <Text style={styles.timeText}>{startTime}</Text>
-              <Text style={styles.timeText}>{endTime}</Text>
-            </View>
-          </View>
-    
-          </View>
-        </ImageBackground>}
+          <Text style={styles.text}>Time: {timeString}</Text>
+          {/* <Text>eventId: {route.params.eventId}</Text> */}
 
-      {route.params.isManagable &&
+          {/*     <Text>Longitude: {event.coordinate.longitude}</Text>
+      <Text>Latitude: {event.coordinate.latitude}</Text> */}
+          <Text style={styles.text}>Performers: {event.performer}</Text>
+          {/* <Text>User Id: {event.userId}</Text> */}
+          
+        </View>}
+
+        {route.params.isManagable &&
         <View style={styles.buttonsContainer}>
-          <Pressable onPress={onEditEvent}><FontAwesome name="edit" size={24} color="black" /></Pressable>
-          <Pressable onPress={onDeleteEvent}><AntDesign name="delete" size={24} color="black" /></Pressable>
+<Pressable onPress={onEditEvent}><FontAwesome name="edit" size={24} color="black" /></Pressable>      
+<Pressable onPress={onDeleteEvent}><AntDesign name="delete" size={24} color="black" /></Pressable> 
         </View>
       }
 
-      {isPostExist &&
+      {
+        isPostExist &&
         <View style={styles.postList}>
           <FlatList
             data={posts}
             renderItem={({ item }) => {
-              // console.log(item);
               return (
                 <PostItem
                   post={item}
@@ -172,52 +169,31 @@ export default function EventDetailPage({ route, navigation }) {
       }
 
 
-    </View>
+    </View >
   )
 }
 
 const styles = StyleSheet.create({
-  title: {
-    textAlign: "center",
-    fontSize: 30,
-    padding: 10,
-    fontWeight: "bold",
-    marginBottom:20,
+  title:{
+    textAlign:"center",
+    fontSize:24,
+    padding:10,
+  
   },
-  text: {
-    textAlign: 'center',
-    // alignContent:"center",
-  },
-  timeBar: {
-    height: deviceHeight/11,
-    width: deviceWidth/1.5,
-    borderRadius:10,
-    backgroundColor: "white",
-    alignSelf: 'center',
-    marginBottom:20,
-    marginTop:20,
-  },
-  timeWrap:{
-    marginTop:20,
-    alignItems:"stretch",
-    flexDirection: 'row',
-    justifyContent:'space-around'
-  },
-  timeText: {
-    fontSize:30,
+  text:{
+    textAlign:'center'
   },
   buttonsContainer: {
-    justifyContent: "space-around",
+  justifyContent:"space-around",
     flexDirection: 'row',
   },
   infos: {
-    marginTop:100,
-    marginHorizontal: 30,
-    marginVertical: 10
-
+    marginHorizontal:30,
+    marginVertical:10
+   
   },
   postList: {
-    marginVertical: 20,
+    marginVertical:20,
     alignItems: 'center',
   },
 });
