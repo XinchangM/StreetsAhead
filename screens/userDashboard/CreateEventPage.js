@@ -1,15 +1,15 @@
-import { View, Text ,Pressable,StyleSheet,TextInput, Alert} from 'react-native'
+import { View, Text, Pressable, StyleSheet, TextInput, Alert } from 'react-native'
 import React from 'react'
 import Button from '../../components/Button';
 import Colors from '../../components/Colors';
 import { useState } from "react";
 import { writeEventToDB } from "../../firebase/firestore";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { firestore,auth } from "../../firebase/firebase-setup";
+import { firestore, auth } from "../../firebase/firebase-setup";
 import NotificationManager from "../../components/NotificationManager";
 import { requestPermissionsAsync } from 'expo-media-library';
 
-export default function CreateEventPage({route,navigation}) {
+export default function CreateEventPage({ route, navigation }) {
   const [performer, setPerformer] = useState("");
   const [eventName, setEventName] = useState("");
   const [startTime, setStartTime] = useState();
@@ -49,24 +49,24 @@ export default function CreateEventPage({route,navigation}) {
 
 
   function choosePositionPressed() {
-    navigation.navigate("ChoosePositionPage",{isCreateNew:true});
-    
+    navigation.navigate("ChoosePositionPage", { isCreateNew: true });
+
   }
 
   const submitPressed = async () => {
-    if(performer==""){
+    if (performer == "") {
       alert("You must specify the names of performers!");
       return;
     }
-    if(eventName==""){
+    if (eventName == "") {
       alert("You must specify the name of the event!");
       return;
     }
-    if(startTime==undefined){
+    if (startTime == undefined) {
       alert("You must specify a start time!");
       return;
     }
-    if(endTime==undefined){
+    if (endTime == undefined) {
       alert("You must specify an end time!");
       return;
     }
@@ -75,25 +75,26 @@ export default function CreateEventPage({route,navigation}) {
       alert("End date should be greater than Start date");
       return;
     }
-    if(route.params.coordinate==undefined){
+    if (route.params.coordinate == undefined) {
       alert("You must specify a location!");
       return;
     }
 
-try{
-    await writeEventToDB({      
-      startTime:startTime,
-      endTime:endTime,
-      coordinate:route.params.coordinate,
-      performer:performer,
-      userId:auth.currentUser.uid,
-      eventName:eventName}) ;
+    try {
+      await writeEventToDB({
+        startTime: startTime,
+        endTime: endTime,
+        coordinate: route.params.coordinate,
+        performer: performer,
+        userId: auth.currentUser.uid,
+        eventName: eventName
+      });
       navigation.goBack();
       alert("You have succesfully created the event");
 
-  }catch(err){
-    console.log(err)
-  }
+    } catch (err) {
+      console.log(err)
+    }
   };
 
 
@@ -102,29 +103,37 @@ try{
   return (
     <View>
 
+
       <TextInput
-            style={styles.input}
-            onChangeText={(newPerformer) => {
-              setPerformer(newPerformer);
-            }}
-            value={performer}
-            multiline={true}
-            placeholder=" Enter names for 1 or more performer"
-          />
-            <TextInput
-            style={styles.input}
-            onChangeText={(newEventName) => {
-              setEventName(newEventName);
-            }}
-            value={eventName}
-            multiline={true}
-            placeholder=" Enter event name"
-          />
-           
+        style={styles.input}
+        onChangeText={(newEventName) => {
+          setEventName(newEventName);
+        }}
+        value={eventName}
+        multiline={true}
+        placeholder=" Enter event name"
+        placeholderTextColor={Colors.pink}
+        color={Colors.pink}
+      />
+
+      <TextInput
+
+        style={styles.input}
+        onChangeText={(newPerformer) => {
+          setPerformer(newPerformer);
+        }}
+        value={performer}
+        multiline={true}
+        placeholder=" Enter names for the performers"
+        placeholderTextColor={Colors.pink}
+        color={Colors.pink}
+
+      />
+
       <Button
-      onPress={showStartTimePicker}
-      title={"Choose start time"}
-   />
+        onPress={showStartTimePicker}
+        title={"Choose start time"}
+      />
 
       <DateTimePickerModal
         isVisible={isDatePicker1Visible}
@@ -134,9 +143,9 @@ try{
       />
 
       <Button
-      onPress={showEndTimePicker}
-      title={"Choose end time"}
-   />
+        onPress={showEndTimePicker}
+        title={"Choose end time"}
+      />
 
       <DateTimePickerModal
         isVisible={isDatePicker2Visible}
@@ -145,19 +154,19 @@ try{
         onCancel={hideEndTimePicker}
       />
 
-         <Button
-      onPress={choosePositionPressed}
-      title={"Choose position"}
-   />
+      <Button
+        onPress={choosePositionPressed}
+        title={"Choose position"}
+      />
 
-<NotificationManager startTime={startTime} eventName={eventName}/>
-   
-         <Button
-      onPress={submitPressed}
-      title={"Submit to schedule the event"}
-      buttonColor={"blue"}
-   />
-      
+      <NotificationManager startTime={startTime} eventName={eventName} />
+
+      <Button
+        onPress={submitPressed}
+        title={"Submit to schedule the event"}
+        buttonColor={Colors.gold}
+      />
+
 
     </View>
   )
@@ -165,11 +174,12 @@ try{
 
 const styles = StyleSheet.create({
   input: {
-    backgroundColor: Colors.lightPurple,
+    backgroundColor: Colors.inputBackground,
     height: 30,
     borderRadius: 5,
-    marginHorizontal:20,
-    marginVertical:10
+    marginHorizontal: 20,
+    marginVertical: 10,
+
   },
   pressed: {
     opacity: 0.75,

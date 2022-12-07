@@ -27,6 +27,7 @@ export default function EventItem({ event, option }) {
     });
   }
   function linkPressed() {
+    alert("Successfully linked this event to your post!")
     navigation.navigate("CameraNextStepPage", {
       eventId: event.key
     });

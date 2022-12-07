@@ -96,17 +96,19 @@ export default function CameraStepPage({route,navigation}) {
             value={comment}
             multiline={true}
             placeholder=" Enter some comment"
+            placeholderTextColor={Colors.pink}
+            color={Colors.pink}
           />
 
 <Button
       onPress={onUpload}
       title={"Upload"}
-      buttonColor={"blue"}
+      buttonColor={Colors.gold}
       />
 <Button
       onPress={onDownload}
       title={"Download"}
-      buttonColor={"blue"}
+      buttonColor={Colors.gold}
       />
 </View>
 
@@ -116,7 +118,7 @@ export default function CameraStepPage({route,navigation}) {
 
 const styles = StyleSheet.create({
   input: {
-    backgroundColor: Colors.lightPurple,
+    backgroundColor: Colors.inputBackground,
     height: 30,
     borderRadius: 5,
     marginVertical:10,
