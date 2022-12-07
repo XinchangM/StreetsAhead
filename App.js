@@ -95,7 +95,7 @@ function MajorScreens() {
               <FontAwesome name="user-circle-o" size={size} color={color} />
             ),
             headerRight: () => {
-              return <Button title="Logout" onPress={() => signOut(auth)} />;
+              return <Button title="Logout" color={Colors.pink} onPress={() => signOut(auth)} />;
             },
           };
         }}

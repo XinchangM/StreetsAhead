@@ -10,7 +10,7 @@ export default function Button({ title, onPress,buttonColor }) {
         onPress={onPress}
         style={({ pressed }) => pressed && styles.pressed}
       >
-        <View style={[styles.container,{backgroundColor:buttonColor?buttonColor:Colors.purple}]}>
+        <View style={[styles.container,{backgroundColor:buttonColor?buttonColor:Colors.pink}]}>
           <Text style={styles.title}>{title}</Text>
         </View>
       </Pressable>

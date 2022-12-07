@@ -99,6 +99,7 @@ export default function ManageEventPage({route,navigation}) {
       coordinate:route.params.coordinate,
       performer:performer,
       eventName:eventName}) 
+      alert("Successfully updated your event information!");
       navigation.goBack();
 
     }catch(err){
@@ -110,7 +111,17 @@ export default function ManageEventPage({route,navigation}) {
 
   return (
     <View>
-      <Text>ManageEventPage</Text>
+      <TextInput
+            style={styles.input}
+            onChangeText={(newEventName) => {
+              setEventName(newEventName);
+            }}
+            value={eventName}
+            multiline={true}
+            placeholder=" Enter event name"
+            placeholderTextColor={Colors.pink}
+            color={Colors.pink}
+          />
       <TextInput
             style={styles.input}
             onChangeText={(newPerformer) => {
@@ -119,16 +130,10 @@ export default function ManageEventPage({route,navigation}) {
             value={performer}
             multiline={true}
             placeholder=" Enter names for 1 or more performer"
+            placeholderTextColor={Colors.pink}
+            color={Colors.pink}
           />
-            <TextInput
-            style={styles.input}
-            onChangeText={(newEventName) => {
-              setEventName(newEventName);
-            }}
-            value={eventName}
-            multiline={true}
-            placeholder=" Enter event name"
-          />
+
            
       <Button
       onPress={showStartTimePicker}
@@ -158,7 +163,7 @@ export default function ManageEventPage({route,navigation}) {
       onPress={choosePositionPressed}
       title={"Choose position"}
    />
-<Button onPress={submitPressed} title={"Submit"} buttonColor={"blue"}/>
+<Button onPress={submitPressed} title={"Submit"} buttonColor={Colors.gold}/>
 
 
     </View>
@@ -168,10 +173,11 @@ export default function ManageEventPage({route,navigation}) {
 
 const styles = StyleSheet.create({
   input: {
-    backgroundColor: Colors.lightPurple,
+    backgroundColor: Colors.inputBackground,
     height: 30,
     borderRadius: 5,
-    margin:10
+    marginHorizontal:20,
+   marginVertical:10
   },
   pressed: {
     opacity: 0.75,
