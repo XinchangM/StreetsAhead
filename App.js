@@ -14,11 +14,13 @@ import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons'; 
 
-import Login from "./screens/auth/Login";
+import Log from "./screens/auth/Log";
 import Signup from "./screens/auth/Signup";
 
 
 import EventDetailPage from "./components/EventDetailPage";
+
+// import Camera from "./screens/cameraPosting/Camera";
 
 import CameraScreen from "./screens/cameraPosting/CameraScreen";
 import CameraNextStepPage from "./screens/cameraPosting/CameraNextStepPage";
@@ -55,7 +57,7 @@ function MajorScreens() {
     <Tab.Navigator
         screenOptions={({navigation})=>({
         headerTintColor: "white",
-        tabBarStyle: { backgroundColor: Colors.black,
+        tabBarStyle: { backgroundColor: Colors.white,
        },
         tabBarActiveTintColor: Colors.yellow,
       })}
@@ -151,7 +153,7 @@ export default function App() {
   
   const AuthStack = (
     <>
-      <Stack.Screen name="Login" options={{headerShown:false}} component={Login} />
+      <Stack.Screen name="Log" options={{headerShown:false}} component={Log} />
       <Stack.Screen name="Signup" options={{headerShown:false}} component={Signup} />
     </>
   );
