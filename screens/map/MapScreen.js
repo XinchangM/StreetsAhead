@@ -16,7 +16,7 @@ import Colors  from "../../components/Colors";
 
 
 export default function MapScreen({ route, navigation }) {
-  const [currentLocation, setCurrentLocation] = useState({ latitude: 49.26242, longitude: -123.222 });
+  const [currentLocation, setCurrentLocation] = useState({ latitude: 49.288020, longitude: -123.143331 } );
   const [permissionResponse, requestPermission] = Location.useForegroundPermissions();
 
   const [region, setRegion] = useState();
@@ -127,21 +127,20 @@ console.log(err)
 
   return (
     <View style={styles.mapContainer}>
+    
       <MapView
         style={styles.map}
         initialRegion={{
           latitude: currentLocation
             ? currentLocation.latitude
-            : 49.26242,
+            : 49.288020,
           longitude: currentLocation
             ? currentLocation.longitude
-            : -123.222,
+            : -123.143331,
           latitudeDelta: 0.020,
           longitudeDelta: 0.020,
         }}
         ref={mapRef}>
-
-       
            
        {events.map((event,i) => {
         const endTimestamp=event.endTime.seconds*1000+event.endTime.nanoseconds/1000000;
@@ -155,40 +154,7 @@ console.log(err)
                   image={require('../../assets/images/loc.png')}
                   onPress={e => onPressMarker(e.nativeEvent.id)}
                   />)
-        }
-/*         if(endTimestamp<Date.now()){
-             //past: green marker
-            return (
-              <Marker key={event.key}
-                    identifier={event.key}
-                    coordinate={event.coordinate}
-                    pinColor="green"
-                    onPress={e => onPressMarker(e.nativeEvent.id)}
-                    />)
-          }else if(endTimestamp>=Date.now()&&startTimestamp<=Date.now()){
-            //ongoing: red marker
-
-            return (
-              <Marker key={event.key}
-                identifier={event.key}
-                coordinate={event.coordinate}
-                image={require('../../assets/images/loc.png')}
-                onPress={e => onPressMarker(e.nativeEvent.id)}
-              />)
-          }
-
-               
-          else{
-            //future: blue marker
-            return (
-              <Marker key={event.key}
-                    identifier={event.key}
-                    coordinate={event.coordinate}
-                    pinColor="blue"
-                    onPress={e => onPressMarker(e.nativeEvent.id)}
-                    />)
-          } */
-                 
+        }              
                 })}
      
       {currentLocation && 
@@ -207,8 +173,9 @@ console.log(err)
         { mainWeather=="Snow"&&<View style={styles.icon}><FontAwesome name="snowflake-o" size={24} color={Colors.black} /></View>}
         { mainWeather=="Clouds"&&<View style={styles.icon}><Entypo name="icloud" size={24} color={Colors.black} /></View>}
         <View style={styles.weatherText}><Text>{weather} °C</Text></View>
-        </View>
-        }
+        </View>}
+
+        
 
       <View style={styles.bottomView}>
 
@@ -218,6 +185,7 @@ console.log(err)
       </View>
 
     </View>
+
   )
 }
 
