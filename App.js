@@ -95,11 +95,21 @@ function MajorScreens() {
               <FontAwesome name="user-circle-o" size={size} color={color} />
             ),
             headerRight: () => {
-  
+            
+          
               return  <AntDesign name="logout" style={{ marginRight: 30 }} size={24} color={Colors.pink} onPress={() =>{
-                Alert.alert("Are you sure")
-                
-                signOut(auth)}}/> 
+               
+                Alert.alert("Important",'Are you sure', [
+                  {
+                    text: 'Cancel',
+                    onPress: () => {},
+                    style: 'cancel',
+                  },
+                  {text: 'OK', onPress: () => signOut(auth)},
+                ]);
+
+
+                }}/> 
          
              
             },
