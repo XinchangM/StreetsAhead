@@ -36,6 +36,7 @@ export default function PostList() {
     <View style={styles.postList}>
  
       <FlatList
+        
           data={posts}
           renderItem={({ item }) => {
             // console.log(item);
@@ -56,6 +57,7 @@ const styles = StyleSheet.create({
   postList: {
     flex: 1,
     padding: 20,
+    backgroundColor:"yellow"
  
   },
 });

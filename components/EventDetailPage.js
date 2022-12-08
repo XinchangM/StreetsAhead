@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet, Pressable, Alert, ImageBackground,ScrollView } from 'react-native'
+import { View, Text, FlatList, StyleSheet, Pressable, Alert, ImageBackground,SafeAreaView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { firestore, auth } from "../firebase/firebase-setup";
 import { deleteEventFromDB } from "../firebase/firestore";
@@ -129,33 +129,42 @@ export default function EventDetailPage({ route, navigation }) {
   }, [event]);
 
   return (
-    <ScrollView>
+   
+  
+      <View>
+ 
 
-      {isEventExist &&
-      <ImageBackground source={require("../assets/images/ticket.png")} style={{height: deviceHeight/1.5}}>
-        <View style={styles.infos}>
-          <Text style={styles.title}>{event.eventName}</Text>
-          <Text style={styles.text}>Performers: {event.performer}</Text>
-          <View style={styles.timeBar}>
-            <View style={styles.timeWrap}>
-              <Text style={styles.timeText}>{startTime}</Text>
-              <Text style={styles.timeText}>{endTime}</Text>
-            </View>
-          </View>
-    
-          </View>
-        </ImageBackground>}
 
-      {route.params.isManagable &&
+
+      {isPostExist &&
+        <View style={styles.postList}>
+          <FlatList
+            ListHeaderComponent= {    
+              <View>
+              {isEventExist &&
+              <ImageBackground source={require("../assets/images/ticket.png")} style={{height: deviceHeight/1.5}}>
+                <View style={styles.infos}>
+                  <Text style={styles.title}>{event.eventName}</Text>
+                  <Text style={styles.text}>Performers: {event.performer}</Text>
+                  <View style={styles.timeBar}>
+                    <View style={styles.timeWrap}>
+                      <Text style={styles.timeText}>{startTime}</Text>
+                      <Text style={styles.timeText}>{endTime}</Text>
+                    </View>
+                  </View>
+            
+                  </View>
+                </ImageBackground>}
+
+
+                {route.params.isManagable &&
         <View style={styles.buttonsContainer}>
           <Pressable onPress={onEditEvent}><FontAwesome name="edit" size={24} color="black" /></Pressable>
           <Pressable onPress={onDeleteEvent}><AntDesign name="delete" size={24} color="black" /></Pressable>
         </View>
       }
-
-      {isPostExist &&
-        <View style={styles.postList}>
-          <FlatList
+                </View>
+            }
             data={posts}
             renderItem={({ item }) => {
               // console.log(item);
@@ -171,8 +180,10 @@ export default function EventDetailPage({ route, navigation }) {
         </View>
       }
 
+</View>
 
-    </ScrollView>
+
+
   )
 }
 
