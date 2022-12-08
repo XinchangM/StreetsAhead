@@ -43,7 +43,7 @@ export default function EventItem({ event, option }) {
     });
   }
   return (
-    <View>
+    <View style={styles.item}>
       {option == 1 &&
         <Pressable
           onPress={linkPressed}
@@ -129,5 +129,8 @@ const styles = StyleSheet.create({
     marginTop:moderateScale(10),
     marginLeft:moderateScale(20),
     fontSize:moderateScale(15)
+  },
+  item:{
+    alignSelf:"center"
   }
 }); 
