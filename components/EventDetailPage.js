@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet, Pressable, Alert, ImageBackground,SafeAreaView } from 'react-native'
+import { View, Text, FlatList, StyleSheet, Pressable, Alert, ImageBackground, SafeAreaView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { firestore, auth } from "../firebase/firebase-setup";
 import { deleteEventFromDB } from "../firebase/firestore";
@@ -7,7 +7,7 @@ import PostItem from './PostItem';
 import Button from "./Button";
 import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import { deviceHeight, deviceWidth } from "../styles/responsive";
+import { deviceHeight, deviceWidth, moderateScale } from "../styles/responsive";
 
 export default function EventDetailPage({ route, navigation }) {
 
@@ -115,55 +115,52 @@ export default function EventDetailPage({ route, navigation }) {
     if (event) {
       const startTimeStamp = event.startTime.seconds * 1000 + event.startTime.nanoseconds / 1000000;
       const startTimeObject = new Date(startTimeStamp);
-      setStartString(startTimeObject.toString());
       const endTimeStamp = event.endTime.seconds * 1000 + event.endTime.nanoseconds / 1000000;
       const endTimeObject = new Date(endTimeStamp);
-      setEndString(endTimeObject.toString());
-      setStartTime(startTimeObject.getHours()+ " : " + startTimeObject.getMinutes());
-      setEndTime(endTimeObject.getHours()+" : " + endTimeObject.getMinutes());
-      setTimeString(startTimeObject.getFullYear() + "/" + (startTimeObject.getMonth() + 1).toString() + "/" + startTimeObject.getDate() + " " +
-        startTimeObject.getHours() + ":" + startTimeObject.getMinutes() + " - " +
-        endTimeObject.getFullYear() + "/" + (endTimeObject.getMonth() + 1).toString() +
-        "/" + endTimeObject.getDate() + " " + endTimeObject.getHours() + ":" + endTimeObject.getMinutes());
+      const monthNames = ["Jan. ", "Feb. ", "Mar. ", "Apr. ", "May ", "Jun. ",
+                            "Jul. ", "Aug. ", "Sept. ", "Oct. ", "Nov. ", "Dec. "];
+      setStartTime(startTimeObject.getHours() + " : " + startTimeObject.getMinutes());
+      setStartDate(monthNames[endTimeObject.getMonth()] + startTimeObject.getDate());
+      setEndDate(monthNames[endTimeObject.getMonth()] + endTimeObject.getDate());
+      setEndTime(endTimeObject.getHours() + " : " + endTimeObject.getMinutes());
     }
   }, [event]);
 
   return (
-   
-  
-      <View>
- 
-
-
+    <View>
 
       {isPostExist &&
         <View style={styles.postList}>
           <FlatList
-            ListHeaderComponent= {    
+            ListHeaderComponent={
               <View>
-              {isEventExist &&
-              <ImageBackground source={require("../assets/images/ticket.png")} style={{height: deviceHeight/1.5}}>
-                <View style={styles.infos}>
-                  <Text style={styles.title}>{event.eventName}</Text>
-                  <Text style={styles.text}>Performers: {event.performer}</Text>
-                  <View style={styles.timeBar}>
-                    <View style={styles.timeWrap}>
-                      <Text style={styles.timeText}>{startTime}</Text>
-                      <Text style={styles.timeText}>{endTime}</Text>
+                {isEventExist &&
+                  <ImageBackground source={require("../assets/images/ticket.png")} style={{ height:deviceHeight/ 1.5}}>
+                    <View style={styles.infos}>
+                      <Text style={styles.title}>{event.eventName}</Text>
+                      <Text style={styles.text}>Performers: {event.performer}</Text>
+                      <View style={styles.timeBar}>
+                        <View style={styles.timeWrap}>
+                          <Text style={styles.timeText}>{startTime}</Text>
+                          <Text style={styles.timeText}>{endTime}</Text>
+                        </View>
+                        <View style={styles.dateWrap}>
+                          <Text style={styles.dateText}>{startDate}</Text>
+                          <Text style={styles.dateText}>{endDate}</Text>
+                        </View>
+                      </View>
+
                     </View>
-                  </View>
-            
-                  </View>
-                </ImageBackground>}
+                  </ImageBackground>}
 
 
                 {route.params.isManagable &&
-        <View style={styles.buttonsContainer}>
-          <Pressable onPress={onEditEvent}><FontAwesome name="edit" size={24} color="black" /></Pressable>
-          <Pressable onPress={onDeleteEvent}><AntDesign name="delete" size={24} color="black" /></Pressable>
-        </View>
-      }
-                </View>
+                  <View style={styles.buttonsContainer}>
+                    <Pressable onPress={onEditEvent}><FontAwesome name="edit" size={24} color="black" /></Pressable>
+                    <Pressable onPress={onDeleteEvent}><AntDesign name="delete" size={24} color="black" /></Pressable>
+                  </View>
+                }
+              </View>
             }
             data={posts}
             renderItem={({ item }) => {
@@ -175,54 +172,60 @@ export default function EventDetailPage({ route, navigation }) {
                 />
               );
             }}
-
           ></FlatList>
         </View>
       }
-
-</View>
-
-
-
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   title: {
     textAlign: "center",
-    fontSize: 30,
-    padding: 10,
+    fontSize: moderateScale(30),
+    padding: moderateScale(10),
     fontWeight: "bold",
-    marginBottom:20,
+    marginBottom: moderateScale(20),
   },
   text: {
     textAlign: 'center',
     // alignContent:"center",
   },
   timeBar: {
-    height: deviceHeight/11,
-    width: deviceWidth/1.5,
-    borderRadius:10,
+    height: deviceHeight / 8,
+    width: deviceWidth / 1.5,
+    borderRadius: 10,
     backgroundColor: "white",
     alignSelf: 'center',
-    marginBottom:20,
-    marginTop:20,
+    marginBottom: moderateScale(20),
+    marginTop: moderateScale(20),
   },
-  timeWrap:{
-    marginTop:20,
-    alignItems:"stretch",
+  timeWrap: {
+    marginTop: moderateScale(20),
+    padding:moderateScale(10),
+    alignItems: "stretch",
     flexDirection: 'row',
-    justifyContent:'space-around'
+    justifyContent: 'space-between'
   },
   timeText: {
-    fontSize:30,
+    fontSize: moderateScale(30),
+  },
+  dateText:{
+    fontSize:moderateScale(20),
+    color:"gray"
+  },
+  dateWrap: {
+    padding: moderateScale(10),
+    alignItems: "stretch",
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   buttonsContainer: {
     justifyContent: "space-around",
     flexDirection: 'row',
   },
   infos: {
-    marginTop:100,
+    marginTop: 100,
     marginHorizontal: 30,
     marginVertical: 10
 

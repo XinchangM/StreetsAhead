@@ -28,4 +28,4 @@ const textScale = percent => {
 	return Math.round(heightPercent);
 };
 
-export { scale, verticalScale, textScale, moderateScale, moderateScaleVertical,deviceHeight,deviceWidth };
+export { scale, verticalScale, textScale, moderateScale, moderateScaleVertical,deviceHeight,deviceWidth };		

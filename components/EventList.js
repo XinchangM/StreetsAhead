@@ -2,15 +2,13 @@ import { View, Text,FlatList,StyleSheet} from 'react-native'
 import React,{useState,useEffect} from 'react'
 import { firestore, auth } from "../firebase/firebase-setup";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
-import EventItem from "./EventItem"
+import EventItem from "./EventItem";
 
 export default function EventList({isAll}) {
   const [events, setEvents] = useState([]);
   useEffect(() => {
     const unsubscribe = onSnapshot(
-  
-        collection(firestore, "events")
-        
+        collection(firestore, "events") 
       ,
       (querySnapshot) => {
         if (querySnapshot.empty) {
