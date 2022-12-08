@@ -228,8 +228,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: moderateScale(55),
     width: moderateScale(55),
-    right: deviceWidth / 3,
-    top: deviceHeight / 13,
+    right: deviceWidth / 2.5,
+    top: deviceHeight / 1.2,
     zIndex: 1,
   },
   closeBtn: {
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(55),
     width: moderateScale(55),
     left: deviceWidth / 2.2,
-    top: deviceHeight / 13,
+    top: deviceHeight / 1.2,
     zIndex: 1,
   },
   nextBtn: {

@@ -1,10 +1,10 @@
 import { MaterialIcons } from '@expo/vector-icons';
-
+import Cash from "react-native-vector-icons/MaterialCommunityIcons";
 import { View, Text, Pressable, StyleSheet } from "react-native";
-
+import { moderateScale } from '../styles/responsive';
 import React from "react";
 
-export default function TipIcon({ size, color, onPress }) {
+export default function TipIcon({ onPress }) {
   return (
     <Pressable
       onPress={onPress}
@@ -13,16 +13,16 @@ export default function TipIcon({ size, color, onPress }) {
       }}
     >
       <View style={styles.container}>
-      <MaterialIcons name="attach-money" size={size} color={color} />
-       <Text style={styles.text}>Tip</Text>
+        <Cash name="cash-fast" size={moderateScale(30)} color="white" />
+        {/* <Text style={styles.text}>Tip</Text> */}
       </View>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  text:{
-    color:'black'
+  text: {
+    color: 'black'
   },
   container: {
     padding: 5,

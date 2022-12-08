@@ -4,7 +4,7 @@ import { firestore, auth } from "../firebase/firebase-setup";
 import { deleteEventFromDB } from "../firebase/firestore";
 import { doc, collection, onSnapshot, query, where, documentId } from "firebase/firestore";
 import PostItem from './PostItem';
-import Button from "./Button";
+import TipIcon from "../components/TipIcon";
 import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { deviceHeight, deviceWidth, moderateScale } from "../styles/responsive";
@@ -96,11 +96,6 @@ export default function EventDetailPage({ route, navigation }) {
       uns();
     };
   }, []);
-
-
-
-
-
   let isEventExist = false;
 
   if (event != undefined) {
@@ -128,7 +123,6 @@ export default function EventDetailPage({ route, navigation }) {
 
   return (
     <View>
-
       {isPostExist &&
         <View style={styles.postList}>
           <FlatList
@@ -149,10 +143,8 @@ export default function EventDetailPage({ route, navigation }) {
                           <Text style={styles.dateText}>{endDate}</Text>
                         </View>
                       </View>
-
                     </View>
                   </ImageBackground>}
-
 
                 {route.params.isManagable &&
                   <View style={styles.buttonsContainer}>
