@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView, Button,Linking } from 'react-native';
+import { StyleSheet, SafeAreaView, Linking, Button, View} from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer,Link } from "@react-navigation/native";
@@ -56,7 +56,7 @@ function MajorScreens() {
   return (
     <Tab.Navigator
         screenOptions={({navigation})=>({
-        headerTintColor: "white",
+        headerTintColor: Colors.pink,
         tabBarStyle: { backgroundColor: Colors.white,
        },
         tabBarActiveTintColor: Colors.yellow,
@@ -88,27 +88,22 @@ function MajorScreens() {
     <Tab.Screen
         name="Dashboard"
         component={DashboardScreen}
-        options={({ navigation }) => {
-          return {
+        options={/* ({ navigation }) => */ {
+          /* return { */
             title: "Dashboard",
             tabBarIcon: ({ color, size }) => (
               <FontAwesome name="user-circle-o" size={size} color={color} />
             ),
             headerRight: () => {
-              return <Button title="Logout" color={Colors.pink} onPress={() => signOut(auth)} />;
+              return  <AntDesign name="logout" style={{ marginRight: 30 }} size={24} color={Colors.pink} onPress={() => signOut(auth)} />;
+             
             },
-          };
+       /*    }; */
         }}
       />
     </Tab.Navigator>
   );
-  const styles = StyleSheet.create({
-    tabBar: {
-      backgroundColor: Colors.white,
-      borderTopLeftRadius: 20,
-      borderTopRightRadius: 20,
-    },
-  });
+
 }
 
 export default function App() {
@@ -225,7 +220,14 @@ export default function App() {
 
       <NavigationContainer>
    
-        <Stack.Navigator>   
+        <Stack.Navigator
+      screenOptions={{
+        headerTintColor: Colors.pink 
+/*         headerStyle: {
+          backgroundColor: Colors.inputBackground
+        }, */
+       }}
+        >   
 
           {isUserAuthenticated ? AppStack : AuthStack}
 
@@ -238,3 +240,14 @@ export default function App() {
   
 }
 
+const styles = StyleSheet.create({
+/*   tabBar: {
+    backgroundColor: Colors.white,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  }, */
+logout:{
+  margin:5,
+  padding:5
+} 
+});

@@ -46,7 +46,7 @@ console.log(err)
   
   const mapRef = useRef(null);
   const onCenter = () => {
-    console.log("1111", mapRef)
+    //console.log("1111", mapRef)
 
   }
   const verifyPermission = async () => {

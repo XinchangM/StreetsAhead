@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Text, View, TouchableOpacity, ImageBackground,StyleSheet,Button } from "react-native";
+import { Text, View, TouchableOpacity, ImageBackground,StyleSheet,Button,Alert } from "react-native";
 import { Camera } from "expo-camera";
 import { Video } from 'expo-av';
 import Icon from "react-native-vector-icons/Entypo";
@@ -33,7 +33,7 @@ export default function Camera({navigation}) {
         return <View/>;
       }
     if (hasPermission === false) {
-        // Alert???
+        Alert.alert("No permission for camera!")
         return <Text>No Permission</Text>;
     }
 
@@ -43,7 +43,7 @@ export default function Camera({navigation}) {
           const snap = await camRef.current?.takePictureAsync();
           setPreview(snap);
         } catch (err) {
-          alert(err);
+          console.log(err);
         }
       };
 
@@ -53,7 +53,7 @@ export default function Camera({navigation}) {
         const data = await camRef.current?.recordAsync();
         setRecord(data.uri);
         } catch (err) {
-        alert(err);
+        console.loh(err);
         }
     }
 
@@ -72,7 +72,7 @@ export default function Camera({navigation}) {
         uri=record;
         mediaType="video"
         }
-        console.log(record);
+        //console.log(record);
         navigation.navigate("CameraNextStepPage",{mediaUri:uri,mediaType:mediaType});
         setPreview(null);
         setRecord(null);

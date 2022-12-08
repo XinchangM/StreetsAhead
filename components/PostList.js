@@ -39,7 +39,7 @@ export default function PostList() {
         
           data={posts}
           renderItem={({ item }) => {
-            // console.log(item);
+  
             return (
               <PostItem
                 post={item}
@@ -56,8 +56,7 @@ export default function PostList() {
 const styles = StyleSheet.create({
   postList: {
     flex: 1,
-    padding: 20,
-    backgroundColor:"yellow"
+    padding: 20
  
   },
 });

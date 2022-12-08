@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View,Alert } from "react-native";
 import React from "react";
 import * as Notifications from "expo-notifications";
 import Button from "./Button";
@@ -36,8 +36,9 @@ export default function NotificationManager({startTime, eventName}) {
           date:startTime
         },
       });
-      alert("Success!")
+      Alert.alert("Success","Successfully schedule the notification!")
     } catch (err) {
+      Alert.alert("Must complete information above!");
       console.log(err);
     }
   };
@@ -45,7 +46,7 @@ export default function NotificationManager({startTime, eventName}) {
   return (
     <View>
       <Button
-        title="Remind me at the start time of the event"
+        title="Remind me at the start time"
         onPress={scheduleNotificationHandler}
         buttonColor={Colors.gold}
       />

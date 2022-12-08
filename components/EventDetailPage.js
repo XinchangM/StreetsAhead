@@ -40,7 +40,7 @@ export default function EventDetailPage({ route, navigation }) {
             try {
               await deleteEventFromDB(route.params.eventId);
               navigation.goBack();
-              alert("Successfully deleted!")
+              Alert.alert("Success","Successfully deleted!")
             } catch (err) {
               console.log(err);
             }
@@ -68,7 +68,7 @@ export default function EventDetailPage({ route, navigation }) {
   }, []);
 
   useEffect(() => {
-    console.log(route.params.isManagable);
+    //console.log(route.params.isManagable);
     const uns = onSnapshot(
       query(
         collection(firestore, "posts"),
@@ -164,7 +164,7 @@ export default function EventDetailPage({ route, navigation }) {
             }
             data={posts}
             renderItem={({ item }) => {
-              // console.log(item);
+         
               return (
                 <PostItem
                   post={item}
