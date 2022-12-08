@@ -173,7 +173,7 @@ export default function CreateEventPage({ route, navigation }) {
 
 const styles = StyleSheet.create({
   input: {
-    backgroundColor: Colors.inputBackground,
+    backgroundColor: Colors.backgroundYellow,
     height: 30,
     borderRadius: 5,
     marginHorizontal: 20,

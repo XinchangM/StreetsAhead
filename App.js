@@ -224,7 +224,7 @@ export default function App() {
       screenOptions={{
         headerTintColor: Colors.pink 
 /*         headerStyle: {
-          backgroundColor: Colors.inputBackground
+          backgroundColor: Colors.backgroundYellow
         }, */
        }}
         >   

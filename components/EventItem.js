@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     marginTop: moderateScale(5),
     marginLeft:moderateScale(20),
     fontSize:moderateScale(24),
-    color:Colors.pink
+    color:Colors.pink 
   },
   eventTime:{
     marginTop: moderateScale(10),

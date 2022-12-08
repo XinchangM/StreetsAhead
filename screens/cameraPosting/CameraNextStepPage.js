@@ -119,7 +119,7 @@ export default function CameraStepPage({route,navigation}) {
 
 const styles = StyleSheet.create({
   input: {
-    backgroundColor: Colors.inputBackground,
+    backgroundColor: Colors.backgroundYellow,
     height: 30,
     borderRadius: 5,
     marginVertical:10,

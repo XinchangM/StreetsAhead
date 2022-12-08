@@ -8,6 +8,7 @@ import TipIcon from "../components/TipIcon";
 import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { deviceHeight, deviceWidth, moderateScale } from "../styles/responsive";
+import Colors from './Colors';
 
 export default function EventDetailPage({ route, navigation }) {
 
@@ -148,8 +149,20 @@ export default function EventDetailPage({ route, navigation }) {
 
                 {route.params.isManagable &&
                   <View style={styles.buttonsContainer}>
-                    <Pressable onPress={onEditEvent}><FontAwesome name="edit" size={24} color="black" /></Pressable>
-                    <Pressable onPress={onDeleteEvent}><AntDesign name="delete" size={24} color="black" /></Pressable>
+                   
+                    <Pressable 
+                      style={({ pressed }) => pressed?styles.pressed:styles.management}
+                    onPress={onEditEvent}><FontAwesome name="edit" size={24} color={Colors.pink} />
+                    <Text style={styles.manageText}>Edit Event</Text>
+                    </Pressable>
+                
+                  
+                    <Pressable 
+                     style={({ pressed }) => pressed?styles.pressed:styles.management}
+                    onPress={onDeleteEvent}><AntDesign name="delete" size={24} color={Colors.pink} />
+                    <Text style={styles.manageText}>Delete Event</Text>
+                    </Pressable>
+
                   </View>
                 }
               </View>
@@ -178,6 +191,7 @@ const styles = StyleSheet.create({
     padding: moderateScale(10),
     fontWeight: "bold",
     marginBottom: moderateScale(20),
+    color:Colors.pink
   },
   text: {
     textAlign: 'center',
@@ -226,4 +240,23 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     alignItems: 'center',
   },
+  management:{
+    alignItems:"center",
+    backgroundColor:Colors.backgroundYellow,
+    width:100,
+    paddingVertical:10,
+    borderRadius:10
+
+  },
+  manageText:{
+    color:Colors.pink
+  },
+  pressed:{
+    opacity: 0.5,
+    alignItems:"center",
+    backgroundColor:Colors.backgroundYellow,
+    width:100,
+    paddingVertical:10,
+    borderRadius:10
+  }
 });
