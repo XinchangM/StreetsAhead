@@ -3,6 +3,7 @@ import colors from '../styles/colors';
 import { moderateScale } from '../styles/responsive';
 import { View, Text, StyleSheet, Pressable, TouchableOpacity } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
+import Colors from './Colors';
 
 const Circulerbtn = ({
     text,
@@ -12,8 +13,7 @@ const Circulerbtn = ({
         <TouchableOpacity style={{}}>
             <Pressable
                 onPress={onPress}
-                style={({ pressed }) => pressed && styles.pressed}
-            >
+                style={({ pressed }) => pressed && styles.pressed} >
 
                 <View style={styles.bottomView}>
                     <Icon name="locate" size={moderateScale(30)} color="black" />
@@ -25,6 +25,9 @@ const Circulerbtn = ({
 
 // define your styles
 const styles = StyleSheet.create({
+    pressed:{
+        opacity:0.2
+    },
     bottomView: {
         backgroundColor: colors.white,
         borderRadius: moderateScale(24),

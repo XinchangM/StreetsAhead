@@ -179,7 +179,8 @@ console.log(err)
 
       <View style={styles.bottomView}>
 
-        <TouchableOpacity onPress={onCenter} style={styles.navigationView} />
+        <TouchableOpacity 
+        onPress={onCenter} style={styles.navigationView} />
         <Circulerbtn onPress={locateUserHandler} />
 
       </View>
