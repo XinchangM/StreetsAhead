@@ -5,18 +5,13 @@ import EventList from '../../components/EventList';
 
 export default function EventHistoryPage({route,navigation}) {
   function eventPressed() {
-    navigation.navigate("ManageEventPage"
-    //{eventId: }
-    );
+    navigation.navigate("ManageEventPage");
   }
   return (
     <View>
-      
       <View style={styles.list}>
       <EventList isAll={false}/>
       </View>
-
-
     </View>
   )
 }
