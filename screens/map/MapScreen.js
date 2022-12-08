@@ -159,6 +159,8 @@ console.log(err)
      
       {currentLocation && 
       <Marker 
+      draggable
+      onDragEnd={e=>setCurrentLocation(e.nativeEvent.coordinate)}
         coordinate={currentLocation}
         pinColor={'#FFC400'}
         key="mylocation"

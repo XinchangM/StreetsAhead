@@ -20,7 +20,6 @@ import Signup from "./screens/auth/Signup";
 
 import EventDetailPage from "./components/EventDetailPage";
 
-// import Camera from "./screens/cameraPosting/Camera";
 
 import CameraScreen from "./screens/cameraPosting/CameraScreen";
 import CameraNextStepPage from "./screens/cameraPosting/CameraNextStepPage";
