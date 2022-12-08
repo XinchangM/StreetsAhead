@@ -9,7 +9,7 @@ import * as Location from "expo-location";
 export default function FindEventPage({route,navigation}) {
   const [events, setEvents] = useState([]);
   const [query, setQuery]=useState('');
-  //const [currentLocation, setCurrentLocation] = useState();
+  const [currentLocation, setCurrentLocation] = useState();
   const [permissionResponse, requestPermission] =Location.useForegroundPermissions();
 
   
@@ -20,7 +20,8 @@ export default function FindEventPage({route,navigation}) {
     const requestPermissionResponse = await requestPermission();
     return requestPermissionResponse.granted;
   };
-/*   const locateUserHandler = async () => {
+
+ /*  const locateUserHandler = async () => {
     try {
       const hasPermission = await verifyPermission();
       if (!hasPermission) {
@@ -34,7 +35,7 @@ export default function FindEventPage({route,navigation}) {
     } catch (err) {
       console.log("locate user ", err);
     }
-  }; */
+  };  */
 
 
   useEffect(() => {
@@ -89,7 +90,7 @@ export default function FindEventPage({route,navigation}) {
 
   return (
     <View>
-      <View style={styles.container}>
+      <View style={styles.searchBar}>
       <TextInput
       style={styles.searchInput}
       placeholder=' Search here'
@@ -112,6 +113,8 @@ export default function FindEventPage({route,navigation}) {
           //for android
           overScrollMode={"always"}
         /></View>
+
+
 {/*         <View>
       {isShowNearby&&
       <View style={styles.c2}>
@@ -135,7 +138,8 @@ const styles = StyleSheet.create({
   list: {
     height:  "100%",
   },
-  container:{
+  searchBar:{
+    marginBottom:10,
     width: "100%",
     height: 50,
     backgroundColor: "white",
