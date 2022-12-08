@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView, Linking, Button, View} from 'react-native';
+import { StyleSheet, SafeAreaView, Linking, Button, View, Alert} from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer,Link } from "@react-navigation/native";
@@ -95,10 +95,15 @@ function MajorScreens() {
               <FontAwesome name="user-circle-o" size={size} color={color} />
             ),
             headerRight: () => {
-              return  <AntDesign name="logout" style={{ marginRight: 30 }} size={24} color={Colors.pink} onPress={() => signOut(auth)} />;
+  
+              return  <AntDesign name="logout" style={{ marginRight: 30 }} size={24} color={Colors.pink} onPress={() =>{
+                Alert.alert("Are you sure")
+                
+                signOut(auth)}}/> 
+         
              
             },
-       /*    }; */
+    
         }}
       />
     </Tab.Navigator>
