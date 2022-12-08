@@ -40,7 +40,7 @@ export default function CameraStepPage({route,navigation}) {
       Alert.alert("You must link your post to an event");
       return;
     }
-    if(comment==""){
+    if(comment.replace(/\s/g, "").length==""){
       Alert.alert("Please give a comment");
       return;
     }
@@ -119,7 +119,7 @@ export default function CameraStepPage({route,navigation}) {
 
 const styles = StyleSheet.create({
   input: {
-    backgroundColor: Colors.inputBackground,
+    backgroundColor: Colors.backgroundYellow,
     height: 30,
     borderRadius: 5,
     marginVertical:10,

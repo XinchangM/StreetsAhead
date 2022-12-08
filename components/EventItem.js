@@ -1,4 +1,4 @@
-import { View, Text, Pressable, StyleSheet, ImageBackground } from 'react-native'
+import { View, Text, Pressable, StyleSheet, ImageBackground,Alert } from 'react-native'
 import React from 'react'
 import { useNavigation } from "@react-navigation/native";
 import Colors from './Colors';
@@ -30,7 +30,7 @@ export default function EventItem({ event, option }) {
     });
   }
   function linkPressed() {
-    alert("Successfully linked this event to your post!")
+    Alert.alert("Successfully linked this event to your post!")
     navigation.navigate("CameraNextStepPage", {
       eventId: event.key
     });
@@ -43,7 +43,7 @@ export default function EventItem({ event, option }) {
     });
   }
   return (
-    <View>
+    <View style={styles.item}>
       {option == 1 &&
         <Pressable
           onPress={linkPressed}
@@ -53,7 +53,7 @@ export default function EventItem({ event, option }) {
         >
           <ImageBackground source={require("../assets/images/list.png")} style={styles.listBackground}>
             <View style={styles.eventItem}>
-              <Text style={styles.eventTitle}>{event.eventName}</Text>'
+              <Text style={styles.eventTitle}>{event.eventName}</Text>
               <Text style={styles.eventPerformer}>Performers: {event.performer}</Text>
               <Text style={styles.eventTime}>{timeString}</Text>
 
@@ -117,7 +117,8 @@ const styles = StyleSheet.create({
   eventTitle:{
     marginTop: moderateScale(5),
     marginLeft:moderateScale(20),
-    fontSize:moderateScale(24)
+    fontSize:moderateScale(24),
+    color:Colors.pink 
   },
   eventTime:{
     marginTop: moderateScale(10),
@@ -128,5 +129,8 @@ const styles = StyleSheet.create({
     marginTop:moderateScale(10),
     marginLeft:moderateScale(20),
     fontSize:moderateScale(15)
+  },
+  item:{
+    alignSelf:"center"
   }
 }); 

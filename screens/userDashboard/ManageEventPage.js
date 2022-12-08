@@ -66,11 +66,11 @@ export default function ManageEventPage({route,navigation}) {
     
   }
   const submitPressed= async () => {
-    if(performer==""){
+    if(performer.replace(/\s/g, "").length){
       Alert.alert("You must specify the names of performers!");
       return;
     }
-    if(eventName==""){
+    if(eventName.replace(/\s/g, "").length==""){
       Alert.alert("You must specify the name of the event!");
       return;
     }
@@ -175,7 +175,7 @@ export default function ManageEventPage({route,navigation}) {
 
 const styles = StyleSheet.create({
   input: {
-    backgroundColor: Colors.inputBackground,
+    backgroundColor: Colors.backgroundYellow,
     height: 30,
     borderRadius: 5,
     marginHorizontal:20,
