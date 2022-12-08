@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
   },
   management:{
     alignItems:"center",
-    backgroundColor:Colors.inputBackground,
+    backgroundColor:Colors.backgroundYellow,
     width:100,
     paddingVertical:10,
     borderRadius:10
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
   pressed:{
     opacity: 0.5,
     alignItems:"center",
-    backgroundColor:Colors.inputBackground,
+    backgroundColor:Colors.backgroundYellow,
     width:100,
     paddingVertical:10,
     borderRadius:10

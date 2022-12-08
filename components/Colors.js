@@ -1,7 +1,7 @@
 const Colors = {
   pink:"#F2288D",
   gold:"#FFC400",
-  inputBackground:"#f5eac1",
+  backgroundYellow:"#f5eac1",
     purple: "#483d8b",
     mediumPurple: "#7668ba",
     lightPurple: "#8e8bc4",
