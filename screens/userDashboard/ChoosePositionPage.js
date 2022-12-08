@@ -59,7 +59,7 @@ export default function ChoosePositionPage({route,navigation}) {
     if(route.params.isCreateNew==true){
     navigation.navigate("CreateEventPage",{coordinate:chosenLocation});
   }else{
-    console.log("hahaha",route.params.isCreateNew);
+    //console.log("hahaha",route.params.isCreateNew);
     navigation.navigate("ManageEventPage",{coordinate:chosenLocation});}
   }
   return (

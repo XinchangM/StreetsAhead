@@ -37,11 +37,11 @@ export default function CameraStepPage({route,navigation}) {
 
   const onUpload = async () => {
     if(linkedEventId==""){
-      alert("You must link your post to an event");
+      Alert.alert("You must link your post to an event");
       return;
     }
     if(comment==""){
-      alert("Please give a comment");
+      Alert.alert("Please give a comment");
       return;
     }
       try{  
@@ -63,7 +63,7 @@ export default function CameraStepPage({route,navigation}) {
         navigation.navigate("Camera");
       }
    catch (err) {
-    alert(err)
+    console.log(err);
   }
   };
 
@@ -71,9 +71,9 @@ export default function CameraStepPage({route,navigation}) {
 
     try {
       await MediaLibrary.saveToLibraryAsync(mediaUri);
-      alert("success")
+      Alert.alert("Success saved to local")
     } catch (err) {
-      alert(err);
+      console.log(err)
     }
   };
 
@@ -90,6 +90,7 @@ export default function CameraStepPage({route,navigation}) {
 
 <TextInput
             style={styles.input}
+            textAlign={'center'}
             onChangeText={(newComment) => {
               setComment(newComment);
             }}

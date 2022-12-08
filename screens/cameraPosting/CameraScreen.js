@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Text, View, TouchableOpacity, ImageBackground, StyleSheet, Button } from "react-native";
+import { Text, View, TouchableOpacity, ImageBackground, StyleSheet, Button,Alert } from "react-native";
 import { Camera } from "expo-camera";
 import { Video } from 'expo-av';
 
@@ -43,7 +43,7 @@ export default function CameraScreen({ navigation }) {
     return <View />;
   }
   if (hasPermission === false) {
-    alert("No camera permission.")
+    Alert.alert("No camera permission!");
     return <Text>No Permission</Text>;
   }
 
@@ -87,7 +87,7 @@ export default function CameraScreen({ navigation }) {
       uri = record;
       mediaType = "video"
     }
-    console.log(record);
+    //console.log(record);
     navigation.navigate("CameraNextStepPage", { mediaUri: uri, mediaType: mediaType });
     setPreview(null);
     setRecord(null);

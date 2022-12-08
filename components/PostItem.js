@@ -60,7 +60,7 @@ export default function PostItem({ post, option }) {
           onPress: async() => {
             try {
               deletePostFromDB(post.key);
-              alert("Successfully deleted!")
+              Alert.alert("Success","Successfully deleted the post!")
             } catch (err) {
               console.log(err)
             }
