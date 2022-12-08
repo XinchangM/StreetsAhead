@@ -9,6 +9,7 @@ import Close from "react-native-vector-icons/AntDesign";
 import Next from "react-native-vector-icons/FontAwesome";
 import colors from "../../styles/colors";
 import { moderateScale, deviceHeight, deviceWidth } from "../../styles/responsive";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 
 export default function CameraScreen({ navigation }) {
@@ -158,7 +159,8 @@ export default function CameraScreen({ navigation }) {
       {record &&
         <View style={styles.previewContainer}>
           <View style={styles.closeContainer}>
-            <TouchableOpacity onPress={() => setRecord(null)} style={styles.closeBtn}>
+            <TouchableOpacity 
+            onPress={() => setRecord(null)} style={styles.closeBtn}>
               <Close name="close" size={moderateScale(30)} color="white" />
             </TouchableOpacity>
           </View>
@@ -230,12 +232,15 @@ const styles = StyleSheet.create({
     width: moderateScale(55),
     right: deviceWidth / 2.5,
     top: deviceHeight / 1.2,
-    zIndex: 1,
+    zIndex: 1
   },
   closeBtn: {
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
+    borderRadius:20,
+    padding:5,
+    backgroundColor:  colors.grayOpacity50 
   },
   nextContainer: {
     alignSelf: "center",
@@ -249,6 +254,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: colors.grayOpacity50 ,
+    padding:5,
+    borderRadius:20
   },
   imageBackground: {
     flex: 1,
