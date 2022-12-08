@@ -78,8 +78,8 @@ console.log(err)
     mapRef.current.animateToRegion({
       latitude: currentLocation.latitude,
       longitude: currentLocation.longitude,
-      latitudeDelta: 0.020,
-      longitudeDelta: 0.020,
+      latitudeDelta: 0.008,
+      longitudeDelta: 0.008,
     });
   }, [currentLocation]);
 
