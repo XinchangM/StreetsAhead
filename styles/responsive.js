@@ -1,6 +1,8 @@
 import { Dimensions, StatusBar } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
+
+
 const deviceHeight=Platform.OS==='android'?height-StatusBar.currentHeight:height;
 const deviceWidth=width;
 

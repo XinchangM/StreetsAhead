@@ -8,11 +8,16 @@ import Flip from "react-native-vector-icons/MaterialIcons";
 import Close from "react-native-vector-icons/AntDesign";
 import Next from "react-native-vector-icons/FontAwesome";
 import colors from "../../styles/colors";
-import { moderateScale, deviceHeight, deviceWidth } from "../../styles/responsive";
+import { moderateScale, deviceHeight, deviceWidth} from "../../styles/responsive";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
 
+
+
+
+
 export default function CameraScreen({ navigation }) {
+
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
   const [hasPermission, setHasPermission] = useState(null);
@@ -169,11 +174,14 @@ export default function CameraScreen({ navigation }) {
               <Next name="send" size={moderateScale(30)} color="white" />
             </TouchableOpacity>
           </View>
-          <Video ref={video} style={styles.video} source={{
+          <Video 
+          
+          useNativeControls={true}
+          ref={video} style={styles.video} source={{
             uri: record,
           }}
-            useNativeControls
-            resizeMode="contain"
+           
+            resizeMode="cover"
             isLooping
             onPlaybackStatusUpdate={status => setStatus(() => status)}
           />
@@ -200,9 +208,10 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   video: {
+    top:moderateScale(19),
     alignSelf: 'center',
     width: deviceWidth,
-    height: deviceHeight,
+    height: deviceHeight-moderateScale(77),
   },
   flipContainer: {
     alignSelf: "center",
