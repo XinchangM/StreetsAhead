@@ -1,4 +1,4 @@
-import { View, Text, Pressable, StyleSheet, ImageBackground } from 'react-native'
+import { View, Text, Pressable, StyleSheet, ImageBackground,Alert } from 'react-native'
 import React from 'react'
 import { useNavigation } from "@react-navigation/native";
 import Colors from './Colors';
@@ -30,7 +30,7 @@ export default function EventItem({ event, option }) {
     });
   }
   function linkPressed() {
-    alert("Successfully linked this event to your post!")
+    Alert.alert("Successfully linked this event to your post!")
     navigation.navigate("CameraNextStepPage", {
       eventId: event.key
     });
@@ -53,7 +53,7 @@ export default function EventItem({ event, option }) {
         >
           <ImageBackground source={require("../assets/images/list.png")} style={styles.listBackground}>
             <View style={styles.eventItem}>
-              <Text style={styles.eventTitle}>{event.eventName}</Text>'
+              <Text style={styles.eventTitle}>{event.eventName}</Text>
               <Text style={styles.eventPerformer}>Performers: {event.performer}</Text>
               <Text style={styles.eventTime}>{timeString}</Text>
 

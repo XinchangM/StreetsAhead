@@ -75,7 +75,7 @@ export default function PostItem({ post, option }) {
         <View style={styles.item}>
             <View style={styles.center}>
               <View style={styles.behind}>
-                    <View >
+                    <View style={styles.box}>
                       {post.mediaType == "photo" &&
                         <Image source={{ uri: post.mediaUri }}
                           style={{ width: 320, height: 400 }}
@@ -91,7 +91,8 @@ export default function PostItem({ post, option }) {
                             resizeMode="cover"
                             isLooping
                             onPlaybackStatusUpdate={status => setStatus(() => status)}
-                          /></View>
+                          />
+                          </View>
                       }
                     </View>
               </View>
@@ -164,9 +165,11 @@ delete:{
     height: 400,
 
   },
-
+box:{
+alignItems:"center"
+},
   item: {
-    
+    alignSelf: 'center',
     margin: 15,
     flex: 1,
     alignItems: 'center',
