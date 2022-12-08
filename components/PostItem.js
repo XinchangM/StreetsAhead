@@ -105,7 +105,12 @@ export default function PostItem({ post, option }) {
                 </View>
                 <View style={styles.delete}> 
                   {option == 2 && 
-                  <Pressable onPress={onDelete}>
+                  <Pressable 
+                  android_ripple={{color: Colors.gold}}
+                  style={({ pressed }) => {
+                    return pressed && styles.pressed;
+                  }}
+                  onPress={onDelete}>
                     <AntDesign name="delete" size={24} color="white" />
                   </Pressable>}
                   </View>
@@ -115,7 +120,6 @@ export default function PostItem({ post, option }) {
             </View>
    
           </View>  
-
 
   )
 }
@@ -195,6 +199,10 @@ alignItems:"center"
   },
   text:{
     color:"white"
+  },
+  pressed:{
+    opacity:0.75,
+    backgroundColor:Colors.gold
   }
 
 });
