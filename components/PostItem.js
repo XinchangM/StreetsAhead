@@ -5,6 +5,7 @@ import { deletePostFromDB } from "../firebase/firestore";
 import { firestore, auth } from "../firebase/firebase-setup";
 import { AntDesign } from '@expo/vector-icons'; 
 import { doc, collection, onSnapshot, query, where, documentId } from "firebase/firestore";
+import Colors from './Colors';
 //postItem option=1:on event detail page, can not delete; 2:on postHistory, can delete
 export default function PostItem({ post, option }) {
   const timestamp = post.postTime.seconds * 1000 + post.postTime.nanoseconds / 1000000;
@@ -120,6 +121,7 @@ export default function PostItem({ post, option }) {
 
 const styles = StyleSheet.create({
 bottomSection:{
+  backgroundColor:Colors.grayOpacity50,
 flexDirection:"row",
 justifyContent:"space-between",
 padding:10
