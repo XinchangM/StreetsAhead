@@ -132,6 +132,7 @@ export default function EventDetailPage({ route, navigation }) {
                 {isEventExist &&
                   <ImageBackground source={require("../assets/images/ticket.png")} style={{ height:deviceHeight/ 1.5}}>
                     <View style={styles.infos}>
+                      <TipIcon/>
                       <Text style={styles.title}>{event.eventName}</Text>
                       <Text style={styles.text}>Performers: {event.performer}</Text>
                       <View style={styles.timeBar}>
@@ -169,7 +170,6 @@ export default function EventDetailPage({ route, navigation }) {
             }
             data={posts}
             renderItem={({ item }) => {
-         
               return (
                 <PostItem
                   post={item}
