@@ -199,8 +199,8 @@ const styles = StyleSheet.create({
   },
   video: {
     alignSelf: 'center',
-    width: 320,
-    height: 200,
+    width: deviceWidth,
+    height: deviceHeight,
   },
   flipContainer: {
     alignSelf: "center",
