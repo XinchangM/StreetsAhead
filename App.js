@@ -56,8 +56,10 @@ function MajorScreens() {
     <Tab.Navigator
         screenOptions={({navigation})=>({
         headerTintColor: Colors.pink,
-        tabBarStyle: { backgroundColor: Colors.white,
-       },
+        tabBarStyle: {
+          backgroundColor: Colors.black,
+          borderTopColor:Colors.black
+        },
         tabBarActiveTintColor: Colors.yellow,
       })}
     >
