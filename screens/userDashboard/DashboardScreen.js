@@ -6,9 +6,12 @@ import {  collection, onSnapshot, query, where} from "firebase/firestore";
 import Colors from '../../components/Colors';
 import { moderateScale, deviceHeight,deviceWidth } from '../../styles/responsive';
 import { Video } from 'expo-av';
+import Avatars from './Avatars';
+
 export default function DashboardScreen({ route, navigation }) {
   const [user, setUser] = useState();
-
+  const randomNum=Math.floor(Math.random()*4);
+  const avatar=Avatars[randomNum].src;
   useEffect(() => {
     const uns = onSnapshot(
       query(
@@ -21,8 +24,7 @@ export default function DashboardScreen({ route, navigation }) {
           return;
         }
 
-        setUser(querySnapshot.docs[0].data())
-
+        setUser(querySnapshot.docs[0].data());
       },
       (err) => {
         console.log(err);
@@ -46,9 +48,11 @@ export default function DashboardScreen({ route, navigation }) {
   return (
     <View style={styles.wholeContainer}>
       <View style={styles.topContainer}>
-        {user && <View style={styles.userContainer}>
+        {user&& <View style={styles.userContainer}>
           <Text style={styles.greetings}>Welcome, {user.userName}</Text>
-          <Video source={require("../../assets/videos/EmojiMovie692243797.mov")} style={{ height: moderateScale(200) }} shouldPlay isLooping isMuted />
+          <Video 
+          source={avatar}
+          style={{ height: moderateScale(190) }} shouldPlay isLooping isMuted />
         </View>
         }
 
@@ -81,6 +85,7 @@ const styles = StyleSheet.create({
   },
   userContainer:{
     height:deviceHeight,
+   
   },
   wholeContainer: {
     flex: 1,
@@ -88,10 +93,11 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     flex: 1,
-    margin: 20,
+    margin: 40,
     height:deviceHeight,
   },
   bottomContainer: {
-    flex: 2
+    flex: 2,
+    marginVertical:30
   }
 });

@@ -251,6 +251,7 @@ const styles = StyleSheet.create({
   postList: {
     marginVertical: 20,
     alignItems: 'center',
+    height:deviceHeight
   },
   management:{
     alignItems:"center",
