@@ -11,12 +11,12 @@ import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { weather_api_key } from '@env';
-import { deviceHeight, deviceWidth } from "../../styles/responsive";
+import { deviceHeight, deviceWidth, moderateScale } from "../../styles/responsive";
 import Colors from "../../components/Colors";
 
 
 export default function MapScreen({ route, navigation }) {
-  const [currentLocation, setCurrentLocation] = useState({ latitude: 49.288020, longitude: -123.143331 });
+  const [currentLocation, setCurrentLocation] = useState({ latitude: 49.288, longitude: -123.1433 });
   const [permissionResponse, requestPermission] = Location.useForegroundPermissions();
 
   const [region, setRegion] = useState();
@@ -162,9 +162,6 @@ export default function MapScreen({ route, navigation }) {
       "stylers": [
         {
           "color": "#757575"
-        },
-        {
-          "visibility": "off"
         }
       ]
     },
@@ -190,15 +187,25 @@ export default function MapScreen({ route, navigation }) {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#bdbdbd"
+          "color": "#ffffff"
         }
       ]
     },
     {
-      "featureType": "poi",
+      "featureType": "administrative.neighborhood",
+      "elementType": "labels.text.fill",
       "stylers": [
         {
-          "visibility": "off"
+          "color": "#c4c4c4"
+        }
+      ]
+    },
+    {
+      "featureType": "landscape",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#fafafa"
         }
       ]
     },
@@ -225,16 +232,7 @@ export default function MapScreen({ route, navigation }) {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#616161"
-        }
-      ]
-    },
-    {
-      "featureType": "poi.park",
-      "elementType": "labels.text.stroke",
-      "stylers": [
-        {
-          "color": "#1b1b1b"
+          "color": "#d1d1d1"
         }
       ]
     },
@@ -243,16 +241,7 @@ export default function MapScreen({ route, navigation }) {
       "elementType": "geometry.fill",
       "stylers": [
         {
-          "color": "#2c2c2c"
-        }
-      ]
-    },
-    {
-      "featureType": "road",
-      "elementType": "labels.icon",
-      "stylers": [
-        {
-          "visibility": "off"
+          "color": "#8a8a8a"
         }
       ]
     },
@@ -275,11 +264,47 @@ export default function MapScreen({ route, navigation }) {
       ]
     },
     {
+      "featureType": "road.arterial",
+      "elementType": "geometry.fill",
+      "stylers": [
+        {
+          "color": "#808080"
+        }
+      ]
+    },
+    {
+      "featureType": "road.arterial",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#c4c4c4"
+        }
+      ]
+    },
+    {
       "featureType": "road.highway",
       "elementType": "geometry",
       "stylers": [
         {
           "color": "#3c3c3c"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "geometry.fill",
+      "stylers": [
+        {
+          "color": "#ababab"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#ffffff"
         }
       ]
     },
@@ -294,18 +319,19 @@ export default function MapScreen({ route, navigation }) {
     },
     {
       "featureType": "road.local",
-      "elementType": "labels.text.fill",
+      "elementType": "geometry.fill",
       "stylers": [
         {
-          "color": "#616161"
+          "color": "#737373"
         }
       ]
     },
     {
-      "featureType": "transit",
+      "featureType": "road.local",
+      "elementType": "labels.text.fill",
       "stylers": [
         {
-          "visibility": "off"
+          "color": "#ffffff"
         }
       ]
     },
@@ -337,7 +363,6 @@ export default function MapScreen({ route, navigation }) {
       ]
     }
   ]
-
   return (
     <View style={styles.mapContainer}>
 
@@ -387,10 +412,10 @@ export default function MapScreen({ route, navigation }) {
         <View style={styles.weatherContainer}>
 
           {mainWeather == "Clear" && <View style={styles.icon}><Feather name="sun" size={24} color={Colors.pink} /></View>}
-          {mainWeather == "Rain" && <View style={styles.icon}><Ionicons name="rainy" size={24} color={Colors.black} /></View>}
-          {mainWeather == "Snow" && <View style={styles.icon}><FontAwesome name="snowflake-o" size={24} color={Colors.black} /></View>}
+          {mainWeather == "Rain" && <View style={styles.icon}><Ionicons name="rainy" size={24} color={Colors.pink} /></View>}
+          {mainWeather == "Snow" && <View style={styles.icon}><FontAwesome name="snowflake-o" size={24} color={Colors.pink} /></View>}
           {mainWeather == "Clouds" && <View style={styles.icon}><Entypo name="icloud" size={24} color={Colors.pink} /></View>}
-          <View style={styles.weatherText}><Text>{weather} °C</Text></View>
+          <View style={styles.weatherTextContainer}><Text style={styles.weatherText}>{weather} °C</Text></View>
         </View>}
 
 
@@ -414,37 +439,37 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  weatherText: {
-    paddingVertical: 5,
+  weatherTextContainer: {
+    padding: moderateScale(5),
     justifyContent: "center",
     alignItems: "center",
+    color:Colors.pink,
+  },
+  weatherText: {
+    color:Colors.pink,
+    fontSize:moderateScale(18),
   },
   weatherContainer: {
-    backgroundColor: "white",
     padding: 5,
     borderRadius: 8,
     position: 'absolute',
-    top: 50,
-    left: (deviceWidth / 2) - 20,
+    top: moderateScale(35),
+    width:deviceWidth/4,
     justifyContent: "center",
     alignItems: "center",
-    flexGrow: "row",
-    justifyContent: "space-around",
-    justifyContent: "space-around",
-
+    alignSelf:"center",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   mapContainer: {
     borderBottomLeftRadius: 50,
     borderBottomRightRadius: 50,
   },
   map: {
-    // flex: 1,
-
     width: "100%",
     height: "100%",
   },
   list: {
-    // flex: 1,
     height: "50%",
   },
   bottomView: {
