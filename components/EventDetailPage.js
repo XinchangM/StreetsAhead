@@ -249,6 +249,7 @@ const styles = StyleSheet.create({
 
   },
   postList: {
+    height:deviceHeight,
     marginVertical: 20,
     alignItems: 'center',
   },

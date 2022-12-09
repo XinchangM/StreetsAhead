@@ -1,49 +1,49 @@
 import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
-import MapView, { Marker, Callout } from "react-native-maps";
+import MapView, { Marker, Callout,PROVIDER_GOOGLE  } from "react-native-maps";
 import React, { useEffect, useState, useRef } from "react";
 import * as Location from "expo-location";
 import { firestore } from "../../firebase/firebase-setup";
 import { collection, onSnapshot } from "firebase/firestore";
 import Circulerbtn from "../../components/CirculerBtn";
 import { getWeather } from "../../util/Weather";
-import { Feather } from '@expo/vector-icons'; 
-import { Entypo } from '@expo/vector-icons'; 
-import { Ionicons } from '@expo/vector-icons'; 
-import { FontAwesome } from '@expo/vector-icons'; 
+import { Feather } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import { weather_api_key } from '@env';
 import { deviceHeight, deviceWidth } from "../../styles/responsive";
-import Colors  from "../../components/Colors";
+import Colors from "../../components/Colors";
 
 
 export default function MapScreen({ route, navigation }) {
-  const [currentLocation, setCurrentLocation] = useState({ latitude: 49.288020, longitude: -123.143331 } );
+  const [currentLocation, setCurrentLocation] = useState({ latitude: 49.288020, longitude: -123.143331 });
   const [permissionResponse, requestPermission] = Location.useForegroundPermissions();
 
   const [region, setRegion] = useState();
   const [weather, setWeather] = useState(null);
-  const [mainWeather, setMainWeather]=useState();
+  const [mainWeather, setMainWeather] = useState();
 
 
   async function getWeather(lat, lng) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${weather_api_key}`;
 
-    try{
+    try {
       const response = await fetch(url);
       const data = await response.json();
       const temperature = data.main.temp;
-      const celsius = parseFloat(temperature)-273.15;
+      const celsius = parseFloat(temperature) - 273.15;
       const temp = celsius.toFixed(1);
-      const mainWeather=data.weather[0].main
+      const mainWeather = data.weather[0].main
       setWeather(temp);
       setMainWeather(mainWeather);
     }
-    catch(err){
-console.log(err)
+    catch (err) {
+      console.log(err)
     }
 
   }
 
-  
+
   const mapRef = useRef(null);
   const onCenter = () => {
     //console.log("1111", mapRef)
@@ -123,14 +123,229 @@ console.log(err)
       eventId: key
     });
   }
-
+  var mapStyle = [
+    {
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#212121"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.icon",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#212121"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#757575"
+        },
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.country",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9e9e9e"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.land_parcel",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.locality",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#bdbdbd"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#181818"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#616161"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#1b1b1b"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "geometry.fill",
+      "stylers": [
+        {
+          "color": "#2c2c2c"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "labels.icon",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#8a8a8a"
+        }
+      ]
+    },
+    {
+      "featureType": "road.arterial",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#373737"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#3c3c3c"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway.controlled_access",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#4e4e4e"
+        }
+      ]
+    },
+    {
+      "featureType": "road.local",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#616161"
+        }
+      ]
+    },
+    {
+      "featureType": "transit",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "transit",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#3d3d3d"
+        }
+      ]
+    }
+  ]
 
   return (
     <View style={styles.mapContainer}>
-    
+
       <MapView
         userInterfaceStyle={'dark'}
         style={styles.map}
+        provider={PROVIDER_GOOGLE}
+        customMapStyle={mapStyle}
         initialRegion={{
           latitude: currentLocation
             ? currentLocation.latitude
@@ -142,48 +357,48 @@ console.log(err)
           longitudeDelta: 0.020,
         }}
         ref={mapRef}>
-           
-       {events.map((event,i) => {
-        const endTimestamp=event.endTime.seconds*1000+event.endTime.nanoseconds/1000000;
-        const startTimestamp=event.startTime.seconds*1000+event.startTime.nanoseconds/1000000;
-        if(endTimestamp>=Date.now()&&startTimestamp-3600000*2<=Date.now()){
-          //only show ongoing ones & starting in 2 hours on the map
-          return (
-            <Marker key={event.key}
-                  identifier={event.key}
-                  coordinate={event.coordinate}
-                  image={require('../../assets/images/loc.png')}
-                  onPress={e => onPressMarker(e.nativeEvent.id)}
-                  />)
-        }              
-                })}
-     
-      {currentLocation && 
-      <Marker 
-      draggable
-      onDragEnd={e=>setCurrentLocation(e.nativeEvent.coordinate)}
-        coordinate={currentLocation}
-        pinColor={'#FFC400'}
-        key="mylocation"
-      />}
-      </MapView> 
 
-          {weather && 
+        {events.map((event, i) => {
+          const endTimestamp = event.endTime.seconds * 1000 + event.endTime.nanoseconds / 1000000;
+          const startTimestamp = event.startTime.seconds * 1000 + event.startTime.nanoseconds / 1000000;
+          if (endTimestamp >= Date.now() && startTimestamp - 3600000 * 2 <= Date.now()) {
+            //only show ongoing ones & starting in 2 hours on the map
+            return (
+              <Marker key={event.key}
+                identifier={event.key}
+                coordinate={event.coordinate}
+                image={require('../../assets/images/loc.png')}
+                onPress={e => onPressMarker(e.nativeEvent.id)}
+              />)
+          }
+        })}
+
+        {currentLocation &&
+          <Marker
+            draggable
+            onDragEnd={e => setCurrentLocation(e.nativeEvent.coordinate)}
+            coordinate={currentLocation}
+            image={require('../../assets/images/me.png')}
+            key="mylocation"
+          />}
+      </MapView>
+
+      {weather &&
         <View style={styles.weatherContainer}>
 
-        { mainWeather=="Clear"&&<View style={styles.icon}><Feather name="sun" size={24} color={Colors.black}/></View>}
-        { mainWeather=="Rain"&&<View style={styles.icon}><Ionicons name="rainy" size={24} color={Colors.black} /></View>}
-        { mainWeather=="Snow"&&<View style={styles.icon}><FontAwesome name="snowflake-o" size={24} color={Colors.black} /></View>}
-        { mainWeather=="Clouds"&&<View style={styles.icon}><Entypo name="icloud" size={24} color={Colors.black} /></View>}
-        <View style={styles.weatherText}><Text>{weather} °C</Text></View>
+          {mainWeather == "Clear" && <View style={styles.icon}><Feather name="sun" size={24} color={Colors.pink} /></View>}
+          {mainWeather == "Rain" && <View style={styles.icon}><Ionicons name="rainy" size={24} color={Colors.black} /></View>}
+          {mainWeather == "Snow" && <View style={styles.icon}><FontAwesome name="snowflake-o" size={24} color={Colors.black} /></View>}
+          {mainWeather == "Clouds" && <View style={styles.icon}><Entypo name="icloud" size={24} color={Colors.pink} /></View>}
+          <View style={styles.weatherText}><Text>{weather} °C</Text></View>
         </View>}
 
-        
+
 
       <View style={styles.bottomView}>
 
-        <TouchableOpacity 
-        onPress={onCenter} style={styles.navigationView} />
+        <TouchableOpacity
+          onPress={onCenter} style={styles.navigationView} />
         <Circulerbtn onPress={locateUserHandler} />
 
       </View>
@@ -194,27 +409,29 @@ console.log(err)
 }
 
 const styles = StyleSheet.create({
-  icon:{
-    paddingVertical:5,
-    alignItems:"center",
-    justifyContent:"center"
+  icon: {
+    paddingVertical: 5,
+    alignItems: "center",
+    justifyContent: "center"
   },
-  weatherText:{
-    paddingVertical:5,
-    justifyContent:"center",
-    alignItems:"center",
+  weatherText: {
+    paddingVertical: 5,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  weatherContainer:{
-      backgroundColor:"white",
-      padding:5,
-      borderRadius:8,
-    flexDirection:"column",
+  weatherContainer: {
+    backgroundColor: "white",
+    padding: 5,
+    borderRadius: 8,
     position: 'absolute',
-      top:50,
-      left:(deviceWidth/2)-20,
-      justifyContent:"center",
-      alignItems:"center"
-      
+    top: 50,
+    left: (deviceWidth / 2) - 20,
+    justifyContent: "center",
+    alignItems: "center",
+    flexGrow: "row",
+    justifyContent: "space-around",
+    justifyContent: "space-around",
+
   },
   mapContainer: {
     borderBottomLeftRadius: 50,
@@ -222,7 +439,7 @@ const styles = StyleSheet.create({
   },
   map: {
     // flex: 1,
-    
+
     width: "100%",
     height: "100%",
   },
