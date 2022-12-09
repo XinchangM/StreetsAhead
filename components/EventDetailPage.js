@@ -4,7 +4,7 @@ import { firestore, auth } from "../firebase/firebase-setup";
 import { deleteEventFromDB } from "../firebase/firestore";
 import { doc, collection, onSnapshot, query, where, documentId } from "firebase/firestore";
 import PostItem from './PostItem';
-import TipIcon from "../components/TipIcon";
+import TipIcon from "./TipIcon";
 import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { deviceHeight, deviceWidth, moderateScale } from "../styles/responsive";

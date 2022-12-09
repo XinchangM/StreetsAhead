@@ -20,7 +20,6 @@ import Signup from "./screens/auth/Signup";
 
 import EventDetailPage from "./components/EventDetailPage";
 
-// import Camera from "./screens/cameraPosting/Camera";
 
 import CameraScreen from "./screens/cameraPosting/CameraScreen";
 import CameraNextStepPage from "./screens/cameraPosting/CameraNextStepPage";
@@ -95,11 +94,21 @@ function MajorScreens() {
               <FontAwesome name="user-circle-o" size={size} color={color} />
             ),
             headerRight: () => {
-  
+            
+          
               return  <AntDesign name="logout" style={{ marginRight: 30 }} size={24} color={Colors.pink} onPress={() =>{
-                Alert.alert("Are you sure")
-                
-                signOut(auth)}}/> 
+               
+                Alert.alert("Important",'Are you sure you want to log out?', [
+                  {
+                    text: 'Cancel',
+                    onPress: () => {},
+                    style: 'cancel',
+                  },
+                  {text: 'OK', onPress: () => signOut(auth)},
+                ]);
+
+
+                }}/> 
          
              
             },

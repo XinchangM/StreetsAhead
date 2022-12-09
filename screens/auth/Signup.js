@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { auth } from "../../firebase/firebase-setup";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { saveUserInfo } from "../../firebase/firestore";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 export default function Signup({ navigation }) {
   const [email, setEmail] = useState(null);
@@ -33,6 +34,7 @@ export default function Signup({ navigation }) {
   };
 
   return (
+   
     <View style={styles.authContent}>
             <View style={styles.greetings}>
     <Text>
@@ -41,6 +43,7 @@ export default function Signup({ navigation }) {
       <Text>
         Sign up to join the community!
       </Text>
+    
       </View>
       <Text style={styles.label}>Name</Text>
       <TextInput
@@ -78,7 +81,9 @@ export default function Signup({ navigation }) {
         title="Already Registered? Login"
         onPress={() => navigation.replace("Login")}
       />
+        
     </View>
+  
 
   );
 }
