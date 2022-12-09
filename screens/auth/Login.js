@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { auth } from "../../firebase/firebase-setup";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { FontAwesome } from '@expo/vector-icons'; 
-import { deviceHeight, deviceWidth } from "../../styles/responsive";
+import { deviceHeight, deviceWidth, moderateScale } from "../../styles/responsive";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Colors from "../../components/Colors";
 
@@ -82,7 +82,8 @@ export default function Login({ navigation }) {
 
 const styles = StyleSheet.create({
   instruction:{
-    color:Colors.pink
+    color:Colors.pink,
+    alignSelf:"center"
   },
   KeyboardAwareScrollView:{
     backgroundColor:"#fff",
@@ -176,6 +177,7 @@ const styles = StyleSheet.create({
     alignItems:"center",
   },
   label: {
+    marginLeft:deviceWidth*0.02,
     color:"gray",
     marginBottom: 2,
     marginTop: 8,
