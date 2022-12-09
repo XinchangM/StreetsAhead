@@ -19,6 +19,7 @@ import { Colors } from "react-native/Libraries/NewAppScreen";
 export default function CameraScreen({ navigation }) {
 
   const video = React.useRef(null);
+  const [isLongPress, setIsLongPress]=useState(false);
   const [status, setStatus] = React.useState({});
   const [hasPermission, setHasPermission] = useState(null);
   const [record, setRecord] = useState(null);
@@ -68,12 +69,16 @@ export default function CameraScreen({ navigation }) {
     try {
       const data = await camRef.current?.recordAsync();
       setRecord(data.uri);
+      setIsLongPress(true);
     } catch (err) {
       console.log(err);
     }
   }
 
   const stopVideo = async () => {
+    if(!isLongPress){
+      return;
+    }
     try{
       await camRef.current?.stopRecording();
     }catch(err){

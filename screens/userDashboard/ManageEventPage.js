@@ -66,11 +66,11 @@ export default function ManageEventPage({route,navigation}) {
     
   }
   const submitPressed= async () => {
-    if(performer.replace(/\s/g, "").length){
+    if(performer.replace(/\s/g, "").length==0){
       Alert.alert("You must specify the names of performers!");
       return;
     }
-    if(eventName.replace(/\s/g, "").length==""){
+    if(eventName.replace(/\s/g, "").length==0){
       Alert.alert("You must specify the name of the event!");
       return;
     }

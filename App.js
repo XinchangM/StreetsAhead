@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView, Linking, Button, View, Alert } from 'react-native';
+
+import { StyleSheet, SafeAreaView, Linking, Button, View, Alert,Pressable} from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, Link } from "@react-navigation/native";
@@ -57,10 +58,12 @@ function MajorScreens() {
       screenOptions={({ navigation }) => ({
         headerTintColor: Colors.pink,
         tabBarStyle: {
+
           borderTopColor: Colors.blue,
           backgroundColor: Colors.blue,
         },
         tabBarActiveTintColor: Colors.green,
+
       })}
     >
       <Tab.Screen
@@ -91,29 +94,38 @@ function MajorScreens() {
         component={DashboardScreen}
         options={/* ({ navigation }) => */ {
           /* return { */
-          title: "Dashboard",
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome5 name="user-astronaut" size={size} color={color} />
-          ),
-          headerRight: () => {
 
-
-            return <AntDesign name="logout" style={{ marginRight: 30 }} size={24} color={Colors.pink} onPress={() => {
-
-              Alert.alert("Important", 'Are you sure you want to log out?', [
-                {
-                  text: 'Cancel',
-                  onPress: () => { },
-                  style: 'cancel',
-                },
-                { text: 'OK', onPress: () => signOut(auth) },
-              ]);
-
-
-            }} />
-
-
-          },
+            title: "Dashboard",
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="user-circle-o" size={size} color={color} />
+            ),
+            headerRight: () => {
+            
+          
+            return (
+                <Pressable 
+                style={({ pressed }) => {
+                  return pressed && styles.pressed;
+                }}
+                onPress={() =>{
+               
+                  Alert.alert("Important",'Are you sure you want to log out?', [
+                    {
+                      text: 'Cancel',
+                      onPress: () => {},
+                      style: 'cancel',
+                    },
+                    {text: 'OK', onPress: () => signOut(auth)},
+                  ]);
+  
+  
+                  }}
+                >
+              <AntDesign name="logout" style={{ marginRight: 30 }} size={24} color={Colors.pink} /> 
+         </Pressable>
+              )
+            },
+    
 
         }}
       />
@@ -257,13 +269,18 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  /*   tabBar: {
-      backgroundColor: Colors.white,
-      borderTopLeftRadius: 20,
-      borderTopRightRadius: 20,
-    }, */
-  logout: {
-    margin: 5,
-    padding: 5
-  }
+
+/*   tabBar: {
+    backgroundColor: Colors.white,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  }, */
+logout:{
+  margin:5,
+  padding:5
+} ,
+pressed:{
+  opacity:0.5
+}
+
 });

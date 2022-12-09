@@ -3,21 +3,31 @@ import React, { useState } from "react";
 import { auth } from "../../firebase/firebase-setup";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { FontAwesome } from '@expo/vector-icons'; 
-import { deviceHeight, deviceWidth } from "../../styles/responsive";
+import { deviceHeight, deviceWidth, moderateScale } from "../../styles/responsive";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import Colors from "../../components/Colors";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const handleLogin = async () => {
+    if (email==null||email.replace(/\s/g, "").length==0||email.includes("@")==false||email.includes(".com")==false) {
+      Alert.alert("You must enter a valid email!");
+      return;
+    }
+    if (password==null||password.replace(/\s/g, "").length==0) {
+      Alert.alert("You must enter a valid password!");
+      return;
+    }
     try {
       const userCred = await signInWithEmailAndPassword(auth, email, password);
     } catch (err) {
-      Alert.alert(err.message);
-      console.log(err.message);
+      Alert.alert("Wrong credentials, try again!");
     }
   };
   return (
-    <ScrollView style={styles.screen}>
+    <KeyboardAwareScrollView style={styles.KeyboardAwareScrollView}>
+    <View style={styles.screen}>
       <ImageBackground 
           source={require("../../assets/images/bg.png")}
           style={{height:Dimensions.get("window").height/2.5}}
@@ -30,8 +40,10 @@ export default function Login({ navigation }) {
       <View style={styles.bottomView}>
           <View style={{padding:40}}>
             <Text style={styles.welcome}>Welcome Back</Text>
-              <Pressable onPress={() => navigation.replace("Signup")}>
-                <Text>Need an account? Sign up</Text>
+              <Pressable 
+              style={({ pressed }) => pressed&&styles.pressed}
+              onPress={() => navigation.replace("Signup")}>
+                <Text style={styles.instruction}>Need an account? Sign up</Text>
               </Pressable>
             <View style={styles.inputContainer}>
               {/* <Item floatingLabel style={{borderColor:"yellow"}}> */}
@@ -55,18 +67,27 @@ export default function Login({ navigation }) {
               {/* </Item> */}
             </View>
             <View style={styles.login}>
-              <Pressable style={styles.loginBtn} onPress={handleLogin}>
+              <Pressable 
+              style={({ pressed }) => pressed?styles.pressedloginBtn:styles.loginBtn}
+             onPress={handleLogin}>
                 <Text style={styles.loginText}>Log in</Text>
               </Pressable>
             </View>
           </View>
       </View>
-    </ScrollView>
-
+    </View>
+    </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  instruction:{
+    color:Colors.pink,
+    alignSelf:"center"
+  },
+  KeyboardAwareScrollView:{
+    backgroundColor:"#fff",
+  },
   screen:{
     flex:1,
     // height: deviceHeight,
@@ -111,6 +132,9 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     alignItems:"center",
   },
+  pressed:{
+    opacity:0.6
+  },
   loginBtn:{
     alignSelf:"center",
     // backgroundColor:"#FFC400",
@@ -120,6 +144,19 @@ const styles = StyleSheet.create({
     height: deviceHeight/20,
     justifyContent: "center",
     shadowColor: "#F2288D",
+  },
+  pressedloginBtn:{
+      opacity:0.6,
+      alignSelf:"center",
+      // backgroundColor:"#FFC400",
+      backgroundColor:"#F2288D",
+      borderRadius:10,
+      width: deviceWidth/1.2,
+      height: deviceHeight/20,
+      justifyContent: "center",
+      shadowColor: "#F2288D",
+
+
   },
   loginText:{
     color:"white",
@@ -140,6 +177,7 @@ const styles = StyleSheet.create({
     alignItems:"center",
   },
   label: {
+    marginLeft:deviceWidth*0.02,
     color:"gray",
     marginBottom: 2,
     marginTop: 8,
