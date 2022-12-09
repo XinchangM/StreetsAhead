@@ -128,9 +128,9 @@ export default function PostItem({ post, option }) {
 const styles = StyleSheet.create({
 bottomSection:{
   backgroundColor:Colors.grayOpacity50,
-flexDirection:"row",
-justifyContent:"space-between",
-padding:10
+  flexDirection:"row",
+  justifyContent:"space-between",
+  padding:10
 },
 info:{
   //flexDirection:"column",

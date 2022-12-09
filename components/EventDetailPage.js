@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
     bottom:moderateScale(60),
     height: deviceHeight / 7,
     width: deviceWidth / 1.5,
-    borderRadius: 10,
+    borderRadius: 5,
     backgroundColor: "white",
     alignSelf: 'center',
     marginBottom: moderateScale(20),
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
     backgroundColor:Colors.green,
     width:100,
     paddingVertical:10,
-    borderRadius:10
+    borderRadius:5
 
   },
   manageText:{
@@ -269,6 +269,6 @@ const styles = StyleSheet.create({
     backgroundColor:Colors.backgroundYellow,
     width:100,
     paddingVertical:10,
-    borderRadius:10
+    borderRadius:5
   }
 });
