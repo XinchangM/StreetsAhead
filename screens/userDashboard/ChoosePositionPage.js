@@ -1,5 +1,4 @@
 import { View, Text,StyleSheet } from 'react-native'
-
 import Button from '../../components/Button';
 import MapView, { Marker } from "react-native-maps";
 import React, { useEffect, useState,useRef } from "react";
@@ -64,7 +63,7 @@ export default function ChoosePositionPage({route,navigation}) {
   }
   return (
     <View>
-    
+
       <MapView
         onPress={mapPressed}
         style={styles.map}

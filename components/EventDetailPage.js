@@ -13,9 +13,7 @@ import Colors from './Colors';
 export default function EventDetailPage({ route, navigation }) {
 
   const [event, setEvent] = useState();
-  const [startString, setStartString] = useState();
-  const [endString, setEndString] = useState();
-  const [timeString, setTimeString] = useState();
+
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
   const [startDate, setStartDate] = useState();
