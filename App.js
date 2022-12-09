@@ -98,7 +98,7 @@ function MajorScreens() {
           
               return  <AntDesign name="logout" style={{ marginRight: 30 }} size={24} color={Colors.pink} onPress={() =>{
                
-                Alert.alert("Important",'Are you sure', [
+                Alert.alert("Important",'Are you sure you want to log out?', [
                   {
                     text: 'Cancel',
                     onPress: () => {},
