@@ -20,7 +20,14 @@ export default function NotificationManager({startTime, eventName}) {
   };
 
   const scheduleNotificationHandler = async () => {
-   
+   if(startTime==undefined){
+    Alert.alert("Please enter start time");
+    return;
+   }
+   if(eventName==""){
+    Alert.alert("Please enter event name");
+    return;
+   }
     try {
       const hasPermission = await verifyPermission();
       if (!hasPermission) {
@@ -37,6 +44,7 @@ export default function NotificationManager({startTime, eventName}) {
         },
       });
       Alert.alert("Success","Successfully schedule the notification!")
+
     } catch (err) {
       Alert.alert("Must complete information above!");
       console.log(err);
