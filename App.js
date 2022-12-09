@@ -56,9 +56,13 @@ function MajorScreens() {
   return (
     <Tab.Navigator
       screenOptions={({ navigation }) => ({
+        headerStyle:{
+          elevation:0,
+          shadowOpacity:0,
+          backgroundColor: Colors.blue,
+        },
         headerTintColor: Colors.pink,
         tabBarStyle: {
-
           borderTopColor: Colors.blue,
           backgroundColor: Colors.blue,
         },
@@ -97,7 +101,7 @@ function MajorScreens() {
 
             title: "Dashboard",
             tabBarIcon: ({ color, size }) => (
-              <FontAwesome name="user-circle-o" size={size} color={color} />
+              <FontAwesome5 name="user-astronaut" size={size} color={color} />
             ),
             headerRight: () => {
             
@@ -252,7 +256,14 @@ export default function App() {
 
       <Stack.Navigator
         screenOptions={{
-          headerTintColor: Colors.pink
+          headerTintColor: Colors.pink,
+
+          headerStyle:{
+            elevation:0,
+            shadowOpacity:0,
+            backgroundColor: Colors.blue,
+          },
+    
 
         }}
       >

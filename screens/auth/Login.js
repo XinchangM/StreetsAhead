@@ -110,11 +110,8 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   bottomView: {
-    // flex:"50%",
     flex:1.5,
-    // height: (deviceHeight/3)*2,
     backgroundColor: "white",
-    // top:-50,
     bottom:50,
     borderTopStartRadius:60,
     borderTopEndRadius:60,
@@ -137,9 +134,8 @@ const styles = StyleSheet.create({
   },
   loginBtn:{
     alignSelf:"center",
-    // backgroundColor:"#FFC400",
     backgroundColor:"#F2288D",
-    borderRadius:10,
+    borderRadius:5,
     width: deviceWidth/1.2,
     height: deviceHeight/20,
     justifyContent: "center",
@@ -148,15 +144,12 @@ const styles = StyleSheet.create({
   pressedloginBtn:{
       opacity:0.6,
       alignSelf:"center",
-      // backgroundColor:"#FFC400",
       backgroundColor:"#F2288D",
-      borderRadius:10,
+      borderRadius:5,
       width: deviceWidth/1.2,
       height: deviceHeight/20,
       justifyContent: "center",
       shadowColor: "#F2288D",
-
-
   },
   loginText:{
     color:"white",
@@ -186,14 +179,12 @@ const styles = StyleSheet.create({
   input: {
     width: deviceWidth/1.2,
     height: deviceHeight/20,
-    // paddingVertical: 5,
     paddingHorizontal: 5,
     fontSize: 16,
-    // borderBottomWidth: 2,
     borderColor: "gray",
     borderBottomColor:"gray",
     borderWidth: 2,
-    borderRadius: 10,
+    borderRadius: 5,
   },
   button: {
     marginTop: 5,

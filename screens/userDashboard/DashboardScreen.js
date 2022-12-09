@@ -1,40 +1,41 @@
-import { View, Text ,Pressable,StyleSheet} from 'react-native'
-import React,{useState,useEffect} from 'react'
-import { firestore,auth } from "../../firebase/firebase-setup";
+import { View, Text, Pressable, StyleSheet } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { firestore, auth } from "../../firebase/firebase-setup";
 import Button from '../../components/Button';
-import { doc,collection, onSnapshot, query, where,documentId} from "firebase/firestore";
+import {  collection, onSnapshot, query, where} from "firebase/firestore";
 import Colors from '../../components/Colors';
+import { moderateScale, deviceHeight,deviceWidth } from '../../styles/responsive';
+import { Video } from 'expo-av';
+export default function DashboardScreen({ route, navigation }) {
+  const [user, setUser] = useState();
 
-export default function DashboardScreen({route,navigation}) {
-const[user,setUser]=useState();
-  
-useEffect(() => {
-  const uns = onSnapshot(
-    query(
-      collection(firestore, "users"),
-      where("userId", "==", auth.currentUser.uid )
-    ),
-    (querySnapshot) => {
-      if (querySnapshot.empty) {
-        setUser([]);
-        return;
+  useEffect(() => {
+    const uns = onSnapshot(
+      query(
+        collection(firestore, "users"),
+        where("userId", "==", auth.currentUser.uid)
+      ),
+      (querySnapshot) => {
+        if (querySnapshot.empty) {
+          setUser([]);
+          return;
+        }
+
+        setUser(querySnapshot.docs[0].data())
+
+      },
+      (err) => {
+        console.log(err);
       }
-  
-      setUser( querySnapshot.docs[0].data())
+    );
 
-    },
-    (err) => {
-      console.log(err);
-    }
-  );
-
-  return () => {
-    uns();
-  };
-}, []);
+    return () => {
+      uns();
+    };
+  }, []);
 
   function createEventPressed() {
-    navigation.navigate("CreateEventPage",{coordinate:null});
+    navigation.navigate("CreateEventPage", { coordinate: null });
   }
   function postHistoryPressed() {
     navigation.navigate("PostHistoryPage");
@@ -45,23 +46,26 @@ useEffect(() => {
   return (
     <View style={styles.wholeContainer}>
       <View style={styles.topContainer}>
-        {user&&<Text style={styles.greetings}>Welcome, {user.userName}</Text>}
-    
-  
+        {user && <View style={styles.userContainer}>
+          <Text style={styles.greetings}>Welcome, {user.userName}</Text>
+          <Video source={require("../../assets/videos/EmojiMovie692243797.mov")} style={{ height: moderateScale(200) }} shouldPlay isLooping isMuted />
+        </View>
+        }
+
       </View>
       <View style={styles.bottomContainer}>
-    <Button 
-   onPress={createEventPressed}
-   title={"Create an Event"}/>
-      
-    <Button 
-   onPress={postHistoryPressed}
-   title={"View Post History"}/>
+        <Button
+          onPress={createEventPressed}
+          title={"Create an Event"} />
 
-   <Button 
-   onPress={eventHistoryPressed}
-   title={"View Event History"}/>
-      
+        <Button
+          onPress={postHistoryPressed}
+          title={"View Post History"} />
+
+        <Button
+          onPress={eventHistoryPressed}
+          title={"View Event History"} />
+
       </View>
 
 
@@ -70,19 +74,24 @@ useEffect(() => {
 }
 
 const styles = StyleSheet.create({
-  greetings:{
-    color:Colors.gold,
-fontSize:40,
-textAlign:'center'
+  greetings: {
+    color: Colors.green,
+    fontSize: 40,
+    textAlign: 'center'
   },
-wholeContainer:{
-flex:1
-},
-topContainer:{
-  flex:1,
-  margin:20
-},
-bottomContainer:{
-flex:6
-}
+  userContainer:{
+    height:deviceHeight,
+  },
+  wholeContainer: {
+    flex: 1,
+    backgroundColor:Colors.blue,
+  },
+  topContainer: {
+    flex: 1,
+    margin: 20,
+    height:deviceHeight,
+  },
+  bottomContainer: {
+    flex: 2
+  }
 });
