@@ -2,7 +2,7 @@ import { View, Text, Pressable, StyleSheet, TextInput, Alert } from 'react-nativ
 import React from 'react'
 import Button from '../../components/Button';
 import Colors from '../../components/Colors';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { writeEventToDB } from "../../firebase/firestore";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { firestore, auth } from "../../firebase/firebase-setup";
@@ -18,6 +18,11 @@ export default function CreateEventPage({ route, navigation }) {
   const [isDatePicker1Visible, setDatePickerVisibility1] = useState(false);
   const [isDatePicker2Visible, setDatePickerVisibility2] = useState(false);
 
+  useEffect(() => {
+    if(route.params.coordinate!=null){
+      setCoordinate(route.params.coordinate)
+    }
+  }, [route.params.coordinate]);
 
   const showStartTimePicker = () => {
     setDatePickerVisibility1(true);
@@ -75,7 +80,7 @@ export default function CreateEventPage({ route, navigation }) {
      Alert.alert("End date should be greater than Start date");
       return;
     }
-    if (route.params.coordinate == undefined) {
+    if (coordinate==undefined) {
       Alert.alert("You must specify a location!");
       return;
     }
@@ -84,7 +89,7 @@ export default function CreateEventPage({ route, navigation }) {
       await writeEventToDB({
         startTime: startTime,
         endTime: endTime,
-        coordinate: route.params.coordinate,
+        coordinate: coordinate,
         performer: performer,
         userId: auth.currentUser.uid,
         eventName: eventName

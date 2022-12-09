@@ -34,7 +34,7 @@ useEffect(() => {
 }, []);
 
   function createEventPressed() {
-    navigation.navigate("CreateEventPage");
+    navigation.navigate("CreateEventPage",{coordinate:null});
   }
   function postHistoryPressed() {
     navigation.navigate("PostHistoryPage");
