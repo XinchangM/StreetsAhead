@@ -14,7 +14,7 @@ import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons'; 
 
-import Log from "./screens/auth/Log";
+import Login from "./screens/auth/Login";
 import Signup from "./screens/auth/Signup";
 
 
@@ -34,7 +34,7 @@ import ChooseTimePage from "./screens/userDashboard/ChooseTimePage";
 import ChoosePositionPage from "./screens/userDashboard/ChoosePositionPage";
 import ManageEventPage from "./screens/userDashboard/ManageEventPage";
 
-import TipIcon from './components/TipIcon';
+import PayPal from './screens/event/PayPal';
 import MapScreen from './screens/map/MapScreen';
 
 import * as Notifications from "expo-notifications";
@@ -153,7 +153,7 @@ export default function App() {
   
   const AuthStack = (
     <>
-      <Stack.Screen name="Log" options={{headerShown:false}} component={Log} />
+      <Stack.Screen name="Login" options={{headerShown:false}} component={Login} />
       <Stack.Screen name="Signup" options={{headerShown:false}} component={Signup} />
     </>
   );
@@ -193,10 +193,12 @@ export default function App() {
           <Stack.Screen
             name="EventDetailPage"
             component={EventDetailPage}
-            options={{title:'Event Detail',
-           /*  headerRight:()=>(<TipIcon size={24} color={"white"} onPress={()=>{}}
-            />), */
-          }}
+            options={{title:'Event Detail'}}
+          />
+          <Stack.Screen
+            name='PayPal'
+            component={PayPal}
+            options={{title:'Pay Tip'}}
           />
            <Stack.Screen
             name="EventHistoryPage"
