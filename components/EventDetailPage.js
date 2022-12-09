@@ -114,10 +114,21 @@ export default function EventDetailPage({ route, navigation }) {
       const endTimeObject = new Date(endTimeStamp);
       const monthNames = ["JAN. ", "FEB. ", "MAR. ", "APR. ", "MAY ", "JUN. ",
                             "JUL. ", "AUG. ", "SEPT. ", "OCT. ", "NOV. ", "DEC. "];
-      setStartTime(startTimeObject.getHours() + " : " + startTimeObject.getMinutes());
-      setStartDate(monthNames[endTimeObject.getMonth()] + startTimeObject.getDate());
-      setEndDate(monthNames[endTimeObject.getMonth()] + endTimeObject.getDate());
-      setEndTime(endTimeObject.getHours() + " : " + endTimeObject.getMinutes());
+
+      const startHour=startTimeObject.getHours()<10?("0"+startTimeObject.getHours().toString()):startTimeObject.getHours().toString();
+      const startMinute=startTimeObject.getMinutes()<10?("0"+startTimeObject.getMinutes().toString()):startTimeObject.getMinutes().toString();
+      setStartTime(startHour+":"+startMinute);
+      const startTimeDateString=startTimeObject.getDate()<10 ? 
+      ("0"+startTimeObject.getDate().toString()):
+      startTimeObject.getDate().toString();
+      setStartDate(monthNames[endTimeObject.getMonth()] + startTimeDateString);
+      const endTimeDateString=endTimeObject.getDate()<10 ? 
+      ("0"+endTimeObject.getDate().toString()):
+      endTimeObject.getDate().toString();
+      setEndDate(monthNames[endTimeObject.getMonth()] + endTimeDateString);
+      const endHour=endTimeObject.getHours()<10?("0"+endTimeObject.getHours().toString()):endTimeObject.getHours().toString();
+      const endMinute=endTimeObject.getMinutes()<10?("0"+endTimeObject.getMinutes().toString()):endTimeObject.getMinutes().toString();
+      setEndTime(endHour+":"+endMinute);
     }
   }, [event]);
 
@@ -133,7 +144,7 @@ export default function EventDetailPage({ route, navigation }) {
                     <TipIcon/>
                     <View style={styles.infos}>
                       <Text style={styles.title}>{event.eventName}</Text>
-                      <Text style={styles.text}>Performers: {event.performer}</Text>
+                      <Text style={styles.text}>{event.performer}</Text>
                       <View style={styles.timeBar}>
                         <View style={styles.timeWrap}>
                           <Text style={styles.timeText}>{startTime}</Text>
@@ -195,6 +206,7 @@ const styles = StyleSheet.create({
     position:"relative"
   },
   text: {
+    width:200,
     textAlign: 'center',
     // alignContent:"center",
     bottom:moderateScale(70),
@@ -206,10 +218,10 @@ const styles = StyleSheet.create({
     height: deviceHeight / 7,
     width: deviceWidth / 1.5,
     borderRadius: 5,
-    backgroundColor: "white",
+    backgroundColor: Colors.whiteOpacity50,
     alignSelf: 'center',
     marginBottom: moderateScale(20),
-    marginTop: moderateScale(20),
+    marginTop: moderateScale(20)
   },
   timeWrap: {
     marginTop: moderateScale(20),
@@ -219,12 +231,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   timeText: {
-    top:moderateScale(0),
     fontSize: moderateScale(30),
+    color:Colors.pink
   },
   dateText:{
-    fontSize:moderateScale(20),
-    color:"gray"
+    fontSize:moderateScale(17),
+    color:Colors.pink
   },
   dateWrap: {
     padding: moderateScale(10),
@@ -237,15 +249,16 @@ const styles = StyleSheet.create({
     width: deviceWidth / 1.5,
     backgroundColor:Colors.green,
     alignSelf: 'center',
-    marginTop:moderateScale(60),
+    
     justifyContent: "space-around",
     flexDirection: 'row',
-    bottom:30,
+    
   },
   infos: {
     marginTop: moderateScale(100),
     marginHorizontal: 30,
-    marginVertical: 10
+    marginVertical: 10,
+    alignItems:'center'
 
   },
   postList: {

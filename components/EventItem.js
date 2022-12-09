@@ -9,16 +9,22 @@ import { deviceHeight, deviceWidth, moderateScale} from '../styles/responsive';
 export default function EventItem({ event, option }) {
   const startTimestamp = event.startTime.seconds * 1000 + event.startTime.nanoseconds / 1000000;
   const startTimeObject = new Date(startTimestamp);
-  const startTimeString = startTimeObject.toString();
   // To get year,month, day, hour.... use startTimeObject.getXXX()
   const endTimestamp = event.endTime.seconds * 1000 + event.endTime.nanoseconds / 1000000;
   const endTimeObject = new Date(endTimestamp);
-  const endTimeString = endTimeObject.toString();
   const monthNames = ["Jan. ", "Feb. ", "Mar. ", "Apr. ", "May ", "Jun. ",
   "Jul. ", "Aug. ", "Sept. ", "Oct. ", "Nov. ", "Dec. "];
-  const timeString =  monthNames[endTimeObject.getMonth()] + startTimeObject.getDate() + " " +
-   startTimeObject.getHours() + ":" + startTimeObject.getMinutes() + " - " + monthNames[endTimeObject.getMonth()] + endTimeObject.getDate() + " " + endTimeObject.getHours() + ":" + endTimeObject.getMinutes();
+  const startHour=startTimeObject.getHours()<10?("0"+startTimeObject.getHours().toString()):startTimeObject.getHours().toString();
+  const startMinute=startTimeObject.getMinutes()<10?("0"+startTimeObject.getMinutes().toString()):startTimeObject.getMinutes().toString();
+  const startTimeString=monthNames[startTimeObject.getMonth()]+startTimeObject.getDate() + ", " +startHour+":"+startMinute;
+  const endHour=endTimeObject.getHours()<10?("0"+endTimeObject.getHours().toString()):endTimeObject.getHours().toString();
+      const endMinute=endTimeObject.getMinutes()<10?("0"+endTimeObject.getMinutes().toString()):endTimeObject.getMinutes().toString();
+    
+  const endTimeString=monthNames[endTimeObject.getMonth()]+endTimeObject.getDate() + ", " +endHour+":"+endMinute;
 
+  const timeString=startTimeString+" - "+endTimeString;
+  
+  
 
   const navigation = useNavigation();
 
@@ -54,7 +60,7 @@ export default function EventItem({ event, option }) {
           <ImageBackground source={require("../assets/images/list.png")} style={styles.listBackground}>
             <View style={styles.eventItem}>
               <Text style={styles.eventTitle}>{event.eventName}</Text>
-              <Text style={styles.eventPerformer}>Performers: {event.performer}</Text>
+              <Text style={styles.eventPerformer}>{event.performer}</Text>
               <Text style={styles.eventTime}>{timeString}</Text>
 
             </View>
@@ -71,7 +77,7 @@ export default function EventItem({ event, option }) {
           <ImageBackground source={require("../assets/images/list.png")} style={styles.listBackground}>
             <View style={styles.eventItem}>
               <Text style={styles.eventTitle}>{event.eventName}</Text>
-              <Text style={styles.eventPerformer}>Performers: {event.performer}</Text>
+              <Text style={styles.eventPerformer}>{event.performer}</Text>
               <Text style={styles.eventTime}>{timeString}</Text>
 
             </View>
@@ -90,7 +96,7 @@ export default function EventItem({ event, option }) {
           <ImageBackground source={require("../assets/images/list.png")} style={styles.listBackground}>
             <View style={styles.eventItem}>
               <Text style={styles.eventTitle}>{event.eventName}</Text>
-              <Text style={styles.eventPerformer}>Performers: {event.performer}</Text>
+              <Text style={styles.eventPerformer}> {event.performer}</Text>
               <Text style={styles.eventTime}>{timeString}</Text>
 
             </View>

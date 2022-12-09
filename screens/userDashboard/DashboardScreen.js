@@ -52,7 +52,10 @@ export default function DashboardScreen({ route, navigation }) {
           <Text style={styles.greetings}>Welcome, {user.userName}</Text>
           <Video 
           source={avatar}
-          style={{ height: moderateScale(190) }} shouldPlay isLooping isMuted />
+          rate={0.2}
+          style={{ height: moderateScale(190) }} shouldPlay isLooping isMuted shouldCorrectPitch 
+
+          />
         </View>
         }
 

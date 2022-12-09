@@ -3,6 +3,7 @@ import React,{useState,useEffect} from 'react'
 import { firestore, auth } from "../firebase/firebase-setup";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import PostItem from "./PostItem"
+import Colors from './Colors';
 export default function PostList() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
@@ -56,7 +57,8 @@ export default function PostList() {
 const styles = StyleSheet.create({
   postList: {
     flex: 1,
-    padding: 20
+    padding: 20,
+    backgroundColor:Colors.blue
  
   },
 });

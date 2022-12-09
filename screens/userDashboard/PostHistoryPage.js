@@ -1,6 +1,8 @@
 import { View, Text,StyleSheet } from 'react-native'
 import React from 'react'
 import PostList from '../../components/PostList';
+import Colors from '../../components/Colors';
+import { deviceHeight } from '../../styles/responsive';
 
 export default function PostHistoryPage() {
   return (
@@ -15,8 +17,8 @@ export default function PostHistoryPage() {
 
 const styles = StyleSheet.create({
   list: {
-   
-    height: "100%",
+   backgroundColor:Colors.blue,
+    height: deviceHeight,
   }
 
 });
