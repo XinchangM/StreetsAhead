@@ -1,6 +1,6 @@
 import { View, Text,Pressable,StyleSheet } from 'react-native'
 import React from 'react'
-import Button from '../../components/Button';
+import Colors from '../../components/Colors';
 import EventList from '../../components/EventList';
 
 export default function EventHistoryPage({route,navigation}) {
@@ -8,7 +8,7 @@ export default function EventHistoryPage({route,navigation}) {
     navigation.navigate("ManageEventPage");
   }
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.list}>
       <EventList isAll={false}/>
       </View>
@@ -17,6 +17,9 @@ export default function EventHistoryPage({route,navigation}) {
 }
 
 const styles = StyleSheet.create({
+  container:{
+    backgroundColor: Colors.blue,
+  },
   list:{
     height:  "100%",
    
