@@ -5,6 +5,7 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 import Button from '../../components/Button';
 import EventItem from "../../components/EventItem"
 import * as Location from "expo-location";
+import Colors from '../../components/Colors';
 
 export default function FindEventPage({route,navigation}) {
   const [events, setEvents] = useState([]);
@@ -89,7 +90,7 @@ export default function FindEventPage({route,navigation}) {
 
 
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.searchBar}>
       <TextInput
       style={styles.searchInput}
@@ -135,6 +136,10 @@ export default function FindEventPage({route,navigation}) {
   )
 }
 const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor:Colors.blue
+  },
   list: {
     height:  "100%",
   },

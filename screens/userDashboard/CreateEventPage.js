@@ -106,7 +106,7 @@ export default function CreateEventPage({ route, navigation }) {
 
 
   return (
-    <View>
+    <View style={styles.container}>
 
 
       <TextInput
@@ -177,6 +177,10 @@ export default function CreateEventPage({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    
+  },
   input: {
     backgroundColor: Colors.backgroundYellow,
     height: 30,

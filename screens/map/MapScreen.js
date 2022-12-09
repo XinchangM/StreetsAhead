@@ -22,7 +22,22 @@ export default function MapScreen({ route, navigation }) {
   const [region, setRegion] = useState();
   const [weather, setWeather] = useState(null);
   const [mainWeather, setMainWeather] = useState();
+const initialRegion={
+  latitude: 49.288020,
+  longitude: -123.143331,
+  latitudeDelta: 0.020,
+  longitudeDelta: 0.020,
+}
+const [loaded, setLoaded] = useState(false)
 
+const onRegionChangeComplete = (region) => { 
+  if (!loaded) { 
+    if (region.latitude != initialRegion.latitude || region.longitude != initialRegion.longitude) {
+      mapRef.current.animateToRegion(initialRegion, 1)
+    }
+    setLoaded(true)
+  } 
+}
 
   async function getWeather(lat, lng) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${weather_api_key}`;
@@ -342,11 +357,13 @@ export default function MapScreen({ route, navigation }) {
     <View style={styles.mapContainer}>
 
       <MapView
+      onRegionChangeComplete={onRegionChangeComplete}
         userInterfaceStyle={'dark'}
         style={styles.map}
         provider={PROVIDER_GOOGLE}
         customMapStyle={mapStyle}
-        initialRegion={{
+        initialRegion={initialRegion}
+        /* initialRegion={{
           latitude: currentLocation
             ? currentLocation.latitude
             : 49.288020,
@@ -355,8 +372,9 @@ export default function MapScreen({ route, navigation }) {
             : -123.143331,
           latitudeDelta: 0.020,
           longitudeDelta: 0.020,
-        }}
-        ref={mapRef}>
+        }} */
+        ref={mapRef}
+        >
 
         {events.map((event, i) => {
           const endTimestamp = event.endTime.seconds * 1000 + event.endTime.nanoseconds / 1000000;
@@ -385,7 +403,6 @@ export default function MapScreen({ route, navigation }) {
 
       {weather &&
         <View style={styles.weatherContainer}>
-
           {mainWeather == "Clear" && <View style={styles.icon}><Feather name="sun" size={24} color={Colors.pink} /></View>}
           {mainWeather == "Rain" && <View style={styles.icon}><Ionicons name="rainy" size={24} color={Colors.black} /></View>}
           {mainWeather == "Snow" && <View style={styles.icon}><FontAwesome name="snowflake-o" size={24} color={Colors.black} /></View>}
@@ -418,6 +435,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     justifyContent: "center",
     alignItems: "center",
+    color:Colors.pink
   },
   weatherContainer: {
     backgroundColor: "white",
