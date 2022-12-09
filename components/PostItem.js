@@ -15,10 +15,12 @@ export default function PostItem({ post, option }) {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
-  const hour = date.getHours();
-  const minute = date.getMinutes();
-  const second = date.getSeconds();
-  const timeString = year.toString() + "/" + month.toString() + "/" + day.toString() + " " + hour.toString() + ":" + minute.toString() + ":" + second.toString();
+  const hour = date.getHours()<10? ("0"+date.getHours().toString()):date.getHours().toString();
+  const minute = date.getMinutes()<10? ("0"+date.getMinutes().toString()):date.getMinutes().toString();
+  const second = date.getSeconds()<10? ("0"+date.getSeconds().toString()):date.getSeconds().toString();
+  const timeString = year.toString() + "/" + month.toString() +
+   "/" + day.toString() + " " + hour +":" + minute + ":" +
+     second;
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
   const [user, setUser] = useState();
@@ -27,7 +29,7 @@ export default function PostItem({ post, option }) {
     const uns = onSnapshot(
       query(
         collection(firestore, "users"),
-        where("userId", "==", auth.currentUser.uid)
+        where("userId", "==", post.userId)
       ),
       (querySnapshot) => {
         if (querySnapshot.empty) {
@@ -100,7 +102,8 @@ export default function PostItem({ post, option }) {
               {<View style={styles.bottomSection}> 
                 <View style={styles.info}>
                 
-                {user && <Text style={styles.text}>{user.userName}</Text>}
+                {user && 
+                <Text style={styles.text}>{user.userName}</Text>}
                 <Text style={styles.text}>{post.comment}</Text>
                 <Text style={styles.text}>{timeString}</Text>
                 </View>
