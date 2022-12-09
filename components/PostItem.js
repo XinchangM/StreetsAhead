@@ -174,6 +174,9 @@ box:{
 alignItems:"center"
 },
   item: {
+    shadowColor:Colors.green,
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
     alignSelf: 'center',
     margin: 15,
     flex: 1,
@@ -188,9 +191,8 @@ alignItems:"center"
    
   },
   video: {
-    
     alignSelf: 'center',
-    width: deviceWidth-20,
+    width: 320,
     height: 400,
   },
   buttons: {

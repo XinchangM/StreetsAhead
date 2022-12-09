@@ -3,6 +3,7 @@ import { View,StyleSheet, TouchableOpacity } from "react-native";
 import { moderateScale, deviceHeight, deviceWidth } from '../styles/responsive';
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import Colors from "./Colors";
 export default function TipIcon() {
   const navigation=useNavigation();
   return (
@@ -24,6 +25,9 @@ const styles = StyleSheet.create({
   container: {
     width: deviceWidth / 1.3,
     marginTop:moderateScale(30),
-    alignItems:"flex-end"
+    alignItems:"flex-end",
+    shadowColor:Colors.blue,
+    shadowOpacity:1,
+    shadowRadius:15
   },
 });

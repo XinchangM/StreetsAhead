@@ -16,6 +16,7 @@ const Colors = {
     blackOpacity30: 'rgba(0,0,0,0.3)',
     blackOpacity40: 'rgba(0,0,0,0.4)',
     blackOpacity50: 'rgba(0,0,0,0.5)',
+    whiteOpacity50: 'rgba(255,255,255,0.5)',
     grayOpacity50: 'rgba(90, 90, 90, 0.5)',
   };
   
