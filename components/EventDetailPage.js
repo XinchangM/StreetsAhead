@@ -5,8 +5,9 @@ import { deleteEventFromDB } from "../firebase/firestore";
 import { doc, collection, onSnapshot, query, where, documentId } from "firebase/firestore";
 import PostItem from './PostItem';
 import TipIcon from "./TipIcon";
-import { FontAwesome } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { deviceHeight, deviceWidth, moderateScale } from "../styles/responsive";
 import Colors from './Colors';
 
@@ -111,8 +112,8 @@ export default function EventDetailPage({ route, navigation }) {
       const startTimeObject = new Date(startTimeStamp);
       const endTimeStamp = event.endTime.seconds * 1000 + event.endTime.nanoseconds / 1000000;
       const endTimeObject = new Date(endTimeStamp);
-      const monthNames = ["Jan. ", "Feb. ", "Mar. ", "Apr. ", "May ", "Jun. ",
-                            "Jul. ", "Aug. ", "Sept. ", "Oct. ", "Nov. ", "Dec. "];
+      const monthNames = ["JAN. ", "FEB. ", "MAR. ", "APR. ", "MAY ", "JUN. ",
+                            "JUL. ", "AUG. ", "SEPT. ", "OCT. ", "NOV. ", "DEC. "];
       setStartTime(startTimeObject.getHours() + " : " + startTimeObject.getMinutes());
       setStartDate(monthNames[endTimeObject.getMonth()] + startTimeObject.getDate());
       setEndDate(monthNames[endTimeObject.getMonth()] + endTimeObject.getDate());
@@ -121,7 +122,7 @@ export default function EventDetailPage({ route, navigation }) {
   }, [event]);
 
   return (
-    <View>
+    <View style={styles.container}>
       {isPostExist &&
         <View style={styles.postList}>
           <FlatList
@@ -129,8 +130,8 @@ export default function EventDetailPage({ route, navigation }) {
               <View>
                 {isEventExist &&
                   <ImageBackground source={require("../assets/images/ticket.png")} style={{ height:deviceHeight/ 1.5}}>
+                    <TipIcon/>
                     <View style={styles.infos}>
-                      <TipIcon/>
                       <Text style={styles.title}>{event.eventName}</Text>
                       <Text style={styles.text}>Performers: {event.performer}</Text>
                       <View style={styles.timeBar}>
@@ -144,26 +145,23 @@ export default function EventDetailPage({ route, navigation }) {
                         </View>
                       </View>
                     </View>
-                  </ImageBackground>}
-
-                {route.params.isManagable &&
+                    {route.params.isManagable &&
                   <View style={styles.buttonsContainer}>
-                   
                     <Pressable 
                       style={({ pressed }) => pressed?styles.pressed:styles.management}
-                    onPress={onEditEvent}><FontAwesome name="edit" size={24} color={Colors.pink} />
+                      onPress={onEditEvent}><MaterialCommunityIcons name="data-matrix-edit" size={30} color={Colors.pink} />
                     <Text style={styles.manageText}>Edit Event</Text>
                     </Pressable>
-                
-                  
                     <Pressable 
                      style={({ pressed }) => pressed?styles.pressed:styles.management}
-                    onPress={onDeleteEvent}><AntDesign name="delete" size={24} color={Colors.pink} />
+                    onPress={onDeleteEvent}><MaterialIcons name="delete-forever" size={30} color={Colors.pink} />
                     <Text style={styles.manageText}>Delete Event</Text>
                     </Pressable>
-
                   </View>
                 }
+                  </ImageBackground>}
+
+
               </View>
             }
             data={posts}
@@ -183,20 +181,29 @@ export default function EventDetailPage({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  container:{
+    backgroundColor: Colors.blue,
+  },
   title: {
     textAlign: "center",
-    fontSize: moderateScale(30),
-    padding: moderateScale(10),
+    fontSize: moderateScale(40),
+    padding: moderateScale(5),
     fontWeight: "bold",
-    marginBottom: moderateScale(20),
-    color:Colors.pink
+    bottom:moderateScale(80),
+    marginBottom: moderateScale(5),
+    color:Colors.pink,
+    position:"relative"
   },
   text: {
     textAlign: 'center',
     // alignContent:"center",
+    bottom:moderateScale(70),
+    fontSize:moderateScale(25),
+    color:Colors.white,
   },
   timeBar: {
-    height: deviceHeight / 8,
+    bottom:moderateScale(60),
+    height: deviceHeight / 7,
     width: deviceWidth / 1.5,
     borderRadius: 10,
     backgroundColor: "white",
@@ -212,6 +219,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   timeText: {
+    top:moderateScale(0),
     fontSize: moderateScale(30),
   },
   dateText:{
@@ -225,11 +233,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   buttonsContainer: {
+    height: deviceHeight / 8,
+    width: deviceWidth / 1.5,
+    backgroundColor:Colors.green,
+    alignSelf: 'center',
+    marginTop:moderateScale(60),
     justifyContent: "space-around",
     flexDirection: 'row',
+    bottom:30,
   },
   infos: {
-    marginTop: 100,
+    marginTop: moderateScale(100),
     marginHorizontal: 30,
     marginVertical: 10
 
@@ -240,7 +254,7 @@ const styles = StyleSheet.create({
   },
   management:{
     alignItems:"center",
-    backgroundColor:Colors.backgroundYellow,
+    backgroundColor:Colors.green,
     width:100,
     paddingVertical:10,
     borderRadius:10
