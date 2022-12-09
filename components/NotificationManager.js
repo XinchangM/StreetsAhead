@@ -56,7 +56,7 @@ export default function NotificationManager({startTime, eventName}) {
       <Button
         title="Remind me at the start time"
         onPress={scheduleNotificationHandler}
-        buttonColor={Colors.gold}
+        buttonColor={Colors.green}
       />
     </View>
   );

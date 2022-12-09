@@ -18,6 +18,7 @@ const Colors = {
     blackOpacity50: 'rgba(0,0,0,0.5)',
     whiteOpacity50: 'rgba(255,255,255,0.5)',
     grayOpacity50: 'rgba(90, 90, 90, 0.5)',
+    pinkOpacity50:'rgba(242, 40, 141, 0.5)'
   };
   
   export default Colors;

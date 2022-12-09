@@ -107,7 +107,7 @@ export default function PostItem({ post, option }) {
                 <View style={styles.delete}> 
                   {option == 2 && 
                   <Pressable 
-                  android_ripple={{color: Colors.gold}}
+                  android_ripple={{color: Colors.green}}
                   style={({ pressed }) => {
                     return pressed && styles.pressed;
                   }}
@@ -205,7 +205,7 @@ alignItems:"center"
   },
   pressed:{
     opacity:0.75,
-    backgroundColor:Colors.gold
+    backgroundColor:Colors.green
   }
 
 });

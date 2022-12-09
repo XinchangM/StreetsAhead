@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
   pressed:{
     opacity: 0.5,
     alignItems:"center",
-    backgroundColor:Colors.backgroundYellow,
+    backgroundColor:Colors.pinkOpacity50,
     width:100,
     paddingVertical:10,
     borderRadius:5

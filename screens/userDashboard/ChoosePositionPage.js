@@ -82,7 +82,7 @@ export default function ChoosePositionPage({route,navigation}) {
         {      currentLocation && 
       <Marker 
       coordinate={currentLocation}
-      pinColor={Colors.gold}
+      pinColor={Colors.pink}
       />}
         {chosenLocation && <Marker coordinate={chosenLocation} pinColor={Colors.pink}/>}
       </MapView>
