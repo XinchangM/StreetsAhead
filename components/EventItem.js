@@ -116,18 +116,19 @@ const styles = StyleSheet.create({
   },
   eventTitle:{
     marginTop: moderateScale(5),
-    marginLeft:moderateScale(20),
+    marginLeft:moderateScale(30),
     fontSize:moderateScale(24),
-    color:Colors.pink 
+    color:Colors.pink,
+    fontWeight:"bold"
   },
   eventTime:{
     marginTop: moderateScale(10),
-    marginLeft:moderateScale(20),
+    marginLeft:moderateScale(30),
     fontSize:moderateScale(15)
   },  
   eventPerformer:{
     marginTop:moderateScale(10),
-    marginLeft:moderateScale(20),
+    marginLeft:moderateScale(30),
     fontSize:moderateScale(15)
   },
   item:{

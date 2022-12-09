@@ -29,12 +29,12 @@ export default function Login({ navigation }) {
     <KeyboardAwareScrollView style={styles.KeyboardAwareScrollView}>
     <View style={styles.screen}>
       <ImageBackground 
-          source={require("../../assets/images/bg.jpg")}
+          source={require("../../assets/images/bg.png")}
           style={{height:Dimensions.get("window").height/2.5}}
           >
         <View style={styles.brandView}>
-          <FontAwesome name="signing" style={{color:'#fff', fontSize:100}}/>
-          <Text style={styles.brandViewText}>Streets Ahead</Text>
+          {/* <FontAwesome name="signing" style={{color:'#fff', fontSize:100}}/>
+          <Text style={styles.brandViewText}>Streets Ahead</Text> */}
         </View>
       </ImageBackground>
       <View style={styles.bottomView}>

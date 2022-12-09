@@ -129,6 +129,7 @@ console.log(err)
     <View style={styles.mapContainer}>
     
       <MapView
+        userInterfaceStyle={'dark'}
         style={styles.map}
         initialRegion={{
           latitude: currentLocation

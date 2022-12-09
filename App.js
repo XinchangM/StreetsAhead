@@ -1,18 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
+
 import { StyleSheet, SafeAreaView, Linking, Button, View, Alert,Pressable} from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer,Link } from "@react-navigation/native";
+import { NavigationContainer, Link } from "@react-navigation/native";
 
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "./firebase/firebase-setup";
 import React, { useState, useEffect } from "react";
 
 import Colors from "./components/Colors";
-import { Ionicons } from "@expo/vector-icons";
-import { Feather } from '@expo/vector-icons'; 
-import { AntDesign } from '@expo/vector-icons'; 
-import { FontAwesome } from '@expo/vector-icons'; 
+
+import { Entypo } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 import Login from "./screens/auth/Login";
 import Signup from "./screens/auth/Signup";
@@ -54,13 +55,15 @@ Notifications.setNotificationHandler({
 function MajorScreens() {
   return (
     <Tab.Navigator
-        screenOptions={({navigation})=>({
+      screenOptions={({ navigation }) => ({
         headerTintColor: Colors.pink,
         tabBarStyle: {
-          backgroundColor: Colors.black,
-          borderTopColor:Colors.black
+
+          borderTopColor: Colors.blue,
+          backgroundColor: Colors.blue,
         },
-        tabBarActiveTintColor: Colors.yellow,
+        tabBarActiveTintColor: Colors.green,
+
       })}
     >
       <Tab.Screen
@@ -68,9 +71,9 @@ function MajorScreens() {
         component={MapScreen}
         options={{
           title: "Map",
-          headerShown:false,
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
-            <Feather name="map-pin" size={size} color={color} />
+            <FontAwesome5 name="map-marker-alt" size={size} color={color} />
           ),
         }}
       />
@@ -79,18 +82,19 @@ function MajorScreens() {
         component={CameraScreen}
         options={{
           title: "Camera",
-          headerShown:false,
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
-            <AntDesign name="camerao" size={size} color={color} />
+            <Entypo name="video-camera" size={size} color={color} />
           ),
         }}
       />
 
-    <Tab.Screen
+      <Tab.Screen
         name="Dashboard"
         component={DashboardScreen}
         options={/* ({ navigation }) => */ {
           /* return { */
+
             title: "Dashboard",
             tabBarIcon: ({ color, size }) => (
               <FontAwesome name="user-circle-o" size={size} color={color} />
@@ -122,6 +126,7 @@ function MajorScreens() {
               )
             },
     
+
         }}
       />
     </Tab.Navigator>
@@ -168,72 +173,72 @@ export default function App() {
       subscription2.remove();
     };
   });
-  
+
   const AuthStack = (
     <>
-      <Stack.Screen name="Login" options={{headerShown:false}} component={Login} />
-      <Stack.Screen name="Signup" options={{headerShown:false}} component={Signup} />
+      <Stack.Screen name="Login" options={{ headerShown: false }} component={Login} />
+      <Stack.Screen name="Signup" options={{ headerShown: false }} component={Signup} />
     </>
   );
 
   const AppStack = (
     <>
-        <Stack.Screen
-            name="MajorScreens"
-            component={MajorScreens}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="CameraNextStepPage"
-            component={CameraNextStepPage}
-            options={{title:'Create a post'}}
-          />
-           <Stack.Screen
-            name="ChoosePositionPage"
-            component={ChoosePositionPage}
-            options={{title:'Choose Position'}}
-          />
-          <Stack.Screen
-            name="ChooseTimePage"
-            component={ChooseTimePage}
-            options={{title:'Choose Time'}}
-          />
-          <Stack.Screen
-            name="CreateEventPage"
-            component={CreateEventPage}
-            options={{title:'Create Event'}}
-          />
-          <Stack.Screen
-            name="ManageEventPage"
-            component={ManageEventPage}
-            options={{title:'Manage Event'}}
-          />
-          <Stack.Screen
-            name="EventDetailPage"
-            component={EventDetailPage}
-            options={{title:'Event Detail'}}
-          />
-          <Stack.Screen
-            name='PayPal'
-            component={PayPal}
-            options={{title:'Pay Tip'}}
-          />
-           <Stack.Screen
-            name="EventHistoryPage"
-            component={EventHistoryPage}
-            options={{title:'Event History'}}
-          />
+      <Stack.Screen
+        name="MajorScreens"
+        component={MajorScreens}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="CameraNextStepPage"
+        component={CameraNextStepPage}
+        options={{ title: 'Create a post' }}
+      />
+      <Stack.Screen
+        name="ChoosePositionPage"
+        component={ChoosePositionPage}
+        options={{ title: 'Choose Position' }}
+      />
+      <Stack.Screen
+        name="ChooseTimePage"
+        component={ChooseTimePage}
+        options={{ title: 'Choose Time' }}
+      />
+      <Stack.Screen
+        name="CreateEventPage"
+        component={CreateEventPage}
+        options={{ title: 'Create Event' }}
+      />
+      <Stack.Screen
+        name="ManageEventPage"
+        component={ManageEventPage}
+        options={{ title: 'Manage Event' }}
+      />
+      <Stack.Screen
+        name="EventDetailPage"
+        component={EventDetailPage}
+        options={{ title: 'Event Detail' }}
+      />
+      <Stack.Screen
+        name='PayPal'
+        component={PayPal}
+        options={{ title: 'Pay Tip' }}
+      />
+      <Stack.Screen
+        name="EventHistoryPage"
+        component={EventHistoryPage}
+        options={{ title: 'Event History' }}
+      />
 
-          <Stack.Screen
-            name="FindEventPage"
-            component={FindEventPage}
-            options={{title:'Find Event'}}
-          />
-          <Stack.Screen
-            name="PostHistoryPage"
-            component={PostHistoryPage}
-            options={{title:'Post History'}}
-          />
+      <Stack.Screen
+        name="FindEventPage"
+        component={FindEventPage}
+        options={{ title: 'Find Event' }}
+      />
+      <Stack.Screen
+        name="PostHistoryPage"
+        component={PostHistoryPage}
+        options={{ title: 'Post History' }}
+      />
 
 
 
@@ -243,29 +248,28 @@ export default function App() {
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
   return (
 
-      <NavigationContainer>
-   
-        <Stack.Navigator
-      screenOptions={{
-        headerTintColor: Colors.pink 
-/*         headerStyle: {
-          backgroundColor: Colors.backgroundYellow
-        }, */
-       }}
-        >   
+    <NavigationContainer>
 
-          {isUserAuthenticated ? AppStack : AuthStack}
+      <Stack.Navigator
+        screenOptions={{
+          headerTintColor: Colors.pink
 
-        </Stack.Navigator>
-  
-      </NavigationContainer>
+        }}
+      >
+
+        {isUserAuthenticated ? AppStack : AuthStack}
+
+      </Stack.Navigator>
+
+    </NavigationContainer>
 
   );
 
-  
+
 }
 
 const styles = StyleSheet.create({
+
 /*   tabBar: {
     backgroundColor: Colors.white,
     borderTopLeftRadius: 20,
@@ -278,4 +282,5 @@ logout:{
 pressed:{
   opacity:0.5
 }
+
 });
