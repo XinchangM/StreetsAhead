@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView, Linking, Button, View, Alert} from 'react-native';
+import { StyleSheet, SafeAreaView, Linking, Button, View, Alert,Pressable} from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer,Link } from "@react-navigation/native";
@@ -96,21 +96,28 @@ function MajorScreens() {
             headerRight: () => {
             
           
-              return  <AntDesign name="logout" style={{ marginRight: 30 }} size={24} color={Colors.pink} onPress={() =>{
+            return (
+                <Pressable 
+                style={({ pressed }) => {
+                  return pressed && styles.pressed;
+                }}
+                onPress={() =>{
                
-                Alert.alert("Important",'Are you sure you want to log out?', [
-                  {
-                    text: 'Cancel',
-                    onPress: () => {},
-                    style: 'cancel',
-                  },
-                  {text: 'OK', onPress: () => signOut(auth)},
-                ]);
-
-
-                }}/> 
-         
-             
+                  Alert.alert("Important",'Are you sure you want to log out?', [
+                    {
+                      text: 'Cancel',
+                      onPress: () => {},
+                      style: 'cancel',
+                    },
+                    {text: 'OK', onPress: () => signOut(auth)},
+                  ]);
+  
+  
+                  }}
+                >
+              <AntDesign name="logout" style={{ marginRight: 30 }} size={24} color={Colors.pink} /> 
+         </Pressable>
+              )
             },
     
         }}
@@ -265,5 +272,8 @@ const styles = StyleSheet.create({
 logout:{
   margin:5,
   padding:5
-} 
+} ,
+pressed:{
+  opacity:0.5
+}
 });

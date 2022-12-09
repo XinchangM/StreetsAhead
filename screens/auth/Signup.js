@@ -12,7 +12,15 @@ export default function Signup({ navigation }) {
   const [userName, setUserName] = useState("");
   const handleSignup = async () => {
     // some check here
-    if (password.length < 6) {
+    if (userName.replace(/\s/g, "").length==0) {
+      Alert.alert("Please enter a username");
+      return;
+    }
+    if (email==null||email.replace(/\s/g, "").length==0||email.includes("@")==false||email.includes(".com")==false){
+      Alert.alert("Please enter a valid email");
+      return;
+    }
+    if (password.length < 6||password.replace(/\s/g, "").length==0) {
       Alert.alert("The password needs to be minimum 6 characters");
       return;
     }
