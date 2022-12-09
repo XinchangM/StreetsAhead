@@ -25,6 +25,7 @@ export default function Login({ navigation }) {
       Alert.alert("Wrong credentials, try again!");
     }
   };
+  
   return (
     <KeyboardAwareScrollView style={styles.KeyboardAwareScrollView}>
     <View style={styles.screen}>
