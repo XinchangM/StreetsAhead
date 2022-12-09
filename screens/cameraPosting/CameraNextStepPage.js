@@ -82,7 +82,7 @@ export default function CameraStepPage({route,navigation}) {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       
     <Button
       onPress={linkEventPressed}
@@ -104,12 +104,12 @@ export default function CameraStepPage({route,navigation}) {
 <Button
       onPress={onUpload}
       title={"Upload"}
-      buttonColor={Colors.gold}
+      buttonColor={Colors.green}
       />
 <Button
       onPress={onDownload}
       title={"Download"}
-      buttonColor={Colors.gold}
+      buttonColor={Colors.green}
       />
 </View>
 
@@ -118,8 +118,13 @@ export default function CameraStepPage({route,navigation}) {
 }
 
 const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor:Colors.blue,
+    paddingVertical:50
+  },
   input: {
-    backgroundColor: Colors.backgroundYellow,
+    backgroundColor: Colors.pinkOpacity50,
     height: 30,
     borderRadius: 5,
     marginVertical:10,

@@ -106,7 +106,7 @@ export default function CreateEventPage({ route, navigation }) {
 
 
   return (
-    <View>
+    <View style={styles.container}>
 
 
       <TextInput
@@ -170,15 +170,20 @@ export default function CreateEventPage({ route, navigation }) {
       <Button
         onPress={submitPressed}
         title={"Submit"}
-        buttonColor={Colors.gold}
+        buttonColor={Colors.green}
       />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor:Colors.blue,
+    paddingVertical:50
+  },
   input: {
-    backgroundColor: Colors.backgroundYellow,
+    backgroundColor: Colors.pinkOpacity50,
     height: 30,
     borderRadius: 5,
     marginHorizontal: 20,

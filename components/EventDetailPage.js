@@ -133,6 +133,7 @@ export default function EventDetailPage({ route, navigation }) {
   }, [event]);
 
   return (
+    
     <View style={styles.container}>
       {isPostExist &&
         <View style={styles.postList}>
@@ -193,6 +194,7 @@ export default function EventDetailPage({ route, navigation }) {
 
 const styles = StyleSheet.create({
   container:{
+    flex:1,
     backgroundColor: Colors.blue,
   },
   title: {
@@ -262,10 +264,8 @@ const styles = StyleSheet.create({
 
   },
   postList: {
-    height:deviceHeight,
     marginVertical: 20,
-    alignItems: 'center',
-    height:deviceHeight
+    alignItems: 'center'
   },
   management:{
     alignItems:"center",
@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
   pressed:{
     opacity: 0.5,
     alignItems:"center",
-    backgroundColor:Colors.backgroundYellow,
+    backgroundColor:Colors.pinkOpacity50,
     width:100,
     paddingVertical:10,
     borderRadius:5
