@@ -1,9 +1,8 @@
 import React from 'react';
-import colors from '../styles/colors';
-import { moderateScale } from '../styles/responsive';
+import { moderateScale } from '../styles/Responsive';
 import { View, Text, StyleSheet, Pressable, TouchableOpacity } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
-import Colors from './Colors';
+import Colors from '../styles/Colors';
 
 const Circulerbtn = ({
     text,
@@ -23,20 +22,19 @@ const Circulerbtn = ({
     );
 };
 
-// define your styles
 const styles = StyleSheet.create({
-    pressed:{
-        opacity:0.2
+    pressed: {
+        opacity: 0.2
     },
     bottomView: {
-        backgroundColor: colors.white,
+        backgroundColor: Colors.white,
         borderRadius: moderateScale(24),
         alignSelf: 'flex-start',
         padding: 4
     },
     textStyle: {
         alignSelf: 'center',
-        color: colors.black,
+        color: Colors.black,
     },
     imgStyle: {
         width: 50,

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { auth } from "../../firebase/firebase-setup";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { saveUserInfo } from "../../firebase/firestore";
-import { moderateScale, deviceHeight, deviceWidth } from "../../styles/responsive";
+import { moderateScale, deviceHeight, deviceWidth } from "../../styles/Responsive";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import Colors from "../../components/Colors";
+import Colors from '../../styles/Colors';
 import { View, Text, ScrollView, TextInput, Item, StyleSheet, Alert, ImageBackground, Dimensions, Pressable } from "react-native";
 
 
@@ -133,7 +133,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   backgroundView: {
-    // flex:"50%",
     height: deviceHeight / 2.5,
   },
   brandView: {

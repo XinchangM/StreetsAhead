@@ -1,9 +1,9 @@
 import Cash from "react-native-vector-icons/MaterialCommunityIcons";
 import { View,StyleSheet, TouchableOpacity } from "react-native";
-import { moderateScale, deviceHeight, deviceWidth } from '../styles/responsive';
+import { moderateScale, deviceHeight, deviceWidth } from '../styles/Responsive';
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import Colors from "./Colors";
+import Colors from "../styles/Colors";
 export default function TipIcon() {
   const navigation=useNavigation();
   return (

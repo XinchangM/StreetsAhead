@@ -15,7 +15,7 @@ export default function ChooseTimePage() {
   };
 
   const handleConfirm = (date) => {
-    console.warn("A date has been picked: ", date);
+    //console.warn("A date has been picked: ", date);
     hideDatePicker();
   };
 

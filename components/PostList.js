@@ -3,7 +3,7 @@ import React,{useState,useEffect} from 'react'
 import { firestore, auth } from "../firebase/firebase-setup";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import PostItem from "./PostItem"
-import Colors from './Colors';
+import Colors from "../styles/Colors";
 export default function PostList() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {

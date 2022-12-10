@@ -1,44 +1,41 @@
 import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
-import MapView, { Marker, Callout,PROVIDER_GOOGLE  } from "react-native-maps";
+import MapView, { Marker, Callout, PROVIDER_GOOGLE } from "react-native-maps";
 import React, { useEffect, useState, useRef } from "react";
 import * as Location from "expo-location";
 import { firestore } from "../../firebase/firebase-setup";
 import { collection, onSnapshot } from "firebase/firestore";
 import Circulerbtn from "../../components/CirculerBtn";
-import { getWeather } from "../../util/Weather";
 import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { weather_api_key } from '@env';
-import { deviceHeight, deviceWidth, moderateScale } from "../../styles/responsive";
-import Colors from "../../components/Colors";
+import { deviceHeight, deviceWidth, moderateScale } from "../../styles/Responsive";
+import Colors from "../../styles/Colors";
 import MapStyle from "../../styles/MapStyle";
 
 
 export default function MapScreen({ route, navigation }) {
   const [currentLocation, setCurrentLocation] = useState({ latitude: 49.288, longitude: -123.1433 });
   const [permissionResponse, requestPermission] = Location.useForegroundPermissions();
-
-  const [region, setRegion] = useState();
   const [weather, setWeather] = useState(null);
   const [mainWeather, setMainWeather] = useState();
-const initialRegion={
-  latitude: 49.288020,
-  longitude: -123.143331,
-  latitudeDelta: 0.020,
-  longitudeDelta: 0.020,
-}
-const [loaded, setLoaded] = useState(false)
+  const initialRegion = {
+    latitude: 49.288020,
+    longitude: -123.143331,
+    latitudeDelta: 0.020,
+    longitudeDelta: 0.020,
+  }
+  const [loaded, setLoaded] = useState(false)
 
-const onRegionChangeComplete = (region) => { 
-  if (!loaded) { 
-    if (region.latitude != initialRegion.latitude || region.longitude != initialRegion.longitude) {
-      mapRef.current.animateToRegion(initialRegion, 1)
+  const onRegionChangeComplete = (region) => {
+    if (!loaded) {
+      if (region.latitude != initialRegion.latitude || region.longitude != initialRegion.longitude) {
+        mapRef.current.animateToRegion(initialRegion, 1)
+      }
+      setLoaded(true)
     }
-    setLoaded(true)
-  } 
-}
+  }
 
   async function getWeather(lat, lng) {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${weather_api_key}`;
@@ -61,10 +58,7 @@ const onRegionChangeComplete = (region) => {
 
 
   const mapRef = useRef(null);
-  const onCenter = () => {
-    //console.log("1111", mapRef)
-
-  }
+  const onCenter = () => { }
   const verifyPermission = async () => {
     if (permissionResponse.granted) {
       return true;
@@ -144,24 +138,14 @@ const onRegionChangeComplete = (region) => {
     <View style={styles.mapContainer}>
 
       <MapView
-      onRegionChangeComplete={onRegionChangeComplete}
+        onRegionChangeComplete={onRegionChangeComplete}
         userInterfaceStyle={'dark'}
         style={styles.map}
         provider={PROVIDER_GOOGLE}
         customMapStyle={MapStyle.ms}
         initialRegion={initialRegion}
-        /* initialRegion={{
-          latitude: currentLocation
-            ? currentLocation.latitude
-            : 49.288020,
-          longitude: currentLocation
-            ? currentLocation.longitude
-            : -123.143331,
-          latitudeDelta: 0.020,
-          longitudeDelta: 0.020,
-        }} */
         ref={mapRef}
-        >
+      >
 
         {events.map((event, i) => {
           const endTimestamp = event.endTime.seconds * 1000 + event.endTime.nanoseconds / 1000000;
@@ -222,11 +206,11 @@ const styles = StyleSheet.create({
     padding: moderateScale(5),
     justifyContent: "center",
     alignItems: "center",
-    color:Colors.pink,
+    color: Colors.pink,
   },
   weatherText: {
-    color:Colors.pink,
-    fontSize:moderateScale(18),
+    color: Colors.pink,
+    fontSize: moderateScale(18),
 
   },
   weatherContainer: {
@@ -234,10 +218,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     position: 'absolute',
     top: moderateScale(35),
-    width:deviceWidth/4,
+    width: deviceWidth / 4,
     justifyContent: "center",
     alignItems: "center",
-    alignSelf:"center",
+    alignSelf: "center",
     flexDirection: "row",
     justifyContent: "space-between",
   },

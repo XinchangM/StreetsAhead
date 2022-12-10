@@ -1,16 +1,16 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import React from "react";
-import Colors from "./Colors";
+import Colors from "../styles/Colors";
 
-export default function Button({ title, onPress,buttonColor }) {
-  const bColor=buttonColor?buttonColor:Colors.purple
+export default function Button({ title, onPress, buttonColor }) {
+  const bColor = buttonColor ? buttonColor : Colors.purple
   return (
     <View>
       <Pressable
         onPress={onPress}
         style={({ pressed }) => pressed && styles.pressed}
       >
-        <View style={[styles.container,{backgroundColor:buttonColor?buttonColor:Colors.pink}]}>
+        <View style={[styles.container, { backgroundColor: buttonColor ? buttonColor : Colors.pink }]}>
           <Text style={styles.title}>{title}</Text>
         </View>
       </Pressable>
@@ -19,7 +19,7 @@ export default function Button({ title, onPress,buttonColor }) {
 }
 
 const styles = StyleSheet.create({
-  
+
   container: {
     borderRadius: 5,
     alignItems: "center",
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     paddingHorizontal: 40,
     paddingVertical: 10,
-    marginVertical:10
+    marginVertical: 10
 
   },
   title: {

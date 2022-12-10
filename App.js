@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 
-import { StyleSheet, SafeAreaView, Linking, Button, View, Alert,Pressable} from 'react-native';
+import { StyleSheet, SafeAreaView, Linking, Button, View, Alert, Pressable } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, Link } from "@react-navigation/native";
@@ -9,7 +9,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "./firebase/firebase-setup";
 import React, { useState, useEffect } from "react";
 
-import Colors from "./components/Colors";
+import Colors from './styles/Colors';
 
 import { Entypo } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
@@ -19,7 +19,7 @@ import Login from "./screens/auth/Login";
 import Signup from "./screens/auth/Signup";
 
 
-import EventDetailPage from "./components/EventDetailPage";
+import EventDetailPage from './screens/event/EventDetailPage';
 
 
 import CameraScreen from "./screens/cameraPosting/CameraScreen";
@@ -56,9 +56,9 @@ function MajorScreens() {
   return (
     <Tab.Navigator
       screenOptions={({ navigation }) => ({
-        headerStyle:{
-          elevation:0,
-          shadowOpacity:0,
+        headerStyle: {
+          elevation: 0,
+          shadowOpacity: 0,
           backgroundColor: Colors.blue,
         },
         headerTintColor: Colors.pink,
@@ -99,37 +99,37 @@ function MajorScreens() {
         options={/* ({ navigation }) => */ {
           /* return { */
 
-            title: "Dashboard",
-            tabBarIcon: ({ color, size }) => (
-              <FontAwesome5 name="user-astronaut" size={size} color={color} />
-            ),
-            headerRight: () => {
-            
-          
+          title: "Dashboard",
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="user-astronaut" size={size} color={color} />
+          ),
+          headerRight: () => {
+
+
             return (
-                <Pressable 
+              <Pressable
                 style={({ pressed }) => {
                   return pressed && styles.pressed;
                 }}
-                onPress={() =>{
-               
-                  Alert.alert("Important",'Are you sure you want to log out?', [
+                onPress={() => {
+
+                  Alert.alert("Important", 'Are you sure you want to log out?', [
                     {
                       text: 'Cancel',
-                      onPress: () => {},
+                      onPress: () => { },
                       style: 'cancel',
                     },
-                    {text: 'OK', onPress: () => signOut(auth)},
+                    { text: 'OK', onPress: () => signOut(auth) },
                   ]);
-  
-  
-                  }}
-                >
-              <AntDesign name="logout" style={{ marginRight: 30 }} size={24} color={Colors.pink} /> 
-         </Pressable>
-              )
-            },
-    
+
+
+                }}
+              >
+                <AntDesign name="logout" style={{ marginRight: 30 }} size={24} color={Colors.pink} />
+              </Pressable>
+            )
+          },
+
 
         }}
       />
@@ -258,12 +258,12 @@ export default function App() {
         screenOptions={{
           headerTintColor: Colors.pink,
 
-          headerStyle:{
-            elevation:0,
-            shadowOpacity:0,
+          headerStyle: {
+            elevation: 0,
+            shadowOpacity: 0,
             backgroundColor: Colors.blue,
           },
-    
+
 
         }}
       >
@@ -280,18 +280,12 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-
-/*   tabBar: {
-    backgroundColor: Colors.white,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-  }, */
-logout:{
-  margin:5,
-  padding:5
-} ,
-pressed:{
-  opacity:0.5
-}
+  logout: {
+    margin: 5,
+    padding: 5
+  },
+  pressed: {
+    opacity: 0.5
+  }
 
 });

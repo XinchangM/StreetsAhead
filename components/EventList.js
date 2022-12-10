@@ -1,14 +1,14 @@
-import { View, Text,FlatList,StyleSheet} from 'react-native'
-import React,{useState,useEffect} from 'react'
+import { View, Text, FlatList, StyleSheet } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import { firestore, auth } from "../firebase/firebase-setup";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import EventItem from "./EventItem";
 
-export default function EventList({isAll}) {
+export default function EventList({ isAll }) {
   const [events, setEvents] = useState([]);
   useEffect(() => {
     const unsubscribe = onSnapshot(
-        collection(firestore, "events") 
+      collection(firestore, "events")
       ,
       (querySnapshot) => {
         if (querySnapshot.empty) {
@@ -38,7 +38,7 @@ export default function EventList({isAll}) {
         <FlatList
           data={events}
           renderItem={({ item }) => {
-            return <EventItem event={item} option={3}/>;
+            return <EventItem event={item} option={3} />;
           }}
           //for android
           overScrollMode={"always"}
