@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Text, View, TouchableOpacity, ImageBackground, StyleSheet, Button,Alert } from "react-native";
+import { Text, View, TouchableOpacity, ImageBackground, StyleSheet, Button, Alert } from "react-native";
 import { Camera } from "expo-camera";
 import { Video } from 'expo-av';
 
@@ -7,19 +7,13 @@ import Circle from "react-native-vector-icons/Entypo";
 import Flip from "react-native-vector-icons/MaterialIcons";
 import Close from "react-native-vector-icons/AntDesign";
 import Next from "react-native-vector-icons/FontAwesome";
-import colors from "../../styles/colors";
-import { moderateScale, deviceHeight, deviceWidth} from "../../styles/responsive";
-import { Colors } from "react-native/Libraries/NewAppScreen";
-
-
-
-
-
+import { moderateScale, deviceHeight, deviceWidth } from "../../styles/Responsive";
+import Colors from "../../styles/Colors";
 
 export default function CameraScreen({ navigation }) {
 
   const video = React.useRef(null);
-  const [isLongPress, setIsLongPress]=useState(false);
+  const [isLongPress, setIsLongPress] = useState(false);
   const [status, setStatus] = React.useState({});
   const [hasPermission, setHasPermission] = useState(null);
   const [record, setRecord] = useState(null);
@@ -36,10 +30,10 @@ export default function CameraScreen({ navigation }) {
 
   useEffect(() => {
     const askPermission = async () => {
-      try{
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === "granted");
-      }catch(err){
+      try {
+        const { status } = await Camera.requestCameraPermissionsAsync();
+        setHasPermission(status === "granted");
+      } catch (err) {
         console.log(err)
       }
     };
@@ -76,12 +70,12 @@ export default function CameraScreen({ navigation }) {
   }
 
   const stopVideo = async () => {
-    if(!isLongPress){
+    if (!isLongPress) {
       return;
     }
-    try{
+    try {
       await camRef.current?.stopRecording();
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
 
@@ -122,24 +116,17 @@ export default function CameraScreen({ navigation }) {
               <Flip name="flip-camera-android" size={moderateScale(30)} color="white" />
             </TouchableOpacity>
           </View>
-          {/* <View
-            style={tw.style(`absolute w-full`, {
-              bottom: "5%",
-              left: "55%",
-              transform: [{ translateX: -50 }],
-            })}
-          > */}
-            <View style={styles.circleContainer}>
-              <TouchableOpacity
-                style={styles.circleBtn}
-                onPress={() => takePhoto()}
-                onLongPress={() => takeVideo()}
-                onPressOut={() => stopVideo()}
-              >
-                <Circle name="circle" size={moderateScale(90)} color="white"/>
-              </TouchableOpacity>
-            </View>
-          {/* </View> */}
+          <View style={styles.circleContainer}>
+            <TouchableOpacity
+              style={styles.circleBtn}
+              onPress={() => takePhoto()}
+              onLongPress={() => takeVideo()}
+              onPressOut={() => stopVideo()}
+            >
+              <Circle name="circle" size={moderateScale(90)} color="white" />
+            </TouchableOpacity>
+          </View>
+
         </Camera>
       }
 
@@ -169,8 +156,8 @@ export default function CameraScreen({ navigation }) {
       {record &&
         <View style={styles.previewContainer}>
           <View style={styles.closeContainer}>
-            <TouchableOpacity 
-            onPress={() => setRecord(null)} style={styles.closeBtn}>
+            <TouchableOpacity
+              onPress={() => setRecord(null)} style={styles.closeBtn}>
               <Close name="close" size={moderateScale(30)} color="white" />
             </TouchableOpacity>
           </View>
@@ -179,13 +166,13 @@ export default function CameraScreen({ navigation }) {
               <Next name="send" size={moderateScale(30)} color="white" />
             </TouchableOpacity>
           </View>
-          <Video 
-          
-          useNativeControls={true}
-          ref={video} style={styles.video} source={{
-            uri: record,
-          }}
-           
+          <Video
+
+            useNativeControls={true}
+            ref={video} style={styles.video} source={{
+              uri: record,
+            }}
+
             resizeMode="cover"
             isLooping
             onPlaybackStatusUpdate={status => setStatus(() => status)}
@@ -213,10 +200,10 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   video: {
-    top:moderateScale(19),
+    top: moderateScale(19),
     alignSelf: 'center',
     width: deviceWidth,
-    height: deviceHeight-moderateScale(77),
+    height: deviceHeight - moderateScale(77),
   },
   flipContainer: {
     alignSelf: "center",
@@ -233,7 +220,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.grayOpacity50,
+    backgroundColor: Colors.grayOpacity50,
   },
   previewContainer: {
     height: deviceHeight,
@@ -252,9 +239,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius:20,
-    padding:5,
-    backgroundColor:  colors.grayOpacity50 
+    borderRadius: 20,
+    padding: 5,
+    backgroundColor: Colors.grayOpacity50
   },
   nextContainer: {
     alignSelf: "center",
@@ -268,31 +255,26 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.grayOpacity50 ,
-    padding:5,
-    borderRadius:20
+    backgroundColor: Colors.grayOpacity50,
+    padding: 5,
+    borderRadius: 20
   },
   imageBackground: {
     flex: 1,
   },
   circleContainer: {
-    position:"absolute",
+    position: "absolute",
     alignSelf: "center",
     borderRadius: moderateScale(90),
     width: moderateScale(90),
-    bottom:deviceHeight/8,
-    backgroundColor:"white",
+    bottom: deviceHeight / 8,
+    backgroundColor: "white",
   },
-  circleBtn:{
-    // height: moderateScale(60),
-    // width: moderateScale(60),
-    // borderRadius: moderateScale(60),
+  circleBtn: {
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
-    // left: deviceWidth / 2,
-    // bottom: -150,
-    //zIndex:1,
+
   }
 
 

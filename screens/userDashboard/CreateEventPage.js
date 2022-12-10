@@ -1,8 +1,8 @@
 import { View, Text, Pressable, StyleSheet, TextInput, Alert } from 'react-native'
 import React from 'react'
 import Button from '../../components/Button';
-import Colors from '../../components/Colors';
-import { useState,useEffect } from "react";
+import Colors from "../../styles/Colors"
+import { useState, useEffect } from "react";
 import { writeEventToDB } from "../../firebase/firestore";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { firestore, auth } from "../../firebase/firebase-setup";
@@ -19,7 +19,7 @@ export default function CreateEventPage({ route, navigation }) {
   const [isDatePicker2Visible, setDatePickerVisibility2] = useState(false);
 
   useEffect(() => {
-    if(route.params.coordinate!=null){
+    if (route.params.coordinate != null) {
       setCoordinate(route.params.coordinate)
     }
   }, [route.params.coordinate]);
@@ -59,11 +59,11 @@ export default function CreateEventPage({ route, navigation }) {
   }
 
   const submitPressed = async () => {
-    if (performer.replace(/\s/g, "").length==0) {
+    if (performer.replace(/\s/g, "").length == 0) {
       Alert.alert("You must specify the names of performers!");
       return;
     }
-    if (eventName.replace(/\s/g, "").length==0) {
+    if (eventName.replace(/\s/g, "").length == 0) {
       Alert.alert("You must specify the name of the event!");
       return;
     }
@@ -77,10 +77,10 @@ export default function CreateEventPage({ route, navigation }) {
     }
 
     if ((Date.parse(endTime) <= Date.parse(startTime))) {
-     Alert.alert("End date should be greater than Start date");
+      Alert.alert("End date should be greater than Start date");
       return;
     }
-    if (coordinate==undefined) {
+    if (coordinate == undefined) {
       Alert.alert("You must specify a location!");
       return;
     }
@@ -177,10 +177,10 @@ export default function CreateEventPage({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    backgroundColor:Colors.blue,
-    paddingVertical:50
+  container: {
+    flex: 1,
+    backgroundColor: Colors.blue,
+    paddingVertical: 50
   },
   input: {
     backgroundColor: Colors.pinkOpacity50,

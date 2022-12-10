@@ -2,7 +2,7 @@ import { View,Alert } from "react-native";
 import React from "react";
 import * as Notifications from "expo-notifications";
 import Button from "./Button";
-import Colors from "./Colors";
+import Colors from "../styles/Colors";
 
 export default function NotificationManager({startTime, eventName}) {
   const name = "Hello user";
