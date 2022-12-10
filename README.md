@@ -17,7 +17,7 @@ IOS:
 <pre>  <img src="./screenshots/3-3-1.png" width="160"/>  <img src="./screenshots/3-3-2.png" width="160"/> . </pre>
 
 4. Map screen locate current position
-<img src="./screenshots/3-4.png" width="160"/>
+<pre>  <img src="./screenshots/3-4.png" width="160"/></pre>
 
 5. Click on the green heart to see detail page of event, you can see everyone's post
 <pre>  <img src="./screenshots/3-5-1.png" width="160"/>  <img src="./screenshots/3-5-2.png" width="160"/>  </pre>
@@ -29,7 +29,7 @@ IOS:
 <pre>  <img src="./screenshots/3-7-1.png" width="160"/>  <img src="./screenshots/3-7-2.png" width="160"/>  </pre>
 
 8. Move on to make a post
-<img src="./screenshots/3-8.png" width="160"/>
+<pre>  <img src="./screenshots/3-8.png" width="160"/>  </pre>
 
 9. Find the event to link to by searching by name, click on the event to link
 <pre>  <img src="./screenshots/3-9-1.png" width="160"/>  <img src="./screenshots/3-9-2.png" width="160"/>  <img src="./screenshots/3-9-3.png" width="160"/> </pre>
@@ -42,7 +42,7 @@ IOS:
 <pre>  <img src="./screenshots/3-11-1.png" width="160"/>  <img src="./screenshots/3-11-2.png" width="160"/>  </pre>
 
 12. User Dashboard Screen
-<img src="./screenshots/3-12-1.png" width="160"/>
+<pre>  <img src="./screenshots/3-12-1.png" width="160"/>  </pre>
 
 13. Create an event
 <pre>  <img src="./screenshots/3-13-1.png" width="160"/>  <img src="./screenshots/3-13-2.png" width="160"/>  <img src="./screenshots/3-13-3.png" width="160"/>  <img src="./screenshots/3-13-4.png" width="160"/> </pre>
@@ -52,22 +52,22 @@ IOS:
 <pre>  <img src="./screenshots/3-14-1.png" width="160"/>  <img src="./screenshots/3-14-2.png" width="160"/>  <img src="./screenshots/3-14-3.png" width="160"/>  </pre>
 
 15. View post history created by current user, user can delete by clicking on the trash can
-<img src="./screenshots/3-15-1.png" width="160"/>
+<pre>  <img src="./screenshots/3-15-1.png" width="160"/>  </pre>
 
 16. View event history created by current user, the detail page directed by these items has edit and delete buttons
-<img src="./screenshots/3-16.png" width="160"/>
+<pre>  <img src="./screenshots/3-16.png" width="160"/>  </pre>
 
 17. Edit event info for the event created by current user
 <pre> <img src="./screenshots/3-17-1.png" width="160"/>  <img src="./screenshots/3-17-2.png" width="160"/>  <img src="./screenshots/3-17-3.png" width="160"/>  </pre>
 
 18. Delete event created by current user
-<img src="./screenshots/3-18.png" width="160"/>
+<pre>  <img src="./screenshots/3-18.png" width="160"/>  </pre>
 
 19. Tip an event by clicking on the cash button on event detail page
 <pre>  <img src="./screenshots/3-19-1.png" width="160"/>  <img src="./screenshots/3-19-2.png" width="160"/>  </pre>
 
 20. LogOut
-<img src="./screenshots/3-20.png" width="160"/>
+<pre>  <img src="./screenshots/3-20.png" width="160"/>  </pre>
 
 <br>
 Some Android Screenshots:
