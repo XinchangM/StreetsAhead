@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import PostList from '../../components/PostList';
 import Colors from '../../styles/Colors';
-import { deviceHeight } from '../../styles/Responsive';
+
 
 export default function PostHistoryPage() {
   return (
