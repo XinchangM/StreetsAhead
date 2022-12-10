@@ -181,16 +181,11 @@ export default function MapScreen({ route, navigation }) {
           <View style={styles.weatherTextContainer}><Text style={styles.weatherText}>{weather} °C</Text></View>
         </View>}
 
-
-
       <View style={styles.bottomView}>
-
         <TouchableOpacity
           onPress={onCenter} style={styles.navigationView} />
         <Circulerbtn onPress={locateUserHandler} />
-
       </View>
-
     </View>
 
   )
@@ -238,16 +233,15 @@ const styles = StyleSheet.create({
   },
   bottomView: {
     position: 'absolute',
-    bottom: 60,
-    left: 24,
-    right: 24,
+    bottom: moderateScale(20),
     alignItems: 'center',
+    alignSelf: "center",
   },
   navigationView: {
     width: 1,
     height: 1,
     borderRadius: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   }
 });

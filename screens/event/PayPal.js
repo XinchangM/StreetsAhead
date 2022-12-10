@@ -9,7 +9,8 @@ import {
 import { WebView } from 'react-native-webview';
 import axios from "axios";
 import qs from "qs";
-import { decode, encode } from 'base-64'
+import { decode, encode } from 'base-64';
+import Colors from '../../styles/Colors';
 
 const PayPal = () => {
     const [isWebViewLoading, SetIsWebViewLoading] = useState(false);
@@ -34,7 +35,6 @@ const PayPal = () => {
     /*---Paypal checkout section---*/
     const buyBook = async () => {
 
-        //Check out https://developer.paypal.com/docs/integration/direct/payments/paypal-payments/# for more detail paypal checkout
         const dataDetail = {
             "intent": "sale",
             "payer": {
@@ -136,8 +136,7 @@ const PayPal = () => {
     }
 
     _onNavigationStateChange = (webViewState) => {
-        console.log("webViewState", webViewState)
-
+        //console.log("webViewState", webViewState)
         //When the webViewState.title is empty this mean it's in process loading the first paypal page so there is no paypal's loading icon
         //We show our loading icon then. After that we don't want to show our icon we need to set setShouldShowWebviewLoading to limit it
         if (webViewState.title == "") {
@@ -146,10 +145,8 @@ const PayPal = () => {
         }
 
         if (webViewState.url.includes('https://example.com/')) {
-
             setPaypalUrl(null)
             const urlArr = webViewState.url.split(/(=|&)/);
-
             const paymentId = urlArr[2];
             const payerId = urlArr[10];
 
@@ -190,7 +187,7 @@ const PayPal = () => {
                             textAlign: 'center',
                             color: '#ffffff',
                         }}>
-                        Pay Tip
+                        Pay with PayPal
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -210,7 +207,7 @@ const PayPal = () => {
             ) : null}
             {isWebViewLoading ? (
                 <View style={{ ...StyleSheet.absoluteFill, justifyContent: "center", alignItems: "center", backgroundColor: "#ffffff" }}>
-                    <ActivityIndicator size="small" color="#A02AE0" />
+                    <ActivityIndicator size="small" color={Colors.green} />
                 </View>
             ) : null}
         </React.Fragment>
@@ -228,7 +225,8 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor:Colors.blue
     },
     webview: {
         width: '100%',
@@ -243,7 +241,7 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         paddingHorizontal: 15,
         borderRadius: 5,
-        backgroundColor: '#61E786',
+        backgroundColor: Colors.green,
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',
