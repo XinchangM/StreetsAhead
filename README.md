@@ -8,69 +8,48 @@ Screenshots:
 IOS:
 <br>
 1. Login
-<img src="./screenshots/3-1-1.png" width="160"/>
-<img src="./screenshots/3-1-2.png" width="160"/>
+<pre>  <img src="./screenshots/3-1-1.png" width="160"/>  <img src="./screenshots/3-1-2.png" width="160"/> </pre>
 
 2. SignUp
-<img src="./screenshots/3-2-1.png" width="160"/>
-<img src="./screenshots/3-2-2.png" width="160"/>
-<img src="./screenshots/3-2-3.png" width="160"/>
-<img src="./screenshots/3-2-4.png" width="160"/>
-<img src="./screenshots/3-2-5.png" width="160"/>
+<pre>  <img src="./screenshots/3-2-1.png" width="160"/>  <img src="./screenshots/3-2-2.png" width="160"/>  <img src="./screenshots/3-2-3.png" width="160"/>  <img src="./screenshots/3-2-4.png" width="160"/>  <img src="./screenshots/3-2-5.png" width="160"/> . </pre>
 
 3. Map Screen Permission and Initial place
-<img src="./screenshots/3-3-1.png" width="160"/>
-<img src="./screenshots/3-3-2.png" width="160"/>
+<pre>  <img src="./screenshots/3-3-1.png" width="160"/>  <img src="./screenshots/3-3-2.png" width="160"/> . </pre>
 
 4. Map screen locate current position
 <img src="./screenshots/3-4.png" width="160"/>
 
 5. Click on the green heart to see detail page of event, you can see everyone's post
-<img src="./screenshots/3-5-1.png" width="160"/>
-<img src="./screenshots/3-5-2.png" width="160"/>
+<pre>  <img src="./screenshots/3-5-1.png" width="160"/>  <img src="./screenshots/3-5-2.png" width="160"/>  </pre>
 
 6. Camera screen
-<img src="./screenshots/3-6-1.png" width="160"/>
-<img src="./screenshots/3-6-2.png" width="160"/>
-<img src="./screenshots/3-6-3.png" width="160"/>
+<pre>  <img src="./screenshots/3-6-1.png" width="160"/>  <img src="./screenshots/3-6-2.png" width="160"/>  <img src="./screenshots/3-6-3.png" width="160"/>  </pre>
 
 7. Short tap to take photo or long tap to take video
-<img src="./screenshots/3-7-1.png" width="160"/>
-<img src="./screenshots/3-7-2.png" width="160"/>
+<pre>  <img src="./screenshots/3-7-1.png" width="160"/>  <img src="./screenshots/3-7-2.png" width="160"/>  </pre>
 
 8. Move on to make a post
 <img src="./screenshots/3-8.png" width="160"/>
 
 9. Find the event to link to by searching by name, click on the event to link
-<img src="./screenshots/3-9-1.png" width="160"/>
-<img src="./screenshots/3-9-2.png" width="160"/>
-<img src="./screenshots/3-9-3.png" width="160"/>
+<pre>  <img src="./screenshots/3-9-1.png" width="160"/>  <img src="./screenshots/3-9-2.png" width="160"/>  <img src="./screenshots/3-9-3.png" width="160"/> </pre>
 
 
 10. Click on upload to submit
-<img src="./screenshots/3-10-1.png" width="160"/>
-<img src="./screenshots/3-10-2.png" width="160"/>
-<img src="./screenshots/3-10-3.png" width="160"/>
-<img src="./screenshots/3-10-4.png" width="160"/>
+<pre>  <img src="./screenshots/3-10-1.png" width="160"/>  <img src="./screenshots/3-10-2.png" width="160"/>  <img src="./screenshots/3-10-3.png" width="160"/>  <img src="./screenshots/3-10-4.png" width="160"/>  </pre>
 
 11. Click on download to save the media
-<img src="./screenshots/3-11-1.png" width="160"/>
-<img src="./screenshots/3-11-2.png" width="160"/>
+<pre>  <img src="./screenshots/3-11-1.png" width="160"/>  <img src="./screenshots/3-11-2.png" width="160"/>  </pre>
 
 12. User Dashboard Screen
 <img src="./screenshots/3-12-1.png" width="160"/>
 
 13. Create an event
-<img src="./screenshots/3-13-1.png" width="160"/>
-<img src="./screenshots/3-13-2.png" width="160"/>
-<img src="./screenshots/3-13-3.png" width="160"/>
-<img src="./screenshots/3-13-4.png" width="160"/>
+<pre>  <img src="./screenshots/3-13-1.png" width="160"/>  <img src="./screenshots/3-13-2.png" width="160"/>  <img src="./screenshots/3-13-3.png" width="160"/>  <img src="./screenshots/3-13-4.png" width="160"/> </pre>
 
 
 14. Set up a notification for reminding the start time of the event
-<img src="./screenshots/3-14-1.png" width="160"/>
-<img src="./screenshots/3-14-2.png" width="160"/>
-<img src="./screenshots/3-14-3.png" width="160"/>
+<pre>  <img src="./screenshots/3-14-1.png" width="160"/>  <img src="./screenshots/3-14-2.png" width="160"/>  <img src="./screenshots/3-14-3.png" width="160"/>  </pre>
 
 15. View post history created by current user, user can delete by clicking on the trash can
 <img src="./screenshots/3-15-1.png" width="160"/>
@@ -79,16 +58,13 @@ IOS:
 <img src="./screenshots/3-16.png" width="160"/>
 
 17. Edit event info for the event created by current user
-<img src="./screenshots/3-17-1.png" width="160"/>
-<img src="./screenshots/3-17-2.png" width="160"/>
-<img src="./screenshots/3-17-3.png" width="160"/>
+<pre> <img src="./screenshots/3-17-1.png" width="160"/>  <img src="./screenshots/3-17-2.png" width="160"/>  <img src="./screenshots/3-17-3.png" width="160"/>  </pre>
 
 18. Delete event created by current user
 <img src="./screenshots/3-18.png" width="160"/>
 
 19. Tip an event by clicking on the cash button on event detail page
-<img src="./screenshots/3-19-1.png" width="160"/>
-<img src="./screenshots/3-19-2.png" width="160"/>
+<pre>  <img src="./screenshots/3-19-1.png" width="160"/>  <img src="./screenshots/3-19-2.png" width="160"/>  </pre>
 
 20. LogOut
 <img src="./screenshots/3-20.png" width="160"/>
@@ -96,20 +72,9 @@ IOS:
 <br>
 Some Android Screenshots:
 <br>
-<img src="./screenshots/a-1.png" width="160"/>
-<img src="./screenshots/a-2.png" width="160"/>
-<img src="./screenshots/a-3.png" width="160"/>
-<img src="./screenshots/a-4.png" width="160"/>
-<img src="./screenshots/a-5.png" width="160"/>
-<img src="./screenshots/a-6.png" width="160"/>
-<img src="./screenshots/a-7.png" width="160"/>
-<img src="./screenshots/a-8.png" width="160"/>
-<img src="./screenshots/a-9.png" width="160"/>
-<img src="./screenshots/a-10.png" width="160"/>
-<img src="./screenshots/a-11.png" width="160"/>
-<img src="./screenshots/a-12.png" width="160"/>
-<img src="./screenshots/a-13.png" width="160"/>
-<img src="./screenshots/a-14.png" width="160"/>
+<pre>  <img src="./screenshots/a-1.png" width="160"/>  <img src="./screenshots/a-2.png" width="160"/>  <img src="./screenshots/a-3.png" width="160"/>  <img src="./screenshots/a-4.png" width="160"/>  <img src="./screenshots/a-5.png" width="160"/>  </pre>
+<pre>  <img src="./screenshots/a-6.png" width="160"/>  <img src="./screenshots/a-7.png" width="160"/>  <img src="./screenshots/a-8.png" width="160"/>  <img src="./screenshots/a-9.png" width="160"/>  <img src="./screenshots/a-10.png" width="160"/>  </pre>
+<pre>  <img src="./screenshots/a-11.png" width="160"/>  <img src="./screenshots/a-12.png" width="160"/>  <img src="./screenshots/a-13.png" width="160"/>  <img src="./screenshots/a-14.png" width="160"/>  </pre>
 
 
 # Iteration2:
